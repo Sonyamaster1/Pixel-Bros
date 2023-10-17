@@ -7,9 +7,13 @@
   z-index: 0;
 }
 
-.pipe {
+.pipe,
+.pipeReverse {
   position: absolute;
   left: 0;
+}
+
+.pipe {
   bottom: 0;
 
   &:first-of-type {
@@ -30,8 +34,6 @@
 }
 
 .pipeReverse {
-  position: absolute;
-  left: 0;
   top: 0;
 
   &:nth-of-type(5) {
