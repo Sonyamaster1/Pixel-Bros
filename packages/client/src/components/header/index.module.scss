@@ -1,0 +1,42 @@
+.header {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  padding: 25px 35px;
+  height: 127px;
+}
+
+.logoLink {
+  transition: opacity 0.25s ease;
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0 50px;
+}
+
+.signinLink {
+  color: #fff;
+  font-family: 'Press Start 2P';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+
+  &:hover {
+    opacity: 0.75;
+  }
+}
