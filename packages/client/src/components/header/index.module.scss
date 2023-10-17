@@ -23,20 +23,3 @@
   align-items: center;
   gap: 0 50px;
 }
-
-.signinLink {
-  color: #fff;
-  font-family: 'Press Start 2P';
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  letter-spacing: 1.8px;
-  text-transform: uppercase;
-  text-decoration: none;
-  transition: opacity 0.25s ease;
-
-  &:hover {
-    opacity: 0.75;
-  }
-}

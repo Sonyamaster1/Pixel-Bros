@@ -2,7 +2,9 @@ import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
 import IconLogo from '../../assets/images/logo.png'
+
 import { MenuItem } from './menuItem'
+import { AuthenticationButton } from './authenticationButton'
 
 import styles from './index.module.scss'
 
@@ -19,9 +21,7 @@ export const Header: FC = () => {
           <MenuItem label="play" href="/game" />
         </ul>
       </nav>
-      <Link to="/login" className={styles.signinLink}>
-        signin
-      </Link>
+      <AuthenticationButton />
     </header>
   )
 }
