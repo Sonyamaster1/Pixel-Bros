@@ -8,6 +8,12 @@
   height: 127px;
 }
 
+.leftContent {
+  display: flex;
+  align-items: center;
+  gap: 0 215px;
+}
+
 .logoLink {
   transition: opacity 0.25s ease;
   &:hover {
