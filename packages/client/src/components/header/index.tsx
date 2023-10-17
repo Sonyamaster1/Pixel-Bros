@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { Link } from 'react-router-dom'
 
-import IconLogo from '../../assets/logo.png'
+import IconLogo from '../../assets/images/logo.png'
 import { MenuItem } from './menuItem'
 
 import styles from './index.module.scss'
