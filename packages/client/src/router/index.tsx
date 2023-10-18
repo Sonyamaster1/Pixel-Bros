@@ -1,6 +1,7 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import AuthRoute from './private-router'
 import { SignUpForm } from '../pages/sign-up-form/sign-up-form'
+import { SignInForm } from '../pages/sign-in-form/sign-in.form'
 
 export const router = createBrowserRouter([
   {
@@ -13,7 +14,7 @@ export const router = createBrowserRouter([
         path: 'login',
         element: (
           <AuthRoute>
-            <div>Тут будет авторизация</div>
+            <SignInForm />
           </AuthRoute>
         ),
       },

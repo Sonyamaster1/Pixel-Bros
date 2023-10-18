@@ -4,10 +4,10 @@ import { ButtonColors, FooterButton } from './button.component'
 import { Form } from './form.component'
 import { SingleCell } from '../../components/cellEmpty.component'
 
-export function SignUpForm() {
-  const handleClick = () => console.log('Жмякнули кнопочку')
-  const handleSubmit = () => console.log('handleSubmit')
+const handleClick = () => console.log('Жмякнули кнопочку')
+const handleSubmit = () => console.log('handleSubmit')
 
+export function SignUpForm() {
   return (
     <div className="App">
       <Form onSubmit={handleSubmit}>
