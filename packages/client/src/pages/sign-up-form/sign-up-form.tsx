@@ -3,10 +3,10 @@ import { EntityHeader } from './entity-header.component'
 import { ButtonColors, FooterButton } from './button.component'
 import { Form } from './form.component'
 
-export function SignUpForm() {
-  const handleClick = () => console.log('Жмякнули кнопочку')
-  const handleSubmit = () => console.log('handleSubmit')
+const handleClick = () => console.log('Жмякнули кнопочку')
+const handleSubmit = () => console.log('handleSubmit')
 
+export function SignUpForm() {
   return (
     <div className="App">
       <Form onSubmit={handleSubmit}>
