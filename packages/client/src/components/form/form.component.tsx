@@ -1,4 +1,4 @@
-import './styles/form.style.pcss'
+import './form.style.pcss'
 
 type TFormProps = {
   onSubmit: () => void

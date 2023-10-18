@@ -3,6 +3,8 @@ import AuthRoute from './private-router'
 import { SignUpForm } from '../pages/sign-up-form/sign-up-form'
 import { RootLayout } from '../layouts'
 import { HomePage } from '../pages/home'
+import { SignInForm } from '../pages/sign-in-form/sign-in.form'
+import { Profile } from '../pages/profile'
 
 export const router = createBrowserRouter([
   {
@@ -16,7 +18,7 @@ export const router = createBrowserRouter([
         path: 'login',
         element: (
           <AuthRoute>
-            <div>Тут будет авторизация</div>
+            <SignInForm />
           </AuthRoute>
         ),
       },
@@ -30,7 +32,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: <div>Профиль</div>,
+        element: <Profile />,
       },
       {
         path: 'game',

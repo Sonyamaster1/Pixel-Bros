@@ -1,12 +1,18 @@
 import { ChangeEvent, useState } from 'react'
-import './styles/field.style.pcss'
+import './field.style.pcss'
+import { SingleCell } from '../cell-empty/cellEmpty.component'
 
 type TFieldProps = {
   placeholder: string
   inputType: string
+  id?: string
 }
 
-export function Field({ placeholder, inputType }: TFieldProps): JSX.Element {
+export function Field({
+  placeholder,
+  inputType,
+  id = placeholder,
+}: TFieldProps): JSX.Element {
   const [inputValue, setInputValue] = useState('')
 
   function handleOnChange(e: ChangeEvent<HTMLInputElement>) {
@@ -19,11 +25,11 @@ export function Field({ placeholder, inputType }: TFieldProps): JSX.Element {
         className="field"
         placeholder={placeholder}
         type={inputType}
-        id="inputField"
+        id={id}
         value={inputValue}
         onChange={handleOnChange}
       />
-      <p>Вы ввели: {inputValue}</p>
+      <SingleCell height={20} />
     </div>
   )
 }
