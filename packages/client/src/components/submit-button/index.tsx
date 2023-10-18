@@ -1,4 +1,4 @@
-import './styles/footer-button.style.pcss'
+import styles from './submit-button.module.scss'
 
 type TFooterButtonProps = {
   title: string
@@ -27,7 +27,7 @@ export function FooterButton({
       type={buttonType}
       onClick={onClick}
       style={dynamicStyles}
-      className={'footer-button'}>
+      className={styles.footerButton}>
       {' '}
       {title}
     </button>

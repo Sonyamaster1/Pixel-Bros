@@ -1,5 +1,5 @@
 import { ChangeEvent, useState } from 'react'
-import './styles/field.style.pcss'
+import styles from './field.module.scss'
 
 type TFieldProps = {
   placeholder: string
@@ -16,7 +16,7 @@ export function Field({ placeholder, inputType }: TFieldProps): JSX.Element {
   return (
     <div>
       <input
-        className="field"
+        className={styles.field}
         placeholder={placeholder}
         type={inputType}
         id="inputField"

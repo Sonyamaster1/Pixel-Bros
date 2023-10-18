@@ -1,4 +1,4 @@
-import './styles/form.style.pcss'
+import styles from './form.module.scss'
 
 type TFormProps = {
   onSubmit: () => void
@@ -7,7 +7,7 @@ type TFormProps = {
 
 export function Form({ onSubmit, children }: TFormProps): JSX.Element {
   return (
-    <form className="form" onSubmit={onSubmit}>
+    <form className={styles.form} onSubmit={onSubmit}>
       {children}
     </form>
   )

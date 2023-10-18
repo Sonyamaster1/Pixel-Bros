@@ -1,17 +1,17 @@
-import { Field } from '../../components/field'
 import { EntityHeader } from '../../components/header'
-import { ButtonColors, FooterButton } from '../../components/submit-button'
+import { Field } from '../../components/field'
 import { Form } from '../../components/form'
+import { ButtonColors, FooterButton } from '../../components/submit-button'
 
-export function SignUpForm() {
-  const handleClick = () => console.log('Жмякнули кнопочку')
-  const handleSubmit = () => console.log('handleSubmit')
+export function Profile() {
+  const onSubmit = () => console.log('handleSubmit')
+  const handleClick = () => console.log('click')
 
   return (
-    <div className="App">
-      <Form onSubmit={handleSubmit}>
-        <EntityHeader title="Registration" />
-        <Field placeholder="First name" inputType="text" />
+    <div>
+      <Form onSubmit={onSubmit}>
+        <EntityHeader title="Profile" />
+        <Field placeholder="First Name" inputType="text" />
         <Field placeholder="Second Name" inputType="text" />
         <Field placeholder="Login" inputType="text" />
         <Field placeholder="email" inputType="text" />
@@ -20,7 +20,7 @@ export function SignUpForm() {
         <FooterButton
           buttonType="submit"
           onClick={handleClick}
-          title="Sign Up"
+          title="Save"
           color={ButtonColors.GREEN}
         />
       </Form>
