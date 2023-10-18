@@ -2,6 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router-dom'
 import AuthRoute from './private-router'
 import { SignUpForm } from '../pages/sign-up-form/sign-up-form'
 import { SignInForm } from '../pages/sign-in-form/sign-in.form'
+import { Profile } from '../pages/profile'
 
 export const router = createBrowserRouter([
   {
@@ -28,7 +29,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: <div>Профиль</div>,
+        element: <Profile />,
       },
       {
         path: 'game',
