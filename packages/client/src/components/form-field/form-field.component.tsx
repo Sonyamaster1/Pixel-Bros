@@ -1,6 +1,6 @@
 import { ChangeEvent, useState } from 'react'
-import './styles/field.style.pcss'
-import { SingleCell } from '../../components/cellEmpty.component'
+import './field.style.pcss'
+import { SingleCell } from '../cell-empty/cellEmpty.component'
 
 type TFieldProps = {
   placeholder: string

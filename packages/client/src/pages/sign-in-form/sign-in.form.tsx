@@ -1,7 +1,10 @@
-import { Field } from '../sign-up-form/sign-up-form.field'
-import { EntityHeader } from '../sign-up-form/entity-header.component'
-import { ButtonColors, FooterButton } from '../sign-up-form/button.component'
-import { Form } from '../sign-up-form/form.component'
+import { Field } from '../../components/form-field/form-field.component'
+import { EntityHeader } from '../../components/entity-header/entity-header.component'
+import {
+  ButtonColors,
+  FooterButton,
+} from '../../components/button/button.component'
+import { Form } from '../../components/form/form.component'
 
 const handleClick = () => console.log('Жмякнули кнопочку')
 const handleSubmit = () => console.log('handleSubmit')

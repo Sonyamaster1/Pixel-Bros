@@ -1,4 +1,4 @@
-import './styles/entity-header.style.pcss'
+import './entity-header.style.pcss'
 
 type TEntityHeaderProps = {
   title: string
