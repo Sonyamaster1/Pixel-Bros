@@ -1,4 +1,4 @@
-import './styles/footer-button.style.pcss'
+import './footer-button.style.pcss'
 
 type TFooterButtonProps = {
   title: string
