@@ -1,9 +1,12 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import AuthRoute from './private-router'
 import { SignUpForm } from '../pages/sign-up-form/sign-up-form'
+import { RootLayout } from '../layouts'
+import { HomePage } from '../pages/home'
 
 export const router = createBrowserRouter([
   {
+    element: <RootLayout />,
     children: [
       {
         path: '/',
@@ -31,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'game',
-        element: <div>Игра,главный экран</div>,
+        element: <HomePage />,
       },
       {
         path: 'forum',
