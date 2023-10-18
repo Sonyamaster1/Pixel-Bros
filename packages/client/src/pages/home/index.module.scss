@@ -5,3 +5,19 @@
   height: 100vh;
   position: relative;
 }
+
+.content {
+  box-sizing: border-box;
+  padding: 10% 5%;
+  position: relative;
+}
+
+.description {
+  display: block;
+  box-sizing: border-box;
+  margin-left: auto;
+  max-width: 564px;
+  padding: 56px 38px 33px;
+  border-radius: 12px;
+  background-color: white;
+}
