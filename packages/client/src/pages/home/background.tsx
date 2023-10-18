@@ -6,6 +6,7 @@ import IconPipeLg from '../../assets/images/pipe-lg.svg'
 import IconPipeXl from '../../assets/images/pipe-xl.svg'
 import IconPipeReverse from '../../assets/images/pipe-reverse.svg'
 import IconPipeReverseSm from '../../assets/images/pipe-reverse-sm.svg'
+import IconBird from '../../assets/images/yellowbird.svg'
 
 import styles from './background.module.scss'
 
@@ -26,6 +27,11 @@ export const Background: FC = () => {
         className={styles.pipeReverse}
         alt="pipe-reverse"
       />
+      <div className={styles.birds}>
+        <img src={IconBird} className={styles.bird} alt="bird" />
+        <img src={IconBird} className={styles.bird} alt="bird" />
+        <img src={IconBird} className={styles.bird} alt="bird" />
+      </div>
     </div>
   )
 }
