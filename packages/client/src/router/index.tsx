@@ -39,6 +39,10 @@ export const router = createBrowserRouter([
         element: <HomePage />,
       },
       {
+        path: 'play',
+        element: <div>Экран начала игры</div>,
+      },
+      {
         path: 'forum',
         element: <div>Форум</div>,
       },
