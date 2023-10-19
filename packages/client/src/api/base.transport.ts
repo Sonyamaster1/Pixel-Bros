@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 
-abstract class BaseTransport {
+export abstract class BaseTransport {
   private client: AxiosInstance
 
   protected constructor(baseURL: string) {
