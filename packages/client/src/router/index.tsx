@@ -3,9 +3,11 @@ import AuthRoute from './private-router'
 import { SignUpForm } from '../pages/sign-up-form/sign-up-form'
 import { SignInForm } from '../pages/sign-in-form/sign-in.form'
 import { Profile } from '../pages/profile'
+import ErrorBoundaryLayout from '../layouts/ErrorBoundaryLayout'
 
 export const router = createBrowserRouter([
   {
+    element: <ErrorBoundaryLayout />,
     children: [
       {
         path: '/',
