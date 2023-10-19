@@ -1,0 +1,31 @@
+.homePage {
+  box-sizing: border-box;
+  background: linear-gradient(180deg, #a3ddd7 0%, rgba(163, 221, 215, 0) 100%)
+    no-repeat;
+  height: 100vh;
+  position: relative;
+}
+
+.content {
+  box-sizing: border-box;
+  padding: 10% 5%;
+  position: relative;
+}
+
+.description {
+  display: block;
+  box-sizing: border-box;
+  margin-left: auto;
+  max-width: 640px;
+  padding: 56px 38px 33px;
+  border-radius: 12px;
+  background-color: white;
+  color: #000;
+  font-family: 'Press Start 2P';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}

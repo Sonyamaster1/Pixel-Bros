@@ -1,0 +1,36 @@
+.header {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+  padding: 25px 35px;
+  height: 127px;
+  width: 100vw;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+}
+
+.leftContent {
+  display: flex;
+  align-items: center;
+  gap: 0 215px;
+}
+
+.logoLink {
+  transition: opacity 0.25s ease;
+  &:hover {
+    opacity: 0.75;
+  }
+}
+
+.list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  gap: 0 50px;
+}
