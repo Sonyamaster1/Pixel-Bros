@@ -1,0 +1,25 @@
+.menuItem {
+  color: #fff;
+  text-align: right;
+  font-family: 'Press Start 2P';
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  transition: opacity 0.25s ease;
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  &Active {
+    text-decoration: 2px underline white;
+  }
+}

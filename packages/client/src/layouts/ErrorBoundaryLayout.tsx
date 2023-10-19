@@ -1,10 +1,13 @@
+import React, { FC, ReactNode } from 'react'
 import ErrorBoundary from '../utils/ErrorBoundary'
-import React from 'react'
-import { Outlet } from 'react-router-dom'
 
-const ErrorBoundaryLayout = () => (
+interface Props {
+  children: ReactNode | ReactNode[]
+}
+
+const ErrorBoundaryLayout: FC<Props> = ({ children }) => (
   <ErrorBoundary fallback={<h1>Oops, something went wrong...</h1>}>
-    <Outlet />
+    {children}
   </ErrorBoundary>
 )
 
