@@ -1,13 +1,10 @@
-import { Field } from '../../components/form-field/form-field.component'
-import { EntityHeader } from '../../components/entity-header/entity-header.component'
+import { Field, MainLayout, Form, EntityHeader } from '../../components'
 import {
   ButtonColors,
   FooterButton,
 } from '../../components/button/button.component'
-import { Form } from '../../components/form/form.component'
 import { ChangeEvent, useCallback, useState } from 'react'
 import { signInTransport } from '../../api/sign-in.transport'
-import { MainLayout } from '../../components/main-layout/main-layout.component'
 import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
 
