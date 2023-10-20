@@ -6,30 +6,70 @@ import {
 import { EntityHeader } from '../../components/entity-header/entity-header.component'
 import { Field } from '../../components/form-field/form-field.component'
 import { SingleCell } from '../../components/cell-empty/cellEmpty.component'
-import styles from './profile.module.scss'
+import { Avatar } from '../../components/avatar'
+import { profileTransport } from '../../api/profile/profile.api'
 
+export interface IChangeAvatar {
+  avatar: string
+  formData: FormData
+}
 export function Profile() {
   const onSubmit = () => console.log('handleSubmit')
   const handleClick = () => console.log('click')
+
+  const changeAvatar = (e: Event) => {
+    e.preventDefault()
+    const inputFile: HTMLInputElement | null = document.getElementById(
+      'avatar'
+    ) as HTMLInputElement
+    const formData: FormData = new FormData()
+    const file = inputFile.files ? inputFile.files[0] : 'nofile'
+    formData.append('avatar', file)
+    profileTransport.getAvatar(formData)
+    console.log('test')
+  }
 
   return (
     <div style={{ textAlign: 'center' }}>
       <Form style={{ paddingBottom: 55 }} onSubmit={onSubmit}>
         <EntityHeader title="Profile" />
         <SingleCell height={25} />
-        <div className={styles.avatar}>
-          <img
-            className={styles.avatarImg}
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS73sw1BREUsk6b_nJVZ5T_aj28Z33uo2OPQDLtIio&s"
-            alt="avatar"
-          />
-        </div>
-        <Field placeholder="First Name" inputType="text" />
-        <Field placeholder="Second Name" inputType="text" />
-        <Field placeholder="Login" inputType="text" />
-        <Field placeholder="email" inputType="text" />
-        <Field placeholder="Phone" inputType="phone" />
-        <Field placeholder="Password" inputType="password" />
+        <Avatar src={''} onClick={(e: Event) => changeAvatar(e)} />
+        <Field
+          placeholder="First Name"
+          inputType="text"
+          inputName={''}
+          value={''}
+          onChange={() => console.log('avatar')}
+        />
+        <Field
+          placeholder="Second Name"
+          inputType="text"
+          inputName={''}
+          value={''}
+          onChange={() => console.log('avatar')}
+        />
+        <Field
+          placeholder="Login"
+          inputType="text"
+          inputName={''}
+          value={''}
+          onChange={() => console.log('avatar')}
+        />
+        <Field
+          placeholder="Phone"
+          inputType="phone"
+          inputName={''}
+          value={''}
+          onChange={() => console.log('avatar')}
+        />
+        <Field
+          placeholder="Password"
+          inputType="password"
+          inputName={''}
+          value={''}
+          onChange={() => console.log('avatar')}
+        />
         <FooterButton
           buttonType="submit"
           onClick={handleClick}
@@ -40,9 +80,27 @@ export function Profile() {
       <Form>
         <EntityHeader title="Change Password" />
         <SingleCell height={48} />
-        <Field placeholder="OLd password" inputType="password" />
-        <Field placeholder="New password" inputType="password" />
-        <Field placeholder="Repeat password" inputType="password" />
+        <Field
+          placeholder="OLd password"
+          inputType="password"
+          inputName={''}
+          value={''}
+          onChange={() => console.log('avatar')}
+        />
+        <Field
+          placeholder="New password"
+          inputType="password"
+          inputName={''}
+          value={''}
+          onChange={() => console.log('avatar')}
+        />
+        <Field
+          placeholder="Repeat password"
+          inputType="password"
+          inputName={''}
+          value={''}
+          onChange={() => console.log('avatar')}
+        />
         <div
           style={{
             display: 'flex',
