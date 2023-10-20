@@ -1,4 +1,4 @@
-import { IChangeAvatar } from '../../pages/profile'
+// import { IChangeAvatar } from '../../pages/profile'
 import { BaseTransport } from '../base.transport'
 import { AxiosError } from 'axios'
 
