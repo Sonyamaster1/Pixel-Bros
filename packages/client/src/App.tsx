@@ -1,5 +1,7 @@
 import { RouterProvider } from 'react-router-dom'
 import { router } from './router'
+import { useEffect } from 'react'
+import { signInTransport } from './api/sign-in.transport'
 
 export function App() {
   // useEffect(() => {
@@ -13,6 +15,11 @@ export function App() {
   //   fetchServerData()
   // }, [])
   // return <Link to='/game' className="App">Проверить шрифт</Link>
+
+  useEffect(() => {
+    signInTransport.getUserData()
+  }, [])
+
   return <RouterProvider router={router} />
 }
 

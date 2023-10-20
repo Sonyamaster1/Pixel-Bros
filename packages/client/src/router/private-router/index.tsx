@@ -1,7 +1,16 @@
 import { Navigate } from 'react-router-dom'
+import { signInTransport } from '../../api/sign-in.transport'
 
-export default function AuthRoute({ children }: any): JSX.Element {
-  // бек не отдает токен - это просто тестовая реализация - работает не так, как должна и это нормально
-  const token = localStorage.getItem('token')
-  return !token ? <Navigate to="/game" replace /> : children
+type TAuthRouteProps = {
+  children: JSX.Element
+}
+
+async function getAuthorizedStatus() {
+  return await signInTransport.getUserData()
+}
+
+const isAuthorized = await getAuthorizedStatus()
+
+export default function AuthRoute({ children }: TAuthRouteProps): JSX.Element {
+  return !isAuthorized ? <Navigate to="/login" replace /> : <>{children}</>
 }
