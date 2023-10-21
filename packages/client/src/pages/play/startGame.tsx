@@ -1,6 +1,6 @@
 import { FC } from 'react'
 
-import IconBird from '../../assets/images/yellowbird.svg'
+import { IconBird } from '../../assets/images'
 
 import styles from './startGame.module.scss'
 
