@@ -4,7 +4,7 @@ import IconPipeLg from './pipe-lg.svg'
 import IconPipeXl from './pipe-xl.svg'
 import IconPipeReverse from './pipe-reverse.svg'
 import IconPipeReverseSm from './pipe-reverse-sm.svg'
-import IconBird from './yellowbird.svg'
+import IconBird from './yellowbird.png'
 import IconGameOver from './game-over.svg'
 
 export {
