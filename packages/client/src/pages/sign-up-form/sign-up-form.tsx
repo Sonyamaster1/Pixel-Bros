@@ -1,14 +1,12 @@
-import {
-  Field,
-  Form,
-  SingleCell,
-  MainLayout,
-  EntityHeader,
-} from '../../components'
+import { Field } from '../../components/form-field/form-field.component'
+import { EntityHeader } from '../../components/entity-header/entity-header.component'
 import {
   ButtonColors,
   FooterButton,
 } from '../../components/button/button.component'
+import { Form } from '../../components/form/form.component'
+import { SingleCell } from '../../components/cell-empty/cellEmpty.component'
+import { MainLayout } from '../../components/main-layout/main-layout.component'
 import { ChangeEvent, useCallback, useState } from 'react'
 
 export type TSignUpFormValue = {
