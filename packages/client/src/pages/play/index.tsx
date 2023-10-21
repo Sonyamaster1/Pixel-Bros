@@ -1,6 +1,7 @@
 import { FC, useState } from 'react'
 
 import { StartGame } from './startGame'
+import { EndGame } from './endGame'
 
 import styles from './index.module.scss'
 
@@ -9,7 +10,7 @@ export const PlayPage: FC = () => {
 
   return (
     <main className={styles.playPage}>
-      {isBeginGame ? <StartGame /> : null}
+      {isBeginGame ? <StartGame /> : <EndGame />}
     </main>
   )
 }
