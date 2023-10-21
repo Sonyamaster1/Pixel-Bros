@@ -11,10 +11,7 @@ export abstract class BaseTransport {
   }
 
   async get<T>(endpoint: string, config?: AxiosRequestConfig): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.get(endpoint, {
-      ...config,
-      withCredentials: true, // Включаем передачу куков
-    })
+    const response: AxiosResponse<T> = await this.client.get(endpoint, config)
     return response.data
   }
 
@@ -23,10 +20,11 @@ export abstract class BaseTransport {
     data?: any,
     config?: AxiosRequestConfig
   ): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.post(endpoint, data, {
-      ...config,
-      withCredentials: true, // Включаем передачу куков
-    })
+    const response: AxiosResponse<T> = await this.client.post(
+      endpoint,
+      data,
+      config
+    )
     return response.data
   }
 

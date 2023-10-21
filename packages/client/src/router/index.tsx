@@ -16,7 +16,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'login',
-        element: <SignInForm />,
+        element: (
+          <AuthRoute>
+            <SignInForm />
+          </AuthRoute>
+        ),
       },
       {
         path: 'registry',
@@ -24,11 +28,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: (
-          <AuthRoute>
-            <Profile />
-          </AuthRoute>
-        ),
+        element: <Profile />,
       },
       {
         path: 'game',
@@ -36,19 +36,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'forum',
-        element: (
-          <AuthRoute>
-            <div>Форум</div>
-          </AuthRoute>
-        ),
+        element: <div>Форум</div>,
       },
       {
         path: 'leaderboard',
-        element: (
-          <AuthRoute>
-            <div>Лидерборд</div>
-          </AuthRoute>
-        ),
+        element: <div>Лидерборд</div>,
       },
     ],
   },

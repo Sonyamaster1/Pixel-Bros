@@ -5,5 +5,5 @@ type TEntityHeaderProps = {
 }
 
 export function EntityHeader({ title }: TEntityHeaderProps): JSX.Element {
-  return <h1 className="entity-header">{title}</h1>
+  return <h1>{title}</h1>
 }
