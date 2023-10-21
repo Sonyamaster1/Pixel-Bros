@@ -1,6 +1,6 @@
 import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios'
 
-abstract class BaseTransport {
+export abstract class BaseTransport {
   private client: AxiosInstance
 
   protected constructor(baseURL: string) {
@@ -11,20 +11,22 @@ abstract class BaseTransport {
   }
 
   async get<T>(endpoint: string, config?: AxiosRequestConfig): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.get(endpoint, config)
+    const response: AxiosResponse<T> = await this.client.get(endpoint, {
+      ...config,
+      withCredentials: true, // Включаем передачу куков
+    })
     return response.data
   }
 
   async post<T>(
     endpoint: string,
-    data: any,
+    data?: any,
     config?: AxiosRequestConfig
   ): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.post(
-      endpoint,
-      data,
-      config
-    )
+    const response: AxiosResponse<T> = await this.client.post(endpoint, data, {
+      ...config,
+      withCredentials: true, // Включаем передачу куков
+    })
     return response.data
   }
 
