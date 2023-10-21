@@ -2,38 +2,40 @@ import { Field } from '../form-field/form-field.component'
 import { EntityHeader } from '../entity-header/entity-header.component'
 import { ButtonColors, FooterButton } from '../button/button.component'
 import { Form } from '../form/form.component'
-import { ChangeEvent, useCallback, useState } from 'react'
 import { SingleCell } from '../cell-empty/cellEmpty.component'
 import styles from '../../pages/profile/profile.module.scss'
-
-export type TChangePasswordFormValue = {
-  login: string
-  password: string
-}
-
-const defaultFormValue: TChangePasswordFormValue = {
-  login: '',
-  password: '',
-}
+import { signInTransport } from '../../api/sign-in.transport'
+import { Controller, useForm } from 'react-hook-form'
+import {
+  defaultFormValue,
+  TSignUpFormValue,
+} from '../../pages/sign-up-form/sign-up-form'
+import { validationPatterns } from '../../utils/constants'
+import { useEffect } from 'react'
 
 export function ProfileForm() {
-  const [formValue, setFormValue] =
-    useState<TChangePasswordFormValue>(defaultFormValue)
-  const handleClick = () => console.log('click')
-  const onSubmit = () => console.log('handleSubmit')
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues: defaultFormValue,
+    mode: 'onBlur',
+  })
 
-  const handleOnChangeField = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setFormValue(prevFormValue => ({
-        ...prevFormValue,
-        [event.target.name]: event.target.value,
-      }))
-    },
-    [formValue]
-  )
+  useEffect(() => {
+    signInTransport.getUserData().then(res => {
+      reset(res as TSignUpFormValue)
+    })
+  }, [])
+
+  const onSubmit = (data: TSignUpFormValue) => {
+    console.log('handleSubmit data', data)
+  }
 
   return (
-    <Form onSubmit={onSubmit}>
+    <Form>
       <EntityHeader title="Profile" />
       <SingleCell height={25} />
       <div className={styles.avatar}>
@@ -43,51 +45,141 @@ export function ProfileForm() {
           alt="avatar"
         />
       </div>
-      <Field
-        value={formValue['login']}
-        onChange={handleOnChangeField}
-        inputName="firstName"
-        placeholder="First Name"
-        inputType="text"
+      <Controller
+        control={control}
+        rules={{
+          required: { value: true, message: 'Required field' },
+          pattern: {
+            value: validationPatterns.first_name.regexp,
+            message: validationPatterns.first_name.message,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Field
+            value={value}
+            onBlur={onBlur}
+            onChange={onChange}
+            inputName="first_name"
+            placeholder="First name"
+            inputType="text"
+            error={errors?.first_name?.message}
+          />
+        )}
+        name="first_name"
       />
-      <Field
-        value={formValue['login']}
-        onChange={handleOnChangeField}
-        inputName="secondName"
-        placeholder="Second Name"
-        inputType="text"
+      <Controller
+        control={control}
+        rules={{
+          required: { value: true, message: 'Required field' },
+          pattern: {
+            value: validationPatterns.second_name.regexp,
+            message: validationPatterns.second_name.message,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Field
+            value={value}
+            onBlur={onBlur}
+            onChange={onChange}
+            inputName="second_name"
+            placeholder="Second name"
+            inputType="text"
+            error={errors?.second_name?.message}
+          />
+        )}
+        name="second_name"
       />
-      <Field
-        value={formValue['login']}
-        onChange={handleOnChangeField}
-        inputName="login"
-        placeholder="Login"
-        inputType="text"
+      <Controller
+        control={control}
+        rules={{
+          required: { value: true, message: 'Required field' },
+          pattern: {
+            value: validationPatterns.login.regexp,
+            message: validationPatterns.login.message,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Field
+            value={value}
+            onBlur={onBlur}
+            onChange={onChange}
+            inputName="login"
+            placeholder="Login"
+            inputType="text"
+            error={errors?.login?.message}
+          />
+        )}
+        name="login"
       />
-      <Field
-        value={formValue['login']}
-        onChange={handleOnChangeField}
-        inputName="email"
-        placeholder="email"
-        inputType="text"
+      <Controller
+        control={control}
+        rules={{
+          required: { value: true, message: 'Required field' },
+          pattern: {
+            value: validationPatterns.email.regexp,
+            message: validationPatterns.email.message,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Field
+            value={value}
+            onBlur={onBlur}
+            onChange={onChange}
+            inputName="email"
+            placeholder="Email"
+            inputType="text"
+            error={errors?.email?.message}
+          />
+        )}
+        name="email"
       />
-      <Field
-        value={formValue['login']}
-        onChange={handleOnChangeField}
-        inputName="phone"
-        placeholder="Phone"
-        inputType="phone"
+      <Controller
+        control={control}
+        rules={{
+          required: { value: true, message: 'Required field' },
+          pattern: {
+            value: validationPatterns.phone.regexp,
+            message: validationPatterns.phone.message,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Field
+            value={value}
+            onBlur={onBlur}
+            onChange={onChange}
+            inputName="phone"
+            placeholder="Phone"
+            inputType="text"
+            error={errors?.phone?.message}
+          />
+        )}
+        name="phone"
       />
-      <Field
-        value={formValue['login']}
-        onChange={handleOnChangeField}
-        inputName="password"
-        placeholder="Password"
-        inputType="password"
+      <Controller
+        control={control}
+        rules={{
+          required: { value: true, message: 'Required field' },
+          pattern: {
+            value: validationPatterns.password.regexp,
+            message: validationPatterns.password.message,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Field
+            value={value}
+            onBlur={onBlur}
+            onChange={onChange}
+            inputName="password"
+            placeholder="Password"
+            inputType="password"
+            error={errors?.password?.message}
+          />
+        )}
+        name="password"
       />
       <FooterButton
         buttonType="submit"
-        onClick={handleClick}
+        onClick={handleSubmit(onSubmit)}
         title="Save"
         color={ButtonColors.GREEN}
       />

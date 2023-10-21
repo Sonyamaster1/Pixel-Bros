@@ -9,92 +9,181 @@ import {
   ButtonColors,
   FooterButton,
 } from '../../components/button/button.component'
-import { ChangeEvent, useCallback, useState } from 'react'
+import { Controller, useForm } from 'react-hook-form'
+import { validationPatterns } from '../../utils/constants'
 
 export type TSignUpFormValue = {
-  firstName: string
-  secondName: string
+  first_name: string
+  second_name: string
   login: string
   email: string
   phone: string
   password: string
 }
 
-const defaultFormValue: TSignUpFormValue = {
-  firstName: '',
-  secondName: '',
+export const defaultFormValue: TSignUpFormValue = {
+  first_name: '',
+  second_name: '',
   login: '',
   email: '',
   phone: '',
   password: '',
 }
 
-const handleClick = () => console.log('Жмякнули кнопочку')
-const handleSubmit = () => console.log('handleSubmit')
-
 export function SignUpForm(): JSX.Element {
-  const [formValue, setFormValue] = useState<TSignUpFormValue>(defaultFormValue)
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: defaultFormValue,
+    mode: 'onBlur',
+  })
 
-  const handleOnChangeField = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setFormValue(prevFormValue => ({
-        ...prevFormValue,
-        [event.target.name]: event.target.value,
-      }))
-    },
-    [formValue]
-  )
-
+  const onSubmit = (data: TSignUpFormValue) => {
+    console.log('onSubmit', data)
+  }
+  console.log('errors', errors)
   return (
     <MainLayout>
-      <Form onSubmit={handleSubmit}>
+      <Form>
         <EntityHeader title="Registration" />
         <SingleCell height={38} />
-        <Field
-          value={formValue['firstName']}
-          onChange={handleOnChangeField}
-          inputName="firstName"
-          placeholder="First name"
-          inputType="text"
+        <Controller
+          control={control}
+          rules={{
+            required: { value: true, message: 'Required field' },
+            pattern: {
+              value: validationPatterns.first_name.regexp,
+              message: validationPatterns.first_name.message,
+            },
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Field
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              inputName="first_name"
+              placeholder="First name"
+              inputType="text"
+              error={errors?.first_name?.message}
+            />
+          )}
+          name="first_name"
         />
-        <Field
-          value={formValue['secondName']}
-          onChange={handleOnChangeField}
-          inputName="secondName"
-          placeholder="Second Name"
-          inputType="text"
+        <Controller
+          control={control}
+          rules={{
+            required: { value: true, message: 'Required field' },
+            pattern: {
+              value: validationPatterns.second_name.regexp,
+              message: validationPatterns.second_name.message,
+            },
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Field
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              inputName="second_name"
+              placeholder="Second name"
+              inputType="text"
+              error={errors?.second_name?.message}
+            />
+          )}
+          name="second_name"
         />
-        <Field
-          value={formValue['login']}
-          onChange={handleOnChangeField}
-          inputName="login"
-          placeholder="Login"
-          inputType="text"
+        <Controller
+          control={control}
+          rules={{
+            required: { value: true, message: 'Required field' },
+            pattern: {
+              value: validationPatterns.login.regexp,
+              message: validationPatterns.login.message,
+            },
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Field
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              inputName="login"
+              placeholder="Login"
+              inputType="text"
+              error={errors?.login?.message}
+            />
+          )}
+          name="login"
         />
-        <Field
-          value={formValue['email']}
-          onChange={handleOnChangeField}
-          inputName="email"
-          placeholder="email"
-          inputType="text"
+        <Controller
+          control={control}
+          rules={{
+            required: { value: true, message: 'Required field' },
+            pattern: {
+              value: validationPatterns.email.regexp,
+              message: validationPatterns.email.message,
+            },
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Field
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              inputName="email"
+              placeholder="Email"
+              inputType="text"
+              error={errors?.email?.message}
+            />
+          )}
+          name="email"
         />
-        <Field
-          value={formValue['phone']}
-          onChange={handleOnChangeField}
-          inputName="phone"
-          placeholder="Phone"
-          inputType="phone"
+        <Controller
+          control={control}
+          rules={{
+            required: { value: true, message: 'Required field' },
+            pattern: {
+              value: validationPatterns.phone.regexp,
+              message: validationPatterns.phone.message,
+            },
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Field
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              inputName="phone"
+              placeholder="Phone"
+              inputType="text"
+              error={errors?.phone?.message}
+            />
+          )}
+          name="phone"
         />
-        <Field
-          value={formValue['password']}
-          onChange={handleOnChangeField}
-          inputName="password"
-          placeholder="Password"
-          inputType="password"
+        <Controller
+          control={control}
+          rules={{
+            required: { value: true, message: 'Required field' },
+            pattern: {
+              value: validationPatterns.password.regexp,
+              message: validationPatterns.password.message,
+            },
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Field
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              inputName="password"
+              placeholder="Password"
+              inputType="password"
+              error={errors?.password?.message}
+            />
+          )}
+          name="password"
         />
         <FooterButton
           buttonType="submit"
-          onClick={handleClick}
+          onClick={handleSubmit(onSubmit)}
           title="Sign Up"
           color={ButtonColors.GREEN}
         />
