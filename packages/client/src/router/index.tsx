@@ -24,7 +24,11 @@ export const router = createBrowserRouter([
       },
       {
         path: 'registry',
-        element: <SignUpForm />,
+        element: (
+          <AuthRoute>
+            <SignUpForm />
+          </AuthRoute>
+        ),
       },
       {
         path: 'profile',

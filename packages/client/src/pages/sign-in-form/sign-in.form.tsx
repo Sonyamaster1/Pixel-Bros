@@ -6,33 +6,30 @@ import {
 } from '../../components/button/button.component'
 import { Form } from '../../components/form/form.component'
 import { ChangeEvent, useCallback, useState } from 'react'
-import { signInTransport } from '../../api/sign-in.transport'
 
 const handleSubmit = () => console.log('handleSubmit')
 
-export type TSignInFormValue = {
+type TFormValueType = {
   login: string
   password: string
 }
 
-const defaultFormValue: TSignInFormValue = {
+const defaultFormValue: TFormValueType = {
   login: '',
   password: '',
 }
 
 export function SignInForm() {
-  const [formValue, setFormValue] = useState<TSignInFormValue>(defaultFormValue)
+  const [formValue, setFormValue] = useState<TFormValueType>(defaultFormValue)
 
-  const handleClick = useCallback(
-    () => signInTransport.signIn(formValue),
-    [formValue]
-  )
+  const handleClick = useCallback(() => console.log(formValue), [formValue])
   const handleOnChangeField = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setFormValue(prevFormValue => ({
         ...prevFormValue,
         [event.target.name]: event.target.value,
       }))
+      console.log(formValue, 'formValue')
     },
     [formValue]
   )
