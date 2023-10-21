@@ -32,7 +32,11 @@ export const PlayPage: FC = () => {
 
   return (
     <main className={styles.playPage}>
-      {isBeginGame ? <StartGame /> : <EndGame />}
+      {isBeginGame ? (
+        <StartGame />
+      ) : (
+        <EndGame handleRepeatGame={handleRepeatGame} />
+      )}
     </main>
   )
 }
