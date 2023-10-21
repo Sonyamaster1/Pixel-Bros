@@ -1,12 +1,14 @@
 import { FC } from 'react'
 
-import IconPipe from '../../assets/images/pipe.svg'
-import IconPipeSm from '../../assets/images/pipe-sm.svg'
-import IconPipeLg from '../../assets/images/pipe-lg.svg'
-import IconPipeXl from '../../assets/images/pipe-xl.svg'
-import IconPipeReverse from '../../assets/images/pipe-reverse.svg'
-import IconPipeReverseSm from '../../assets/images/pipe-reverse-sm.svg'
-import IconBird from '../../assets/images/yellowbird.svg'
+import {
+  IconBird,
+  IconPipe,
+  IconPipeLg,
+  IconPipeReverse,
+  IconPipeReverseSm,
+  IconPipeSm,
+  IconPipeXl,
+} from '../../assets/images'
 
 import styles from './background.module.scss'
 

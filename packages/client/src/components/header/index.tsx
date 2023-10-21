@@ -19,7 +19,7 @@ export const Header: FC = () => {
           <ul className={styles.list}>
             <MenuItem label="forum" href="/forum" />
             <MenuItem label="leaderboard" href="/leaderboard" />
-            <MenuItem label="play" href="/game" />
+            <MenuItem label="play" href="/play" />
           </ul>
         </nav>
       </div>

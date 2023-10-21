@@ -5,6 +5,7 @@ import { RootLayout } from '../layouts'
 import { HomePage } from '../pages/home'
 import { SignInForm } from '../pages/sign-in-form/sign-in.form'
 import { Profile } from '../pages/profile'
+import { PlayPage } from '../pages/play'
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: 'game',
         element: <HomePage />,
+      },
+      {
+        path: 'play',
+        element: <PlayPage />,
       },
       {
         path: 'forum',
