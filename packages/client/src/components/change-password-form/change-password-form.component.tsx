@@ -4,7 +4,7 @@ import { ButtonColors, FooterButton } from '../button/button.component'
 import { Form } from '../form/form.component'
 import { SingleCell } from '../cell-empty/cellEmpty.component'
 import { Controller, useForm } from 'react-hook-form'
-import { validationPatterns } from '../../utils/constants'
+import { fieldRequired, validationPatterns } from '../../utils/constants'
 import { useNavigate } from 'react-router-dom'
 
 export type TChangePasswordFormValue = {
@@ -46,7 +46,7 @@ export function ChangePasswordForm() {
       <Controller
         control={control}
         rules={{
-          required: { value: true, message: 'Required field' },
+          required: fieldRequired,
           pattern: {
             value: validationPatterns.password.regexp,
             message: validationPatterns.password.message,
@@ -69,7 +69,7 @@ export function ChangePasswordForm() {
         control={control}
         name="newPassword"
         rules={{
-          required: { value: true, message: 'Required field' },
+          required: fieldRequired,
           pattern: {
             value: validationPatterns.password.regexp,
             message: validationPatterns.password.message,
@@ -91,7 +91,7 @@ export function ChangePasswordForm() {
         control={control}
         name="confirmPassword"
         rules={{
-          required: { value: true, message: 'Required field' },
+          required: fieldRequired,
           validate: {
             isEqualToNew: data => {
               if (data !== newPassword) {

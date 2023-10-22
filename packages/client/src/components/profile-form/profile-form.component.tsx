@@ -10,7 +10,7 @@ import {
   defaultFormValue,
   TSignUpFormValue,
 } from '../../pages/sign-up-form/sign-up-form'
-import { validationPatterns } from '../../utils/constants'
+import { fieldRequired, validationPatterns } from '../../utils/constants'
 import { useEffect } from 'react'
 
 export function ProfileForm() {
@@ -48,7 +48,7 @@ export function ProfileForm() {
       <Controller
         control={control}
         rules={{
-          required: { value: true, message: 'Required field' },
+          required: fieldRequired,
           pattern: {
             value: validationPatterns.first_name.regexp,
             message: validationPatterns.first_name.message,
@@ -70,7 +70,7 @@ export function ProfileForm() {
       <Controller
         control={control}
         rules={{
-          required: { value: true, message: 'Required field' },
+          required: fieldRequired,
           pattern: {
             value: validationPatterns.second_name.regexp,
             message: validationPatterns.second_name.message,
@@ -92,7 +92,7 @@ export function ProfileForm() {
       <Controller
         control={control}
         rules={{
-          required: { value: true, message: 'Required field' },
+          required: fieldRequired,
           pattern: {
             value: validationPatterns.login.regexp,
             message: validationPatterns.login.message,
@@ -114,7 +114,7 @@ export function ProfileForm() {
       <Controller
         control={control}
         rules={{
-          required: { value: true, message: 'Required field' },
+          required: fieldRequired,
           pattern: {
             value: validationPatterns.email.regexp,
             message: validationPatterns.email.message,
@@ -136,7 +136,7 @@ export function ProfileForm() {
       <Controller
         control={control}
         rules={{
-          required: { value: true, message: 'Required field' },
+          required: fieldRequired,
           pattern: {
             value: validationPatterns.phone.regexp,
             message: validationPatterns.phone.message,
@@ -158,7 +158,7 @@ export function ProfileForm() {
       <Controller
         control={control}
         rules={{
-          required: { value: true, message: 'Required field' },
+          required: fieldRequired,
           pattern: {
             value: validationPatterns.password.regexp,
             message: validationPatterns.password.message,

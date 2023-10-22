@@ -20,7 +20,8 @@ export function Field({
   inputName,
   onChange,
   value,
-  onBlur,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onBlur = () => {},
   error = '',
 }: TFieldProps): JSX.Element {
   return (
@@ -30,11 +31,7 @@ export function Field({
         className="field"
         placeholder={placeholder}
         type={inputType}
-        onBlur={e => {
-          if (onBlur) {
-            onBlur(e)
-          }
-        }}
+        onBlur={onBlur}
         id={id}
         value={value}
         onChange={onChange}

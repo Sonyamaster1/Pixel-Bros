@@ -7,7 +7,7 @@ import { signInTransport } from '../../api/sign-in.transport'
 import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
-import { validationPatterns } from '../../utils/constants'
+import { fieldRequired, validationPatterns } from '../../utils/constants'
 
 export type TSignInFormValue = {
   login: string
@@ -46,7 +46,7 @@ export function SignInForm(): JSX.Element {
         <Controller
           control={control}
           rules={{
-            required: { value: true, message: 'Required field' },
+            required: fieldRequired,
             pattern: {
               value: validationPatterns.login.regexp,
               message: validationPatterns.login.message,
@@ -68,7 +68,7 @@ export function SignInForm(): JSX.Element {
         <Controller
           control={control}
           rules={{
-            required: { value: true, message: 'Required field' },
+            required: fieldRequired,
             pattern: {
               value: validationPatterns.password.regexp,
               message: validationPatterns.password.message,

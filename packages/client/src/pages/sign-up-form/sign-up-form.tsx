@@ -10,7 +10,7 @@ import {
   FooterButton,
 } from '../../components/button/button.component'
 import { Controller, useForm } from 'react-hook-form'
-import { validationPatterns } from '../../utils/constants'
+import { fieldRequired, validationPatterns } from '../../utils/constants'
 
 export type TSignUpFormValue = {
   first_name: string
@@ -52,7 +52,7 @@ export function SignUpForm(): JSX.Element {
         <Controller
           control={control}
           rules={{
-            required: { value: true, message: 'Required field' },
+            required: fieldRequired,
             pattern: {
               value: validationPatterns.first_name.regexp,
               message: validationPatterns.first_name.message,
@@ -74,7 +74,7 @@ export function SignUpForm(): JSX.Element {
         <Controller
           control={control}
           rules={{
-            required: { value: true, message: 'Required field' },
+            required: fieldRequired,
             pattern: {
               value: validationPatterns.second_name.regexp,
               message: validationPatterns.second_name.message,
@@ -96,7 +96,7 @@ export function SignUpForm(): JSX.Element {
         <Controller
           control={control}
           rules={{
-            required: { value: true, message: 'Required field' },
+            required: fieldRequired,
             pattern: {
               value: validationPatterns.login.regexp,
               message: validationPatterns.login.message,
@@ -118,7 +118,7 @@ export function SignUpForm(): JSX.Element {
         <Controller
           control={control}
           rules={{
-            required: { value: true, message: 'Required field' },
+            required: fieldRequired,
             pattern: {
               value: validationPatterns.email.regexp,
               message: validationPatterns.email.message,
@@ -140,7 +140,7 @@ export function SignUpForm(): JSX.Element {
         <Controller
           control={control}
           rules={{
-            required: { value: true, message: 'Required field' },
+            required: fieldRequired,
             pattern: {
               value: validationPatterns.phone.regexp,
               message: validationPatterns.phone.message,
@@ -162,7 +162,7 @@ export function SignUpForm(): JSX.Element {
         <Controller
           control={control}
           rules={{
-            required: { value: true, message: 'Required field' },
+            required: fieldRequired,
             pattern: {
               value: validationPatterns.password.regexp,
               message: validationPatterns.password.message,

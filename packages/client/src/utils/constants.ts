@@ -26,3 +26,5 @@ export const validationPatterns = {
     message: 'Invalid phone number',
   },
 }
+
+export const fieldRequired = { value: true, message: 'Required field' }
