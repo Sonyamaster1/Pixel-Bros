@@ -3,12 +3,11 @@ import {
   ButtonColors,
   FooterButton,
 } from '../../components/button/button.component'
-import { ChangeEvent, useCallback, useState } from 'react'
 import { signInTransport } from '../../api/sign-in.transport'
 import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
-
-const handleSubmit = () => console.log('handleSubmit')
+import { Controller, SubmitHandler, useForm } from 'react-hook-form'
+import { fieldRequired, validationPatterns } from '../../utils/constants'
 
 export type TSignInFormValue = {
   login: string
@@ -21,50 +20,76 @@ const defaultFormValue: TSignInFormValue = {
 }
 
 export function SignInForm(): JSX.Element {
-  const [formValue, setFormValue] = useState<TSignInFormValue>(defaultFormValue)
   const navigate = useNavigate()
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: defaultFormValue,
+    mode: 'onBlur',
+  })
 
-  const handleClick = useCallback(
-    () =>
-      signInTransport
-        .signIn(formValue)
-        .then(() => navigate('/game'))
-        .catch((error: AxiosError) => {
-          throw new Error(error.toString())
-        }),
-    [formValue]
-  )
-  const handleOnChangeField = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setFormValue(prevFormValue => ({
-        ...prevFormValue,
-        [event.target.name]: event.target.value,
-      }))
-    },
-    [formValue]
-  )
+  const handleClick: SubmitHandler<TSignInFormValue> = data => {
+    signInTransport
+      .signIn(data)
+      .then(() => navigate('/game'))
+      .catch((error: AxiosError) => {
+        throw new Error(error.toString())
+      })
+  }
 
   return (
     <MainLayout>
-      <Form onSubmit={handleSubmit}>
+      <Form>
         <EntityHeader title="Authorization" />
-        <Field
-          value={formValue['login']}
-          onChange={handleOnChangeField}
-          inputName="login"
-          placeholder="Login"
-          inputType="text"
+        <Controller
+          control={control}
+          rules={{
+            required: fieldRequired,
+            pattern: {
+              value: validationPatterns.login.regexp,
+              message: validationPatterns.login.message,
+            },
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Field
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              inputName="login"
+              placeholder="Login"
+              inputType="text"
+              error={errors?.login?.message}
+            />
+          )}
+          name="login"
         />
-        <Field
-          value={formValue['password']}
-          onChange={handleOnChangeField}
-          inputName="password"
-          placeholder="Password"
-          inputType="password"
+        <Controller
+          control={control}
+          rules={{
+            required: fieldRequired,
+            pattern: {
+              value: validationPatterns.password.regexp,
+              message: validationPatterns.password.message,
+            },
+          }}
+          render={({ field: { onChange, onBlur, value } }) => (
+            <Field
+              value={value}
+              onBlur={onBlur}
+              onChange={onChange}
+              inputName="password"
+              placeholder="Password"
+              inputType="password"
+              error={errors?.password?.message}
+            />
+          )}
+          name="password"
         />
         <FooterButton
-          buttonType="button"
-          onClick={handleClick}
+          buttonType="submit"
+          onClick={handleSubmit(handleClick)}
           title="Sign In"
           color={ButtonColors.BLUE}
         />

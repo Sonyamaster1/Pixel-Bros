@@ -1,7 +1,7 @@
 import './form.style.pcss'
 
 type TFormProps = {
-  onSubmit: () => void
+  onSubmit?: () => void
   children: React.ReactNode
 }
 
