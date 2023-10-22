@@ -10,7 +10,7 @@ type TFieldProps = {
   value: string
   error?: string
   onChange: ChangeEventHandler<HTMLInputElement>
-  onBlur: FocusEventHandler<HTMLInputElement> | undefined
+  onBlur?: FocusEventHandler<HTMLInputElement> | undefined
 }
 
 export function Field({
