@@ -14,3 +14,5 @@
 | Объект | Описание |
 | ------ | ------ |
 | ![yellowbird-midflap](https://github.com/Sonyamaster1/Pixel-Bros/assets/63585689/b39437c3-7d59-48b5-85a1-42d30386cb0d) | Птичка: основной герой, управляемый игроком |
+| ![pipe-green-down](https://github.com/Sonyamaster1/Pixel-Bros/assets/63585689/9974f945-fd27-4f0a-8e17-1e398c7e7d72) | Верхняя труба: является препятствием, если врезаться птичка погибнет |
+| ![pipe-green-up](https://github.com/Sonyamaster1/Pixel-Bros/assets/63585689/970aa631-558f-4172-9639-0a670fd6ffe3) | Нижняя труба: также является препятствием, если врезаться птичка погибнет |
