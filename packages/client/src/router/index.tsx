@@ -7,6 +7,7 @@ import { SignInForm } from '../pages/sign-in-form/sign-in.form'
 import { Profile } from '../pages/profile'
 import { PlayPage } from '../pages/play'
 import { ForumPage } from '../pages/forum'
+import { ForumTopicPage } from '../pages/forum/topic'
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,14 @@ export const router = createBrowserRouter([
       {
         path: 'play',
         element: <PlayPage />,
+      },
+      {
+        path: 'forum/:id',
+        element: (
+          <AuthRoute>
+            <ForumTopicPage />
+          </AuthRoute>
+        ),
       },
       {
         path: 'forum',
