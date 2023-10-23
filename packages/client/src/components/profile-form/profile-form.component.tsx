@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { ChangeEvent, useCallback, useEffect, useState } from 'react'
 import { Field } from '../form-field/form-field.component'
 import { EntityHeader } from '../entity-header/entity-header.component'
 import { ButtonColors, FooterButton } from '../button/button.component'
@@ -27,18 +27,12 @@ const defaultFormValue: TProfileValue = {
   phone: '',
   password: '',
 }
-import styles from '../../pages/profile/profile.module.scss'
-import { signInTransport } from '../../api/sign-in.transport'
 import { Controller, useForm } from 'react-hook-form'
-import {
-  TSignUpFormValue,
-} from '../../pages/sign-up-form/sign-up-form'
+import { TSignUpFormValue } from '../../pages/sign-up-form/sign-up-form'
 import { fieldRequired, validationPatterns } from '../../utils/constants'
 
 export function ProfileForm() {
   const [formValue, setFormValue] = useState<TProfileValue>(defaultFormValue)
-  const handleClickTest = () => console.log('click')
-  const onSubmit = () => console.log('handleSubmit')
 
   const handleOnChangeField = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -115,6 +109,7 @@ export function ProfileForm() {
         inputName="secondName"
         placeholder="Second Name"
         inputType="text"
+      />
       <Controller
         control={control}
         rules={{
