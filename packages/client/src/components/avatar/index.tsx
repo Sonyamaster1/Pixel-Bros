@@ -1,10 +1,12 @@
+import { ChangeEvent } from 'react'
 import styles from './avatar.module.scss'
 
 interface IAvatar {
   src: string
-  onClick: any
+  handleOnChangeField: (event: ChangeEvent<HTMLInputElement>) => void
 }
-export const Avatar = ({ src, onClick }: IAvatar): JSX.Element => {
+
+export const Avatar = ({ src, handleOnChangeField }: IAvatar): JSX.Element => {
   return (
     <>
       <div className={styles.avatar}>
@@ -14,8 +16,13 @@ export const Avatar = ({ src, onClick }: IAvatar): JSX.Element => {
           alt="avatar"
         />
       </div>
-      <input id="avatar" type="file" name="avatar" accept="image/*" />
-      <button onClick={onClick}>Отправить</button>
+      <input
+        onChange={handleOnChangeField}
+        id="avatar"
+        type="file"
+        name="avatar"
+        accept="image/*"
+      />
     </>
   )
 }

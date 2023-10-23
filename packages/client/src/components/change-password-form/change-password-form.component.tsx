@@ -4,21 +4,36 @@ import { ButtonColors, FooterButton } from '../button/button.component'
 import { Form } from '../form/form.component'
 import { ChangeEvent, useCallback, useState } from 'react'
 import { SingleCell } from '../cell-empty/cellEmpty.component'
+import { profileTransport } from '../../api/profile/profile.api'
+import { useNavigate } from 'react-router-dom'
 
 export type TChangePasswordFormValue = {
-  login: string
-  password: string
+  oldPassword: string
+  newPassword: string
+  repeatPassword: string
+}
+
+export type TPasswordValue = {
+  oldPassword: string
+  newPassword: string
 }
 
 const defaultFormValue: TChangePasswordFormValue = {
-  login: '',
-  password: '',
+  oldPassword: '',
+  newPassword: '',
+  repeatPassword: '',
 }
 
-export function ChangePasswordForm() {
+export function ChangePasswordForm(): JSX.Element {
   const [formValue, setFormValue] =
     useState<TChangePasswordFormValue>(defaultFormValue)
-  const handleClick = () => console.log('click')
+
+  const navigate = useNavigate()
+
+  const handleClick = useCallback(
+    () => profileTransport.handleChangePassword(formValue),
+    [formValue]
+  )
   const onSubmit = () => console.log('handleSubmit')
 
   const handleOnChangeField = useCallback(
@@ -36,21 +51,21 @@ export function ChangePasswordForm() {
       <EntityHeader title="Change Password" />
       <SingleCell height={48} />
       <Field
-        value={formValue['login']}
+        value={formValue['oldPassword']}
         onChange={handleOnChangeField}
         inputName="oldPassword"
         placeholder="OLd password"
         inputType="password"
       />
       <Field
-        value={formValue['login']}
+        value={formValue['newPassword']}
         onChange={handleOnChangeField}
         inputName="newPassword"
         placeholder="New password"
         inputType="password"
       />
       <Field
-        value={formValue['login']}
+        value={formValue['repeatPassword']}
         onChange={handleOnChangeField}
         inputName="repeatPassword"
         placeholder="Repeat password"
@@ -64,14 +79,14 @@ export function ChangePasswordForm() {
           gap: 20,
         }}>
         <FooterButton
-          buttonType="submit"
+          buttonType="button"
           onClick={handleClick}
           title="Change"
           color={ButtonColors.GREEN}
         />
         <FooterButton
-          buttonType="submit"
-          onClick={handleClick}
+          buttonType="button"
+          onClick={() => navigate('/leaderboard')}
           title="Go to Leader"
           color={ButtonColors.GREEN}
         />

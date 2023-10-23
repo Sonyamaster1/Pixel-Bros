@@ -1,4 +1,4 @@
-// import { IChangeAvatar } from '../../pages/profile'
+import { TPasswordValue } from '../../components/change-password-form/change-password-form.component'
 import { BaseTransport } from '../base.transport'
 import { AxiosError } from 'axios'
 
@@ -8,24 +8,19 @@ class ProfileTransport extends BaseTransport {
   constructor(baseURL: string) {
     super(baseURL)
   }
-  getAvatar(data: any) {
-    this.put('profile/avatar', data, {
+  async handleChangeAvatar(data: FormData) {
+    return this.put('profile/avatar', data, {
       headers: { 'Content-Type': 'multipart/form-data' },
     }).catch((error: AxiosError) => {
       throw new Error(error.toString())
     })
   }
-  // signIn(data) {
-  // this.post('sign', data).catch((error: AxiosError) => {
-  //   throw new Error(error.toString())
-  // })
-  // }
 
-  // logout() {
-  //   this.post('logout').catch((error: AxiosError) => {
-  //     throw new Error(error.toString())
-  //   })
-  // }
+  async handleChangePassword(data: TPasswordValue) {
+    return this.put('password', data).catch((error: AxiosError) => {
+      throw new Error(error.toString())
+    })
+  }
 }
 
 export const profileTransport = new ProfileTransport(authURL)
