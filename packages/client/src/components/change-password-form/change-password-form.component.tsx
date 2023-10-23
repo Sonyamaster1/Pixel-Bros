@@ -2,26 +2,27 @@ import { Field } from '../form-field/form-field.component'
 import { EntityHeader } from '../entity-header/entity-header.component'
 import { ButtonColors, FooterButton } from '../button/button.component'
 import { Form } from '../form/form.component'
-import { ChangeEvent, useCallback, useState } from 'react'
 import { SingleCell } from '../cell-empty/cellEmpty.component'
 import { profileTransport } from '../../api/profile/profile.api'
+import { Controller, useForm } from 'react-hook-form'
+import { fieldRequired, validationPatterns } from '../../utils/constants'
 import { useNavigate } from 'react-router-dom'
 
 export type TChangePasswordFormValue = {
   oldPassword: string
   newPassword: string
-  repeatPassword: string
 }
 
 export type TPasswordValue = {
   oldPassword: string
   newPassword: string
+  confirmPassword?: string
 }
 
 const defaultFormValue: TChangePasswordFormValue = {
   oldPassword: '',
   newPassword: '',
-  repeatPassword: '',
+  confirmPassword: '',
 }
 
 export function ChangePasswordForm(): JSX.Element {
@@ -35,41 +36,101 @@ export function ChangePasswordForm(): JSX.Element {
     [formValue]
   )
   const onSubmit = () => console.log('handleSubmit')
+  confirmPassword: '',
+}
 
-  const handleOnChangeField = useCallback(
-    (event: ChangeEvent<HTMLInputElement>) => {
-      setFormValue(prevFormValue => ({
-        ...prevFormValue,
-        [event.target.name]: event.target.value,
-      }))
-    },
-    [formValue]
-  )
+export function ChangePasswordForm() {
+  const navigate = useNavigate()
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    watch,
+  } = useForm({
+    defaultValues: defaultFormValue,
+    mode: 'onBlur',
+  })
 
+  const goToMainPage = () => navigate('/')
+
+  const onSubmit = (data: TChangePasswordFormValue) => {
+    const res = { ...data }
+    delete res.confirmPassword
+  }
+
+  const newPassword = watch('newPassword')
   return (
-    <Form onSubmit={onSubmit}>
+    <Form>
       <EntityHeader title="Change Password" />
       <SingleCell height={48} />
-      <Field
-        value={formValue['oldPassword']}
-        onChange={handleOnChangeField}
-        inputName="oldPassword"
-        placeholder="OLd password"
-        inputType="password"
+      <Controller
+        control={control}
+        rules={{
+          required: fieldRequired,
+          pattern: {
+            value: validationPatterns.password.regexp,
+            message: validationPatterns.password.message,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Field
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            inputName="oldPassword"
+            placeholder="OLd password"
+            inputType="password"
+            error={errors?.oldPassword?.message}
+          />
+        )}
+        name="oldPassword"
       />
-      <Field
-        value={formValue['newPassword']}
-        onChange={handleOnChangeField}
-        inputName="newPassword"
-        placeholder="New password"
-        inputType="password"
+      <Controller
+        control={control}
+        name="newPassword"
+        rules={{
+          required: fieldRequired,
+          pattern: {
+            value: validationPatterns.password.regexp,
+            message: validationPatterns.password.message,
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Field
+            value={value}
+            onChange={onChange}
+            onBlur={onBlur}
+            inputName="newPassword"
+            placeholder="New password"
+            inputType="password"
+            error={errors?.newPassword?.message}
+          />
+        )}
       />
-      <Field
-        value={formValue['repeatPassword']}
-        onChange={handleOnChangeField}
-        inputName="repeatPassword"
-        placeholder="Repeat password"
-        inputType="password"
+      <Controller
+        control={control}
+        name="confirmPassword"
+        rules={{
+          required: fieldRequired,
+          validate: {
+            isEqualToNew: data => {
+              if (data !== newPassword) {
+                return 'New password must be equal'
+              }
+            },
+          },
+        }}
+        render={({ field: { onChange, onBlur, value } }) => (
+          <Field
+            value={value ?? ''}
+            onChange={onChange}
+            onBlur={onBlur}
+            inputName="confirmPassword"
+            placeholder="Repeat password"
+            inputType="password"
+            error={errors?.confirmPassword?.message}
+          />
+        )}
       />
       <div
         style={{
@@ -79,14 +140,14 @@ export function ChangePasswordForm(): JSX.Element {
           gap: 20,
         }}>
         <FooterButton
-          buttonType="button"
-          onClick={handleClick}
+          buttonType="submit"
+          onClick={handleSubmit(onSubmit)}
           title="Change"
           color={ButtonColors.GREEN}
         />
         <FooterButton
           buttonType="button"
-          onClick={() => navigate('/leaderboard')}
+          onClick={goToMainPage}
           title="Go to Leader"
           color={ButtonColors.GREEN}
         />

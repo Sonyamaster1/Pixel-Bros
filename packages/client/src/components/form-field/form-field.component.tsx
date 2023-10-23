@@ -1,4 +1,4 @@
-import { ChangeEventHandler } from 'react'
+import { ChangeEventHandler, FocusEventHandler } from 'react'
 import './field.style.pcss'
 import { SingleCell } from '../cell-empty/cellEmpty.component'
 
@@ -8,7 +8,9 @@ type TFieldProps = {
   id?: string
   inputName: string
   value: string
+  error?: string
   onChange: ChangeEventHandler<HTMLInputElement>
+  onBlur?: FocusEventHandler<HTMLInputElement> | undefined
 }
 
 export function Field({
@@ -18,6 +20,9 @@ export function Field({
   inputName,
   onChange,
   value,
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  onBlur = () => {},
+  error = '',
 }: TFieldProps): JSX.Element {
   return (
     <div>
@@ -26,10 +31,12 @@ export function Field({
         className="field"
         placeholder={placeholder}
         type={inputType}
+        onBlur={onBlur}
         id={id}
         value={value}
         onChange={onChange}
       />
+      {error && <p className="field__error">{error}</p>}
       <SingleCell height={20} />
     </div>
   )
