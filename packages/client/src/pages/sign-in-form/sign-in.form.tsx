@@ -5,7 +5,6 @@ import {
 } from '../../components/button/button.component'
 import { ChangeEvent, useCallback, useState } from 'react'
 import { signInTransport } from '../../api/sign-in.transport'
-import { AxiosError } from 'axios'
 import { useNavigate } from 'react-router-dom'
 
 const handleSubmit = () => console.log('handleSubmit')
@@ -24,16 +23,10 @@ export function SignInForm(): JSX.Element {
   const [formValue, setFormValue] = useState<TSignInFormValue>(defaultFormValue)
   const navigate = useNavigate()
 
-  const handleClick = useCallback(
-    () =>
-      signInTransport
-        .signIn(formValue)
-        .then(() => navigate('/game'))
-        .catch((error: AxiosError) => {
-          throw new Error(error.toString())
-        }),
-    [formValue]
-  )
+  const handleClick = useCallback(() => {
+    signInTransport.signIn(formValue)
+    navigate('/game')
+  }, [formValue])
   const handleOnChangeField = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
       setFormValue(prevFormValue => ({
