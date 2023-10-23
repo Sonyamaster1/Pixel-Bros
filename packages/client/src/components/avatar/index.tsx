@@ -15,14 +15,14 @@ export const Avatar = ({ src, handleOnChangeField }: IAvatar): JSX.Element => {
           src={`https://ya-praktikum.tech/api/v2/resources${src}`}
           alt="avatar"
         />
+        <input
+          onChange={handleOnChangeField}
+          id="avatar"
+          type="file"
+          name="avatar"
+          accept="image/*"
+        />
       </div>
-      <input
-        onChange={handleOnChangeField}
-        id="avatar"
-        type="file"
-        name="avatar"
-        accept="image/*"
-      />
     </>
   )
 }

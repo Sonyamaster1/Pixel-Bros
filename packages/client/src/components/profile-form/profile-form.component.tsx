@@ -49,7 +49,7 @@ export function ProfileForm() {
         }))
         signInTransport
           .getUserData()
-          .then((res: unknown) => setFormValue(res as TProfileValue))
+          .then(res => setFormValue(res as TProfileValue))
       })
     },
     [formValue]

@@ -37,7 +37,7 @@ export function ChangePasswordForm() {
     mode: 'onBlur',
   })
 
-  const goToMainPage = () => navigate('/')
+  const goToMainPage = () => navigate('/leaderboard')
 
   const onSubmit = (data: TChangePasswordFormValue) => {
     const res = { ...data }
