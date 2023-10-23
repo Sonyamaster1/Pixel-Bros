@@ -7,7 +7,6 @@ import { profileTransport } from '../../api/profile/profile.api'
 import { Controller, useForm } from 'react-hook-form'
 import { fieldRequired, validationPatterns } from '../../utils/constants'
 import { useNavigate } from 'react-router-dom'
-import { useCallback, useState } from 'react'
 
 export type TChangePasswordFormValue = {
   oldPassword: string
@@ -26,22 +25,7 @@ const defaultFormValue: TChangePasswordFormValue = {
   confirmPassword: '',
 }
 
-// export function ChangePasswordForm(): JSX.Element {
-// const [formValue, setFormValue] =
-//   useState<TChangePasswordFormValue>(defaultFormValue)
-
-//   const navigate = useNavigate()
-
-// const handleClick = useCallback(
-//   () => profileTransport.handleChangePassword(formValue),
-//   [formValue]
-// )
-//   const onSubmit = () => console.log('handleSubmit')
-//   confirmPassword: '',
-// }
-
 export function ChangePasswordForm() {
-  // const [formValue, setFormValue] =useState<TChangePasswordFormValue>(defaultFormValue);
   const navigate = useNavigate()
   const {
     control,
@@ -60,11 +44,6 @@ export function ChangePasswordForm() {
     profileTransport.handleChangePassword(data)
     delete res.confirmPassword
   }
-
-  // const handleClick = useCallback(
-  //   () => profileTransport.handleChangePassword(formValue),
-  //   [formValue]
-  // )
 
   const newPassword = watch('newPassword')
   return (
