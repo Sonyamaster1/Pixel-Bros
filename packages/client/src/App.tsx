@@ -1,6 +1,4 @@
 import { useEffect } from 'react'
-import './App.css'
-import GameEngaine from './components/game_engaine'
 
 function App() {
   useEffect(() => {
@@ -13,7 +11,6 @@ function App() {
 
     fetchServerData()
   }, [])
-  return <GameEngaine />
 }
 
 export default App

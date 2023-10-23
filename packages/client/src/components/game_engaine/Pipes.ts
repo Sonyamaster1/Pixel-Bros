@@ -1,3 +1,4 @@
+import { PureComponent } from 'react'
 import Sprites from './SpritesLoader'
 
 interface PipeProps {
@@ -8,9 +9,10 @@ interface PipeProps {
   PipeGap: number
   PipeSpeed: number
   ScreenHeight: number
+  ctx: CanvasRenderingContext2D | null | undefined
 }
 
-class Pipe {
+class Pipe extends PureComponent {
   x: number
   y: number
   PipeWidth: number
@@ -18,11 +20,10 @@ class Pipe {
   PipeGap: number
   PipeSpeed: number
   ScreenHeight: number
-  image?: HTMLImageElement
-  update: () => void
-  draw: () => void
+  ctx: CanvasRenderingContext2D | null | undefined
 
-  constructor(props: PipeProps, ctx: CanvasRenderingContext2D) {
+  constructor(props: PipeProps) {
+    super(props)
     this.x = props.x
     this.y = props.y
     this.PipeWidth = props.PipeWidth
@@ -30,28 +31,29 @@ class Pipe {
     this.PipeGap = props.PipeGap
     this.PipeSpeed = props.PipeSpeed
     this.ScreenHeight = props.ScreenHeight
+    this.ctx = props.ctx
+  }
 
-    this.update = () => {
-      this.x -= this.PipeSpeed
-      this.draw()
-    }
+  update = () => {
+    this.x -= this.PipeSpeed
+    this.draw()
+  }
 
-    this.draw = () => {
-      ctx.drawImage(
-        (this.image = Sprites.pipeDownImg),
-        this.x,
-        this.y - this.image.height + this.PipeHeight,
-        this.PipeWidth,
-        this.image.height
-      )
-      ctx.drawImage(
-        (this.image = Sprites.pipeUpImg),
-        this.x,
-        this.y + this.PipeGap + this.PipeHeight,
-        this.PipeWidth,
-        this.image.height
-      )
-    }
+  draw = () => {
+    this.ctx?.drawImage(
+      Sprites.pipeDownImg,
+      this.x,
+      this.y - Sprites.pipeDownImg.height + this.PipeHeight,
+      this.PipeWidth,
+      Sprites.pipeDownImg.height
+    )
+    this.ctx?.drawImage(
+      Sprites.pipeUpImg,
+      this.x,
+      this.y + this.PipeGap + this.PipeHeight,
+      this.PipeWidth,
+      Sprites.pipeUpImg.height
+    )
   }
 }
 

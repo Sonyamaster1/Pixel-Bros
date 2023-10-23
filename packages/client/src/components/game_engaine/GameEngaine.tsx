@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { RefObject, useEffect, useRef } from 'react'
+import { MutableRefObject, RefObject, useEffect, useRef } from 'react'
 
 import Settings from './Settings'
 import Pipe from './Pipes'
@@ -9,63 +9,56 @@ import World from './Word'
 
 function GameEngaine() {
   const canvasRef: RefObject<HTMLCanvasElement> = useRef(null)
+  const animateRef: MutableRefObject<number> = useRef(0)
 
   useEffect(() => {
     let Score = 0
     const ctx = canvasRef.current?.getContext('2d')
 
     // Создает задний фон и подсчет очков
-    const world: World = new World(
-      {
-        img: Sprites.backgroundImg,
-        x: 0,
-        y: 0,
-        ScreenWidth: Settings.ScreenWidth,
-        ScreenHeight: Settings.ScreenHeight,
-        Score: Score,
-      },
-      ctx!
-    )
+    const world: World = new World({
+      img: Sprites.backgroundImg,
+      x: 0,
+      y: 0,
+      ScreenWidth: Settings.ScreenWidth,
+      ScreenHeight: Settings.ScreenHeight,
+      Score: Score,
+      ctx: ctx,
+    })
 
     // Создает птицу
-    const bird: Bird = new Bird(
-      {
-        x: Settings.ScreenWidth,
-        y: Settings.ScreenHeight,
-        BirdHeight: Settings.BirdHeight,
-        BirdWidth: Settings.BirdWidth,
-        Gravity: Settings.Gravity,
-        BirdSpeed: Settings.SpeedBird,
-      },
-      ctx!
-    )
+    const bird: Bird = new Bird({
+      x: Settings.ScreenWidth,
+      y: Settings.ScreenHeight,
+      BirdHeight: Settings.BirdHeight,
+      BirdWidth: Settings.BirdWidth,
+      Gravity: Settings.Gravity,
+      BirdSpeed: Settings.SpeedBird,
+      ctx: ctx,
+    })
 
     // Создает трубы
     const pipes: Array<Pipe> = [
-      new Pipe(
-        {
-          x: Settings.ScreenWidth,
-          y: 0,
-          PipeWidth: Settings.PipeWidth,
-          PipeHeight: Settings.PipeHeight,
-          PipeGap: Settings.PipeGap,
-          PipeSpeed: Settings.SpeedBird,
-          ScreenHeight: Settings.ScreenHeight,
-        },
-        ctx!
-      ),
-      new Pipe(
-        {
-          x: Settings.ScreenWidth * 1.8,
-          y: 0,
-          PipeWidth: Settings.PipeWidth,
-          PipeHeight: Settings.PipeHeight,
-          PipeGap: Settings.PipeGap,
-          PipeSpeed: Settings.SpeedBird,
-          ScreenHeight: Settings.ScreenHeight,
-        },
-        ctx!
-      ),
+      new Pipe({
+        x: Settings.ScreenWidth,
+        y: 0,
+        PipeWidth: Settings.PipeWidth,
+        PipeHeight: Settings.PipeHeight,
+        PipeGap: Settings.PipeGap,
+        PipeSpeed: Settings.SpeedBird,
+        ScreenHeight: Settings.ScreenHeight,
+        ctx: ctx,
+      }),
+      new Pipe({
+        x: Settings.ScreenWidth * 1.8,
+        y: 0,
+        PipeWidth: Settings.PipeWidth,
+        PipeHeight: Settings.PipeHeight,
+        PipeGap: Settings.PipeGap,
+        PipeSpeed: Settings.SpeedBird,
+        ScreenHeight: Settings.ScreenHeight,
+        ctx: ctx,
+      }),
     ]
 
     // Запускает птицу и трубы
@@ -74,10 +67,15 @@ function GameEngaine() {
       if (pipes[0].PipeSpeed !== 1 && bird.BirdSpeed !== 0) {
         pipes.forEach(pipe => (pipe.PipeSpeed = 1))
       }
+      if (animateRef.current === 0) {
+        animateRef.current = requestAnimationFrame(animate)
+      }
     }
 
     // Останавливает птицу, трубы и сбрасывает настройки до начальных
     function reset() {
+      cancelAnimationFrame(animateRef.current)
+      animateRef.current = 0
       bird.y = Settings.ScreenHeight / 2 - 40
       bird.Gravity = 0.98
       bird.BirdSpeed = 0
@@ -91,7 +89,7 @@ function GameEngaine() {
 
     // Запускает анимацию
     function animate() {
-      requestAnimationFrame(animate)
+      animateRef.current = requestAnimationFrame(animate)
       ctx?.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
 
       // Рисует мир
@@ -139,6 +137,7 @@ function GameEngaine() {
     window.addEventListener('keydown', start)
 
     return () => {
+      cancelAnimationFrame(animateRef.current)
       window.removeEventListener('click', start)
       window.removeEventListener('keydown', start)
     }

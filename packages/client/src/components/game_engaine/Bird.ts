@@ -1,3 +1,4 @@
+import { PureComponent } from 'react'
 import Sprites from './SpritesLoader'
 
 interface BirdProps {
@@ -7,57 +8,51 @@ interface BirdProps {
   BirdHeight: number
   BirdSpeed: number
   Gravity: number
+  ctx: CanvasRenderingContext2D | null | undefined
 }
 
-class Bird {
+class Bird extends PureComponent {
   x: number
   y: number
   BirdWidth: number
   BirdHeight: number
   Gravity: number
   BirdSpeed: number
-  image?: HTMLImageElement
-  update: () => void
-  draw: () => void
-  fly: () => void
+  ctx: CanvasRenderingContext2D | null | undefined
 
-  constructor(props: BirdProps, ctx: CanvasRenderingContext2D) {
+  constructor(props: BirdProps) {
+    super(props)
     this.x = props.x / 2 - props.BirdWidth
     this.y = props.y / 2 - props.BirdHeight
     this.BirdWidth = props.BirdWidth
     this.BirdHeight = props.BirdHeight
     this.Gravity = props.Gravity
     this.BirdSpeed = props.BirdSpeed
+    this.ctx = props.ctx
+  }
 
-    this.update = () => {
-      this.draw()
+  update() {
+    this.draw()
 
-      if (this.BirdSpeed) {
-        this.y += this.Gravity
-        this.Gravity += 0.098
-      }
+    if (this.BirdSpeed) {
+      this.y += this.Gravity
+      this.Gravity += 0.098
     }
+  }
 
-    this.draw = () => {
-      ctx.translate(this.x, this.y)
-      ctx.rotate(0.1 * this.Gravity)
-      ctx.drawImage(
-        (this.image = Sprites.birdImg),
-        0,
-        0,
-        this.BirdWidth,
-        this.BirdHeight
-      )
-      ctx.rotate(-0.1 * this.Gravity)
-      ctx.translate(-this.x, -this.y)
-    }
+  draw() {
+    this.ctx?.translate(this.x, this.y)
+    this.ctx?.rotate(0.1 * this.Gravity)
+    this.ctx?.drawImage(Sprites.birdImg, 0, 0, this.BirdWidth, this.BirdHeight)
+    this.ctx?.rotate(-0.1 * this.Gravity)
+    this.ctx?.translate(-this.x, -this.y)
+  }
 
-    this.fly = () => {
-      this.Gravity = -2
+  fly = () => {
+    this.Gravity = -2
 
-      if (!this.BirdSpeed) {
-        this.BirdSpeed = 1
-      }
+    if (!this.BirdSpeed) {
+      this.BirdSpeed = 1
     }
   }
 }
