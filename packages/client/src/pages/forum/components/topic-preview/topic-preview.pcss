@@ -1,0 +1,36 @@
+.topic {
+  display: flex;
+  width: 1000px;
+  background: #fff;
+  border-radius: 20px;
+  padding: 15px;
+  margin: 0 0 25px;
+  gap: 40px;
+  align-items: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  color: #000;
+
+  .topic__author {
+    flex: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    .topic__author-photo {
+      width: 130px;
+      height: 130px;
+      border-radius: 9999px;
+      overflow: hidden;
+    }
+
+    .topic__author-username {
+      font-size: 12px;
+    }
+  }
+
+  .topic__text {
+    font-size: 14px;
+  }
+}
