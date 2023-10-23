@@ -1,6 +1,5 @@
 import { BaseTransport } from './base.transport'
 import { TSignInFormValue } from '../pages/sign-in-form/sign-in.form'
-import { AxiosError } from 'axios'
 
 const authURL = 'https://ya-praktikum.tech/api/v2/auth/'
 
@@ -12,25 +11,31 @@ class SignInTransport extends BaseTransport {
     super(baseURL)
   }
 
-  signIn(data: TSignInFormValue): Promise<unknown> {
-    return this.post('signin', data)
+  async signIn(data: TSignInFormValue): Promise<unknown> {
+    try {
+      const response = this.post('signin', data)
+      return response
+    } catch (error: any) {
+      throw new Error(error.toString())
+    }
   }
 
   logout() {
-    this.post('logout').catch((error: AxiosError) => {
+    try {
+      const response = this.post('logout')
+      return response
+    } catch (error: any) {
       throw new Error(error.toString())
-    })
+    }
   }
 
-  getUserData() {
-    return this.get('user')
-      .then(user => {
-        console.log(user, 'user')
-        return (userData = user)
-      })
-      .catch(() => {
-        return (userData = '')
-      })
+  async getUserData() {
+    try {
+      const user = await this.get('user')
+      return (userData = user)
+    } catch (error) {
+      return (userData = '')
+    }
   }
 }
 
