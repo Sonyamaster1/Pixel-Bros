@@ -35,11 +35,10 @@ export abstract class BaseTransport {
     data: any,
     config?: AxiosRequestConfig
   ): Promise<T> {
-    const response: AxiosResponse<T> = await this.client.put(
-      endpoint,
-      data,
-      config
-    )
+    const response: AxiosResponse<T> = await this.client.put(endpoint, data, {
+      ...config,
+      withCredentials: true, // Включаем передачу куков
+    })
     return response.data
   }
 
