@@ -6,6 +6,7 @@ import { HomePage } from '../pages/home'
 import { SignInForm } from '../pages/sign-in-form/sign-in.form'
 import { Profile } from '../pages/profile'
 import { PlayPage } from '../pages/play'
+import Leaderboard from '../pages/leaderboard'
 
 export const router = createBrowserRouter([
   {
@@ -51,7 +52,7 @@ export const router = createBrowserRouter([
         path: 'leaderboard',
         element: (
           <AuthRoute>
-            <div>Лидерборд</div>
+            <Leaderboard />
           </AuthRoute>
         ),
       },
