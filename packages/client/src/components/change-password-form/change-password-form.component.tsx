@@ -3,6 +3,7 @@ import { EntityHeader } from '../entity-header/entity-header.component'
 import { ButtonColors, FooterButton } from '../button/button.component'
 import { Form } from '../form/form.component'
 import { SingleCell } from '../cell-empty/cellEmpty.component'
+import { profileTransport } from '../../api/profile/profile.api'
 import { Controller, useForm } from 'react-hook-form'
 import { fieldRequired, validationPatterns } from '../../utils/constants'
 import { useNavigate } from 'react-router-dom'
@@ -11,6 +12,11 @@ export type TChangePasswordFormValue = {
   oldPassword: string
   newPassword: string
   confirmPassword?: string
+}
+
+export type TPasswordValue = {
+  oldPassword: string
+  newPassword: string
 }
 
 const defaultFormValue: TChangePasswordFormValue = {
@@ -31,10 +37,11 @@ export function ChangePasswordForm() {
     mode: 'onBlur',
   })
 
-  const goToMainPage = () => navigate('/')
+  const goToMainPage = () => navigate('/leaderboard')
 
   const onSubmit = (data: TChangePasswordFormValue) => {
     const res = { ...data }
+    profileTransport.handleChangePassword(data)
     delete res.confirmPassword
   }
 
