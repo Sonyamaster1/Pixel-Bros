@@ -8,6 +8,7 @@ import { Profile } from '../pages/profile'
 import { PlayPage } from '../pages/play'
 import { ForumPage } from '../pages/forum'
 import { ForumTopicPage } from '../pages/forum/topic'
+import { ForumCreatePage } from '../pages/forum/create'
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,14 @@ export const router = createBrowserRouter([
       {
         path: 'play',
         element: <PlayPage />,
+      },
+      {
+        path: 'forum/create',
+        element: (
+          <AuthRoute>
+            <ForumCreatePage />
+          </AuthRoute>
+        ),
       },
       {
         path: 'forum/:id',
