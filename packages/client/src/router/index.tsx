@@ -6,6 +6,9 @@ import { HomePage } from '../pages/home'
 import { SignInForm } from '../pages/sign-in-form/sign-in.form'
 import { Profile } from '../pages/profile'
 import { PlayPage } from '../pages/play'
+import { ForumPage } from '../pages/forum'
+import { ForumTopicPage } from '../pages/forum/topic'
+import { ForumCreatePage } from '../pages/forum/create'
 
 export const router = createBrowserRouter([
   {
@@ -40,10 +43,26 @@ export const router = createBrowserRouter([
         element: <PlayPage />,
       },
       {
+        path: 'forum/create',
+        element: (
+          <AuthRoute>
+            <ForumCreatePage />
+          </AuthRoute>
+        ),
+      },
+      {
+        path: 'forum/:id',
+        element: (
+          <AuthRoute>
+            <ForumTopicPage />
+          </AuthRoute>
+        ),
+      },
+      {
         path: 'forum',
         element: (
           <AuthRoute>
-            <div>Форум</div>
+            <ForumPage />
           </AuthRoute>
         ),
       },
