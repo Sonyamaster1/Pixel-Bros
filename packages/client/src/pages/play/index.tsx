@@ -1,15 +1,42 @@
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 
-import IconBird from '../../assets/images/yellowbird.svg'
+import { StartGame } from './startGame'
+import { EndGame } from './endGame'
 
 import styles from './index.module.scss'
 
+enum KeyCodes {
+  Space = 'Space',
+}
+
 export const PlayPage: FC = () => {
+  const [isBeginGame, setIsBeginGame] = useState(true)
+
+  function handleStartGame(event: KeyboardEvent) {
+    if (isBeginGame && event.code === KeyCodes.Space) {
+      setIsBeginGame(false)
+    }
+  }
+
+  function handleRepeatGame() {
+    setIsBeginGame(true)
+  }
+
+  useEffect(() => {
+    document.addEventListener('keyup', handleStartGame)
+
+    return () => {
+      document.removeEventListener('keyup', handleStartGame)
+    }
+  }, [])
+
   return (
     <main className={styles.playPage}>
-      <h2 className={styles.title}>Get Ready!</h2>
-      <img src={IconBird} className={styles.icon} alt="Иконка птицы" />
-      <p className={styles.description}>Press “space” for start</p>
+      {isBeginGame ? (
+        <StartGame />
+      ) : (
+        <EndGame handleRepeatGame={handleRepeatGame} />
+      )}
     </main>
   )
 }
