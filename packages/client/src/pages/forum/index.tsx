@@ -3,6 +3,7 @@ import { MainLayout } from '../../components'
 import { ForumTopicPreview } from './components/topic-preview'
 import { FAKE_TOPICS } from './constants'
 import { Link } from 'react-router-dom'
+import { checkAuthRenderHOC } from 'client/src/utils/authorization-hoc'
 
 export const ForumPage: FC = () => {
   return (
@@ -16,3 +17,5 @@ export const ForumPage: FC = () => {
     </MainLayout>
   )
 }
+
+export const WithAuthorizationForumPage = checkAuthRenderHOC(ForumPage)

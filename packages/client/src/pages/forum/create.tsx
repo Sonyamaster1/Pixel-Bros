@@ -7,6 +7,7 @@ import { Textarea } from '../../components/textarea'
 import { useNavigate } from 'react-router'
 import { MainLayout } from '../../components'
 import './styles/create.pcss'
+import { checkAuthRenderHOC } from 'client/src/utils/authorization-hoc'
 
 export type TForumTopicCreateFormValue = {
   name: string
@@ -81,3 +82,6 @@ export const ForumCreatePage: FC = () => {
     </MainLayout>
   )
 }
+
+export const WithAuthorizationForumCreatePage =
+  checkAuthRenderHOC(ForumCreatePage)

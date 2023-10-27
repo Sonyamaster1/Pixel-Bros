@@ -1,0 +1,8 @@
+export { SignInForm } from './sign-in-form/sign-in.form'
+export { SignUpForm } from './sign-up-form/sign-up-form'
+export { WithAuthorizationProfile } from './profile/index'
+export { HomePage } from './home/index'
+export { PlayPage } from './play/index'
+export { WithAuthorizationForumCreatePage } from './forum/create'
+export { WithAuthorizationForumTopicPage } from './forum/topic'
+export { WithAuthorizationForumPage } from './forum/index'
