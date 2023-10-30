@@ -1,0 +1,18 @@
+.avatar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 20px;
+}
+
+.avatarImg {
+  border: none;
+  padding: 0;
+  margin-right: 20px;
+  width: 120px;
+  height: 120px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background: none;
+  border-radius: 45%;
+}
