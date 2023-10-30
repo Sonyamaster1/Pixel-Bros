@@ -145,7 +145,6 @@ function GameEngaine() {
 
   return (
     <canvas
-      id="canvas_game_engaine"
       ref={canvasRef}
       height={Settings.ScreenHeight}
       width={Settings.ScreenWidth}
