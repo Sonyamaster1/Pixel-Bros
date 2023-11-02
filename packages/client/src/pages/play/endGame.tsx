@@ -8,10 +8,10 @@ import { ButtonColors } from '../../components/button/button.component'
 import styles from './endGame.module.scss'
 
 interface Props {
-  handleRepeatGame(): void
+  handleRepeat(): void
 }
 
-export const EndGame: FC<Props> = ({ handleRepeatGame }) => {
+export const EndGame: FC<Props> = ({ handleRepeat }) => {
   function goToHome() {
     // @TODO вызывать route.push после удаления пакетов с типами для роутера
   }
@@ -37,7 +37,7 @@ export const EndGame: FC<Props> = ({ handleRepeatGame }) => {
         <FooterButton
           title="Repeat"
           color={ButtonColors.GREEN}
-          onClick={handleRepeatGame}
+          onClick={handleRepeat}
           buttonType="button"
         />
         <FooterButton
