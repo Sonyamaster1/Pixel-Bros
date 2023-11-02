@@ -5,10 +5,14 @@ import GameEngaine from '../../components/game_engaine'
 import styles from './index.module.scss'
 
 export const PlayPage: FC = () => {
+  const [score, setScore] = useState(0)
   const [show, setShow] = useState<'start' | 'end' | 'game'>('start')
 
   const handleStart = () => setShow('game')
-  const handleGameOver = () => setShow('end')
+  const handleGameOver = (value: number) => {
+    setScore(value)
+    setShow('end')
+  }
 
   return (
     <main className={styles.playPage}>
@@ -17,7 +21,7 @@ export const PlayPage: FC = () => {
       ) : show === 'game' ? (
         <GameEngaine handleGameOver={handleGameOver} />
       ) : (
-        <EndGame handleRepeat={handleStart} />
+        <EndGame score={score} handleRepeat={handleStart} />
       )}
     </main>
   )

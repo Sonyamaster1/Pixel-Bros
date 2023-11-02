@@ -8,7 +8,7 @@ import Sprites from './SpritesLoader'
 import World from './Word'
 
 type Props = {
-  handleGameOver(): void
+  handleGameOver(score: number): void
 }
 
 function GameEngaine({ handleGameOver }: Props) {
@@ -78,7 +78,7 @@ function GameEngaine({ handleGameOver }: Props) {
 
     // Останавливает птицу, трубы и сбрасывает настройки до начальных
     function reset() {
-      handleGameOver()
+      handleGameOver(Score)
       cancelAnimationFrame(animateRef.current)
       animateRef.current = 0
       bird.y = Settings.ScreenHeight / 2 - 40
