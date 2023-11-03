@@ -1,15 +1,28 @@
-import { FC } from 'react'
-
-import IconBird from '../../assets/images/yellowbird.svg'
-
+import { FC, useState } from 'react'
+import { StartGame } from './startGame'
+import { EndGame } from './endGame'
+import GameEngaine from '../../components/game_engaine'
 import styles from './index.module.scss'
 
 export const PlayPage: FC = () => {
+  const [score, setScore] = useState(0)
+  const [show, setShow] = useState<'start' | 'end' | 'game'>('start')
+
+  const handleStart = () => setShow('game')
+  const handleGameOver = (value: number) => {
+    setScore(value)
+    setShow('end')
+  }
+
   return (
     <main className={styles.playPage}>
-      <h2 className={styles.title}>Get Ready!</h2>
-      <img src={IconBird} className={styles.icon} alt="Иконка птицы" />
-      <p className={styles.description}>Press “space” for start</p>
+      {show === 'start' ? (
+        <StartGame handleStart={handleStart} />
+      ) : show === 'game' ? (
+        <GameEngaine handleGameOver={handleGameOver} />
+      ) : (
+        <EndGame score={score} handleRepeat={handleStart} />
+      )}
     </main>
   )
 }

@@ -2,29 +2,9 @@
   box-sizing: border-box;
   background: linear-gradient(288deg, #a3ddd7 0.01%, #e7fbd9 100%) no-repeat;
   height: 100vh;
-  padding: 14% 2% 6%;
-}
+  display: flex;
 
-.title,
-.description {
-  text-align: center;
-  font-family: 'Press Start 2P';
-  font-size: 48px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-  margin: 0;
-}
-
-.title {
-  color: #58d858;
-}
-
-.icon {
-  display: block;
-  margin: 12.5% auto;
-}
-
-.description {
-  color: #000;
+  > * {
+    margin: auto;
+  }
 }

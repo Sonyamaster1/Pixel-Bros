@@ -11,6 +11,7 @@ type TFooterButtonProps = {
 export enum ButtonColors {
   GREEN = '#00C54F',
   BLUE = '#0066C5',
+  RED = '#C72828',
 }
 
 export function FooterButton({
