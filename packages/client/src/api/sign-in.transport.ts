@@ -25,7 +25,6 @@ class SignInTransport extends BaseTransport {
   getUserData() {
     return this.get('user')
       .then(user => {
-        console.log(user, 'user')
         return (userData = user)
       })
       .catch(() => {
