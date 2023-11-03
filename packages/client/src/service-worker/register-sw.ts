@@ -2,20 +2,19 @@ export function registerServiceWorker(): Promise<ServiceWorkerRegistration> | vo
   const { serviceWorker } = navigator
 
   window.addEventListener('load', () => {
-    console.log('test serviceWorker addEventListener')
     // Регистрируем sw после загрузки статики
-    const currentRegistration = serviceWorker.register(
-      '/src/service-worker/service.worker.js'
-    )
-    console.log('test')
+    const currentRegistration = serviceWorker.register('/service.worker.js')
     currentRegistration
       .then((swRegistration: ServiceWorkerRegistration | void) => {
         if (swRegistration) {
-          console.log('ULALA')
+          console.log(
+            'ServiceWorker registration successful with  scope: ',
+            swRegistration.scope
+          )
         }
       })
-      .catch((error: string) => console.log(error))
+      .catch((error: string) =>
+        console.log('ServiceWorker registration failed: ', error)
+      )
   })
 }
-console.log('file')
-registerServiceWorker()
