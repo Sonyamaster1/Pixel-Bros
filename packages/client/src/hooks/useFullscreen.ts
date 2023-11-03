@@ -24,14 +24,12 @@ export function useFullscreen<T extends HTMLElement>(
       return
     }
 
-    if (!document.fullscreenElement) {
-      if (event.code === keyCodeOpen) {
-        refFullscreenContainer.current?.requestFullscreen()
-      }
-    } else if (document.exitFullscreen) {
-      if (event.code === keyCodeClose) {
-        document.exitFullscreen()
-      }
+    if (event.code === keyCodeOpen && !document.fullscreenElement) {
+      refFullscreenContainer.current?.requestFullscreen()
+    }
+
+    if (event.code === keyCodeClose && document.exitFullscreen) {
+      document.exitFullscreen()
     }
   }
 
