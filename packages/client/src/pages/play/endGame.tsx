@@ -1,20 +1,18 @@
 import { FC } from 'react'
-
-import { IconBird, IconGameOver } from '../../assets/images'
-
+import { useNavigate } from 'react-router'
 import { FooterButton } from '../../components'
 import { ButtonColors } from '../../components/button/button.component'
-
+import { IconBird, IconGameOver } from '../../assets/images'
 import styles from './endGame.module.scss'
 
-interface Props {
-  handleRepeatGame(): void
+type Props = {
+  score: number
+  handleRepeat(): void
 }
 
-export const EndGame: FC<Props> = ({ handleRepeatGame }) => {
-  function goToHome() {
-    // @TODO вызывать route.push после удаления пакетов с типами для роутера
-  }
+export const EndGame: FC<Props> = ({ score, handleRepeat }) => {
+  const navigate = useNavigate()
+  const goToHome = () => navigate('/')
 
   return (
     <section className={styles.endGame}>
@@ -25,7 +23,7 @@ export const EndGame: FC<Props> = ({ handleRepeatGame }) => {
         className={styles.iconGameOver}
         alt="game over"
       />
-      <span className={styles.score}>100</span>
+      <span className={styles.score}>{score}</span>
       <img
         src={IconBird}
         width={148}
@@ -37,7 +35,7 @@ export const EndGame: FC<Props> = ({ handleRepeatGame }) => {
         <FooterButton
           title="Repeat"
           color={ButtonColors.GREEN}
-          onClick={handleRepeatGame}
+          onClick={handleRepeat}
           buttonType="button"
         />
         <FooterButton

@@ -9,7 +9,11 @@ import World from './Word'
 
 import { useFullscreen } from '../../hooks'
 
-function GameEngaine() {
+type Props = {
+  handleGameOver(score: number): void
+}
+
+function GameEngaine({ handleGameOver }: Props) {
   const canvasRef: RefObject<HTMLCanvasElement> = useRef(null)
   const animateRef: MutableRefObject<number> = useRef(0)
 
@@ -78,6 +82,7 @@ function GameEngaine() {
 
     // Останавливает птицу, трубы и сбрасывает настройки до начальных
     function reset() {
+      handleGameOver(Score)
       cancelAnimationFrame(animateRef.current)
       animateRef.current = 0
       bird.y = Settings.ScreenHeight / 2 - 40
@@ -136,6 +141,7 @@ function GameEngaine() {
     }
 
     animate()
+    start()
 
     window.addEventListener('click', start)
     window.addEventListener('keydown', start)
