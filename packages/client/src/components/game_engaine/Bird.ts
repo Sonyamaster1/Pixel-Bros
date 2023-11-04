@@ -47,14 +47,6 @@ class Bird extends PureComponent {
     this.ctx?.rotate(-0.1 * this.Gravity)
     this.ctx?.translate(-this.x, -this.y)
   }
-
-  fly = () => {
-    this.Gravity = -2
-
-    if (!this.BirdSpeed) {
-      this.BirdSpeed = 1
-    }
-  }
 }
 
 export default Bird

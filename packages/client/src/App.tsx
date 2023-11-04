@@ -1,7 +1,6 @@
-import { RouterProvider } from 'react-router-dom'
-import { router } from './router'
 import { useEffect } from 'react'
 import { signInTransport } from './api/sign-in.transport'
+import GameEngaine from './components/game_engaine/'
 
 export function App() {
   // useEffect(() => {
@@ -19,7 +18,7 @@ export function App() {
   useEffect(() => {
     signInTransport.getUserData()
   }, [])
-return <RouterProvider router={router} />
+  return <GameEngaine />
 }
 
 export default App
