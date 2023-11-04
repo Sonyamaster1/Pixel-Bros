@@ -12,6 +12,7 @@ function GameEngaine() {
   const animateRef: MutableRefObject<number> = useRef(0)
 
   useEffect(() => {
+    let Score = 0
     const ctx = canvasRef.current?.getContext('2d')
 
     // Создает задний фон и подсчет очков
@@ -21,6 +22,7 @@ function GameEngaine() {
       y: 0,
       ScreenWidth: Settings.ScreenWidth,
       ScreenHeight: Settings.ScreenHeight,
+      Score: Score,
       ctx: ctx,
     })
 
@@ -61,6 +63,7 @@ function GameEngaine() {
 
     // Запускает птицу и трубы
     function start() {
+      bird.fly()
       if (pipes[0].PipeSpeed !== 1 && bird.BirdSpeed !== 0) {
         pipes.forEach(pipe => (pipe.PipeSpeed = 1))
       }
@@ -80,6 +83,8 @@ function GameEngaine() {
         pipe.PipeSpeed = 0
         pipe.x = pipe.x + Settings.ScreenWidth / 1.6 + 65
       })
+      world.update(Score)
+      Score = 0
     }
 
     // Запускает анимацию
@@ -97,6 +102,7 @@ function GameEngaine() {
         if (pipe.x + pipe.PipeWidth < 0) {
           pipe.PipeHeight = Math.random() * 250 + 50
           pipe.x = pipe.ScreenHeight
+          Score += 1
         }
 
         if (
@@ -117,6 +123,7 @@ function GameEngaine() {
 
       // Рисует очки
       world.drawScore()
+      world.update(Score)
 
       // Проверка птице на экране
       if (bird.y > Settings.ScreenHeight || bird.y < 0) {

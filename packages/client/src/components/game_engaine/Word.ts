@@ -7,6 +7,7 @@ interface WorldProps {
   y: number
   ScreenWidth: number
   ScreenHeight: number
+  Score: number
   ctx: CanvasRenderingContext2D | null | undefined
 }
 
@@ -15,6 +16,7 @@ class World extends PureComponent {
   y: number
   ScreenWidth: number
   ScreenHeight: number
+  Score: number
   topScore: number
   ctx: CanvasRenderingContext2D | null | undefined
 
@@ -24,8 +26,21 @@ class World extends PureComponent {
     this.y = props.y
     this.ScreenWidth = props.ScreenWidth
     this.ScreenHeight = props.ScreenHeight
+    this.Score = 0
     this.topScore = 0
     this.ctx = props.ctx
+  }
+
+  update(score: number) {
+    if (score !== this.Score) {
+      this.Score = score
+      this.drawScore()
+    }
+
+    if (score > this.topScore) {
+      this.topScore = score
+      this.drawScore()
+    }
   }
 
   draw() {
@@ -41,8 +56,8 @@ class World extends PureComponent {
   drawScore = () => {
     this.ctx!.fillStyle = 'white'
     this.ctx!.font = '24px serif'
-    this.ctx?.fillText(`score: ${0}`, 20, 40)
-    this.ctx?.fillText(`top score: ${0}`, 20, 60)
+    this.ctx?.fillText(`score: ${this.Score}`, 20, 40)
+    this.ctx?.fillText(`top score: ${this.topScore}`, 20, 60)
   }
 }
 
