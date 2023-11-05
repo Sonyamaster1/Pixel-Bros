@@ -7,6 +7,8 @@ import Bird from './Bird'
 import Sprites from './SpritesLoader'
 import World from './Word'
 
+import { useFullscreen } from '../../hooks'
+
 type Props = {
   handleGameOver(score: number): void
 }
@@ -14,6 +16,8 @@ type Props = {
 function GameEngaine({ handleGameOver }: Props) {
   const canvasRef: RefObject<HTMLCanvasElement> = useRef(null)
   const animateRef: MutableRefObject<number> = useRef(0)
+
+  useFullscreen(canvasRef)
 
   useEffect(() => {
     let Score = 0
