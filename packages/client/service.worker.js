@@ -1,3 +1,7 @@
+import { precacheAndRoute } from 'workbox-precaching'
+
+precacheAndRoute(self.__WB_MANIFEST)
+
 const CACHE_URLS = [
   '/',
   '/index.html',
