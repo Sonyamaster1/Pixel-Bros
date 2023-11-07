@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`тест для аватара create snapshot 1`] = `
+<div>
+  <img
+    alt="avatar"
+    data-testid="avatarImg"
+    src="https://ya-praktikum.tech/api/v2/resources/53ab8463-3462-48ae-a03a-56f6d1f46735/0a496edf-57c0-4e82-82e2-dd49572f2949_котенок с молоком.jpe"
+  />
+  <input
+    accept="image/*"
+    id="avatar"
+    name="avatar"
+    onChange={[Function]}
+    type="file"
+  />
+</div>
+`;

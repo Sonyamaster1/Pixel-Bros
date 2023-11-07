@@ -29,7 +29,6 @@ export function FooterButton({
       onClick={onClick}
       style={dynamicStyles}
       className={'footer-button'}>
-      {' '}
       {title}
     </button>
   )

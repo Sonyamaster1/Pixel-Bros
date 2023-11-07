@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { MutableRefObject, RefObject, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import Settings from './Settings'
 import Pipe from './Pipes'
@@ -8,8 +8,8 @@ import Sprites from './SpritesLoader'
 import World from './Word'
 
 function GameEngaine() {
-  const canvasRef: RefObject<HTMLCanvasElement> = useRef(null)
-  const animateRef: MutableRefObject<number> = useRef(0)
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const animateRef = useRef<number>(0)
 
   useEffect(() => {
     let Score = 0
@@ -147,6 +147,7 @@ function GameEngaine() {
     <canvas
       id="canvas_game_engaine"
       ref={canvasRef}
+      data-testid="refId"
       height={Settings.ScreenHeight}
       width={Settings.ScreenWidth}
     />
