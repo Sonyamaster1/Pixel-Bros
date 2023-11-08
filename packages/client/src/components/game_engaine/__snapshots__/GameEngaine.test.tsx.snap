@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`тест для движка create snapshot 1`] = `
+<canvas
+  data-testid="refId"
+  height={500}
+  id="canvas_game_engaine"
+  width={400}
+/>
+`;
