@@ -10,3 +10,5 @@
 - [Данил Давлетов](https://github.com/J4rCen)
 - [Софья Митрофанова](https://github.com/Sonyamaster1)
 - [Ярослав Суханов](https://github.com/YaroslavSukhanov)
+
+### Ссылка на видео презентацию - https://drive.google.com/file/d/1zXCXA-kDlfdj74kg-V698aagLAVWHaIS/view?usp=sharing
