@@ -3,15 +3,11 @@ import { precacheAndRoute } from 'workbox-precaching'
 precacheAndRoute(self.__WB_MANIFEST)
 
 const CACHE_URLS = [
-  '/',
-  '/index.html',
-  '/src/main.tsx',
-  '/src/pages/forum/create.tsx',
-  '/src/pages/forum/index.tsx',
-  '/src/pages/play/index.tsx',
-  '/src/pages/leaderboard/index.tsx',
-  '/src/pages/sign-in-form/sign-in.form.tsx',
-  '/src/pages/sign-up-form/sign-up.form.tsx'
+  '/assets/index.d9cab35b.css',
+  '/assets/index.db3540e3.js',
+  '/index.html?__WB_REVISION__=11ccdce3bd9058a128686c1165c243aa',
+  '/manifest.webmanifest?__WB_REVISION__=a682f65f0792ba3d4d2be38f6fde036e',
+  '/registerSW.js?__WB_REVISION__=1872c500de691dce40960bb85481de07',
 ]
 
 const cacheKey = 'cache-v1'

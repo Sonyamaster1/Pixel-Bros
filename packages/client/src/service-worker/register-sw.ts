@@ -3,7 +3,7 @@ export function registerServiceWorker(): Promise<ServiceWorkerRegistration> | vo
 
   window.addEventListener('load', () => {
     // Регистрируем sw после загрузки статики
-    const currentRegistration = serviceWorker.register('/service.worker.js')
+    const currentRegistration = serviceWorker.register('/sw.js')
     currentRegistration
       .then((swRegistration: ServiceWorkerRegistration | void) => {
         if (swRegistration) {
