@@ -7,5 +7,11 @@ export type User = {
   login: string | null
   phone: string | null
   second_name: string | null
-  isAuth?: boolean
+}
+
+export type UserSlice = {
+  loading: boolean
+  user: User
+  error: string | undefined
+  isAuth: boolean
 }

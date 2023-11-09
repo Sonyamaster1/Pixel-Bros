@@ -5,9 +5,10 @@ import {
 } from '../../components/button/button.component'
 import { signInTransport } from '../../api/sign-in.transport'
 import { AxiosError } from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { fieldRequired, validationPatterns } from '../../utils/constants'
+import { useAuth } from '../../hooks/use-auth'
 
 export type TSignInFormValue = {
   login: string
@@ -20,7 +21,7 @@ const defaultFormValue: TSignInFormValue = {
 }
 
 export function SignInForm(): JSX.Element {
-  const navigate = useNavigate()
+  const { isAuth } = useAuth()
   const {
     control,
     handleSubmit,
@@ -29,6 +30,8 @@ export function SignInForm(): JSX.Element {
     defaultValues: defaultFormValue,
     mode: 'onBlur',
   })
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const handleClick: SubmitHandler<TSignInFormValue> = data => {
     signInTransport
@@ -37,6 +40,10 @@ export function SignInForm(): JSX.Element {
       .catch((error: AxiosError) => {
         throw new Error(error.toString())
       })
+  }
+
+  if (isAuth) {
+    return <Navigate to="/" />
   }
 
   return (

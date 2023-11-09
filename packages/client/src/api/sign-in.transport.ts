@@ -24,8 +24,8 @@ class SignInTransport extends BaseTransport {
       .then(user => {
         return user
       })
-      .catch(() => {
-        return {}
+      .catch(error => {
+        throw new Error(error.response.data.reason)
       })
   }
 }

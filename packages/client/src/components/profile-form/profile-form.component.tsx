@@ -47,9 +47,6 @@ export function ProfileForm() {
           ...prevFormValue,
           [event.target.name]: event.target.value,
         }))
-        signInTransport
-          .getUserData()
-          .then(res => setFormValue(res as TProfileValue))
       })
     },
     [formValue]
@@ -64,21 +61,9 @@ export function ProfileForm() {
     mode: 'onBlur',
   })
 
-  useEffect(() => {
-    signInTransport.getUserData().then(res => {
-      reset(res as TSignUpFormValue)
-    })
-  }, [])
-
   const onSubmit = (data: TSignUpFormValue) => {
     console.log('handleSubmit data', data)
   }
-
-  useEffect(() => {
-    signInTransport
-      .getUserData()
-      .then(res => setFormValue(res as TProfileValue))
-  }, [])
 
   return (
     <>

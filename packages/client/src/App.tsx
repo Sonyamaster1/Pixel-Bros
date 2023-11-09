@@ -1,9 +1,8 @@
 import { RouterProvider } from 'react-router-dom'
 import { router } from './router'
 import { useEffect } from 'react'
-import { signInTransport } from './api/sign-in.transport'
 import { useAppDispatch } from './hooks/redux-hooks'
-import { setUser } from './store/slices/userSlices'
+import { fetchUser } from './store/slices/userSlices'
 
 export function App() {
   // useEffect(() => {
@@ -20,9 +19,7 @@ export function App() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    signInTransport.getUserData().then(user => {
-      dispatch(setUser(user))
-    })
+    dispatch(fetchUser())
   }, [])
   return <RouterProvider router={router} />
 }
