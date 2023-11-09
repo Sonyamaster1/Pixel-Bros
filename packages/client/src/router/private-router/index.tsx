@@ -1,5 +1,4 @@
-import { Navigate, useLocation } from 'react-router-dom'
-import { signInTransport } from '../../api/sign-in.transport'
+import { Navigate } from 'react-router-dom'
 import { useAppDispatch } from '../../hooks/redux-hooks'
 import { useEffect } from 'react'
 import { fetchUser } from '../../store/slices/userSlices'
@@ -9,14 +8,18 @@ type TAuthRouteProps = {
   children: JSX.Element
 }
 
-// async function getAuthorizedStatus() {
-//   return await signInTransport.getUserData()
-// }
-//
-// const isAuthorized = await getAuthorizedStatus()
-
 export default function AuthRoute({ children }: TAuthRouteProps): JSX.Element {
-  const { isAuth, error, loading, user } = useAuth()
+  const { isAuth } = useAuth()
+
+  const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    dispatch(fetchUser())
+  }, [])
+
+  if (!isAuth) {
+    return <></>
+  }
 
   return !isAuth ? <Navigate to="/login" replace /> : <>{children}</>
 }

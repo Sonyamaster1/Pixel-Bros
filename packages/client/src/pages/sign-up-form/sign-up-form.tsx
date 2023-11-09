@@ -42,7 +42,6 @@ export function SignUpForm(): JSX.Element {
     defaultValues: defaultFormValue,
     mode: 'onBlur',
   })
-  const navigate = useNavigate()
   const onSubmit = (data: TSignUpFormValue) => {
     console.log('onSubmit', data)
   }

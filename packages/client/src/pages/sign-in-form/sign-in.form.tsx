@@ -30,7 +30,6 @@ export function SignInForm(): JSX.Element {
     defaultValues: defaultFormValue,
     mode: 'onBlur',
   })
-  const location = useLocation()
   const navigate = useNavigate()
 
   const handleClick: SubmitHandler<TSignInFormValue> = data => {
