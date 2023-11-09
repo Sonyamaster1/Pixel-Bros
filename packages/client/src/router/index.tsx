@@ -10,6 +10,7 @@ import Leaderboard from '../pages/leaderboard'
 import { ForumPage } from '../pages/forum'
 import { ForumTopicPage } from '../pages/forum/topic'
 import { ForumCreatePage } from '../pages/forum/create'
+import { ErrorPage } from '../pages/error'
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,14 @@ export const router = createBrowserRouter([
             <Leaderboard />
           </AuthRoute>
         ),
+      },
+      {
+        path: '500-server-error',
+        element: <ErrorPage code={500} />,
+      },
+      {
+        path: '*',
+        element: <ErrorPage code={404} />,
       },
     ],
   },
