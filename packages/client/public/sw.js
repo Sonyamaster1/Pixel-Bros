@@ -1,14 +1,4 @@
-import { precacheAndRoute } from 'workbox-precaching'
-
-precacheAndRoute(self.__WB_MANIFEST)
-
-const CACHE_URLS = [
-  '/assets/index.d9cab35b.css',
-  '/assets/index.db3540e3.js',
-  '/index.html?__WB_REVISION__=11ccdce3bd9058a128686c1165c243aa',
-  '/manifest.webmanifest?__WB_REVISION__=a682f65f0792ba3d4d2be38f6fde036e',
-  '/registerSW.js?__WB_REVISION__=1872c500de691dce40960bb85481de07',
-]
+const CACHE_URLS = self.__WB_MANIFEST.map(({url}) => url)
 
 const cacheKey = 'cache-v1'
 
