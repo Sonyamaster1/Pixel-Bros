@@ -1,15 +1,22 @@
 /* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { MutableRefObject, RefObject, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 
 import Settings from './Settings'
 import Pipe from './Pipes'
 import Bird from './Bird'
 import Sprites from './SpritesLoader'
 import World from './Word'
+import { useFullscreen } from '../../hooks'
 
-function GameEngaine() {
-  const canvasRef: RefObject<HTMLCanvasElement> = useRef(null)
-  const animateRef: MutableRefObject<number> = useRef(0)
+type Props = {
+  handleGameOver(score: number): void
+}
+
+function GameEngaine({ handleGameOver }: Props) {
+  const canvasRef = useRef<HTMLCanvasElement>(null)
+  const animateRef = useRef<number>(0)
+
+  useFullscreen(canvasRef)
 
   useEffect(() => {
     let Score = 0
@@ -74,6 +81,7 @@ function GameEngaine() {
 
     // Останавливает птицу, трубы и сбрасывает настройки до начальных
     function reset() {
+      handleGameOver(Score)
       cancelAnimationFrame(animateRef.current)
       animateRef.current = 0
       bird.y = Settings.ScreenHeight / 2 - 40
@@ -132,6 +140,7 @@ function GameEngaine() {
     }
 
     animate()
+    start()
 
     window.addEventListener('click', start)
     window.addEventListener('keydown', start)
@@ -147,6 +156,7 @@ function GameEngaine() {
     <canvas
       id="canvas_game_engaine"
       ref={canvasRef}
+      data-testid="refId"
       height={Settings.ScreenHeight}
       width={Settings.ScreenWidth}
     />

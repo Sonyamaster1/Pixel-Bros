@@ -1,41 +1,27 @@
-import { FC, useEffect, useState } from 'react'
-
+import { FC, useState } from 'react'
 import { StartGame } from './startGame'
 import { EndGame } from './endGame'
-
+import GameEngaine from '../../components/game_engaine'
 import styles from './index.module.scss'
 
-enum KeyCodes {
-  Space = 'Space',
-}
-
 export const PlayPage: FC = () => {
-  const [isBeginGame, setIsBeginGame] = useState(true)
+  const [score, setScore] = useState(0)
+  const [show, setShow] = useState<'start' | 'end' | 'game'>('start')
 
-  function handleStartGame(event: KeyboardEvent) {
-    if (isBeginGame && event.code === KeyCodes.Space) {
-      setIsBeginGame(false)
-    }
+  const handleStart = () => setShow('game')
+  const handleGameOver = (value: number) => {
+    setScore(value)
+    setShow('end')
   }
-
-  function handleRepeatGame() {
-    setIsBeginGame(true)
-  }
-
-  useEffect(() => {
-    document.addEventListener('keyup', handleStartGame)
-
-    return () => {
-      document.removeEventListener('keyup', handleStartGame)
-    }
-  }, [])
 
   return (
     <main className={styles.playPage}>
-      {isBeginGame ? (
-        <StartGame />
+      {show === 'start' ? (
+        <StartGame handleStart={handleStart} />
+      ) : show === 'game' ? (
+        <GameEngaine handleGameOver={handleGameOver} />
       ) : (
-        <EndGame handleRepeatGame={handleRepeatGame} />
+        <EndGame score={score} handleRepeat={handleStart} />
       )}
     </main>
   )

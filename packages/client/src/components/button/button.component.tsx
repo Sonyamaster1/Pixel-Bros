@@ -5,6 +5,7 @@ type TFooterButtonProps = {
   color: ButtonColors
   onClick: () => void
   buttonType: 'button' | 'submit' | 'reset' | undefined
+  className?: string
 }
 
 export enum ButtonColors {
@@ -18,6 +19,7 @@ export function FooterButton({
   color,
   onClick,
   buttonType,
+  className = '',
 }: TFooterButtonProps): JSX.Element {
   const dynamicStyles = {
     backgroundColor: color,
@@ -28,7 +30,7 @@ export function FooterButton({
       type={buttonType}
       onClick={onClick}
       style={dynamicStyles}
-      className={'footer-button'}>
+      className={`footer-button ${className}`}>
       {' '}
       {title}
     </button>

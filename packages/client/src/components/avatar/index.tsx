@@ -14,6 +14,7 @@ export const Avatar = ({ src, handleOnChangeField }: IAvatar): JSX.Element => {
           className={styles.avatarImg}
           src={`https://ya-praktikum.tech/api/v2/resources${src}`}
           alt="avatar"
+          data-testid="avatarImg"
         />
         <input
           onChange={handleOnChangeField}
