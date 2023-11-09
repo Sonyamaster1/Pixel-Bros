@@ -9,7 +9,7 @@ async function getAuthorizedStatus() {
   return await signInTransport.getUserData()
 }
 
-const isAuthorized = await getAuthorizedStatus()
+const isAuthorized = getAuthorizedStatus()
 
 export default function AuthRoute({ children }: TAuthRouteProps): JSX.Element {
   return !isAuthorized ? <Navigate to="/login" replace /> : <>{children}</>
