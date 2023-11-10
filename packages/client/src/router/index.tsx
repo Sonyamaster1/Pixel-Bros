@@ -4,21 +4,13 @@ import {
   HomePage,
   SignInForm,
   WithAuthorizationProfile,
-  PlayPage,
   WithAuthorizationForumPage,
   WithAuthorizationForumTopicPage,
   WithAuthorizationForumCreatePage,
+  WithAuthorizationLeaderboard,
 } from '../pages'
 import { RootLayout } from '../layouts'
-import { HomePage } from '../pages/home'
-import { SignInForm } from '../pages/sign-in-form/sign-in.form'
-import { Profile } from '../pages/profile'
-import { PlayPage } from '../pages/play'
-import Leaderboard from '../pages/leaderboard'
-import { ForumPage } from '../pages/forum'
-import { ForumTopicPage } from '../pages/forum/topic'
-import { ForumCreatePage } from '../pages/forum/create'
-import { ErrorPage } from '../pages/error'
+import { WithAuthorizationPlayPage } from '../pages/play'
 
 export const router = createBrowserRouter([
   {
@@ -46,7 +38,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'play',
-        element: <PlayPage />,
+        element: <WithAuthorizationPlayPage />,
       },
       {
         path: 'forum/create',
@@ -62,7 +54,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'leaderboard',
-        element: <div>Лидерборд</div>,
+        element: <WithAuthorizationLeaderboard />,
       },
     ],
   },
