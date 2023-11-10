@@ -30,9 +30,12 @@ const defaultFormValue: TProfileValue = {
 import { Controller, useForm } from 'react-hook-form'
 import { TSignUpFormValue } from '../../pages/sign-up-form/sign-up-form'
 import { fieldRequired, validationPatterns } from '../../utils/constants'
+import { useAuth } from '../../hooks/use-auth'
+import { User } from '../../store/slices/type'
 
 export function ProfileForm() {
   const [formValue, setFormValue] = useState<TProfileValue>(defaultFormValue)
+  const { user } = useAuth()
 
   const handleClick = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
@@ -47,9 +50,6 @@ export function ProfileForm() {
           ...prevFormValue,
           [event.target.name]: event.target.value,
         }))
-        signInTransport
-          .getUserData()
-          .then(res => setFormValue(res as TProfileValue))
       })
     },
     [formValue]
@@ -60,25 +60,13 @@ export function ProfileForm() {
     formState: { errors },
     reset,
   } = useForm({
-    defaultValues: defaultFormValue,
+    defaultValues: user,
     mode: 'onBlur',
   })
 
-  useEffect(() => {
-    signInTransport.getUserData().then(res => {
-      reset(res as TSignUpFormValue)
-    })
-  }, [])
-
-  const onSubmit = (data: TSignUpFormValue) => {
+  const onSubmit = (data: User) => {
     console.log('handleSubmit data', data)
   }
-
-  useEffect(() => {
-    signInTransport
-      .getUserData()
-      .then(res => setFormValue(res as TProfileValue))
-  }, [])
 
   return (
     <>
@@ -101,7 +89,7 @@ export function ProfileForm() {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <Field
-                value={value}
+                value={value || ''}
                 onBlur={onBlur}
                 onChange={onChange}
                 inputName="first_name"
@@ -123,7 +111,7 @@ export function ProfileForm() {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <Field
-                value={value}
+                value={value || ''}
                 onBlur={onBlur}
                 onChange={onChange}
                 inputName="second_name"
@@ -145,7 +133,7 @@ export function ProfileForm() {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <Field
-                value={value}
+                value={value || ''}
                 onBlur={onBlur}
                 onChange={onChange}
                 inputName="login"
@@ -167,7 +155,7 @@ export function ProfileForm() {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <Field
-                value={value}
+                value={value || ''}
                 onBlur={onBlur}
                 onChange={onChange}
                 inputName="email"
@@ -189,7 +177,7 @@ export function ProfileForm() {
             }}
             render={({ field: { onChange, onBlur, value } }) => (
               <Field
-                value={value}
+                value={value || ''}
                 onBlur={onBlur}
                 onChange={onChange}
                 inputName="phone"
@@ -199,28 +187,6 @@ export function ProfileForm() {
               />
             )}
             name="phone"
-          />
-          <Controller
-            control={control}
-            rules={{
-              required: fieldRequired,
-              pattern: {
-                value: validationPatterns.password.regexp,
-                message: validationPatterns.password.message,
-              },
-            }}
-            render={({ field: { onChange, onBlur, value } }) => (
-              <Field
-                value={value}
-                onBlur={onBlur}
-                onChange={onChange}
-                inputName="password"
-                placeholder="Password"
-                inputType="password"
-                error={errors?.password?.message}
-              />
-            )}
-            name="password"
           />
           <FooterButton
             buttonType="submit"
