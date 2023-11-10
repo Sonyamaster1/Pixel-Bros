@@ -10,6 +10,15 @@ import {
   WithAuthorizationForumCreatePage,
 } from '../pages'
 import { RootLayout } from '../layouts'
+import { HomePage } from '../pages/home'
+import { SignInForm } from '../pages/sign-in-form/sign-in.form'
+import { Profile } from '../pages/profile'
+import { PlayPage } from '../pages/play'
+import Leaderboard from '../pages/leaderboard'
+import { ForumPage } from '../pages/forum'
+import { ForumTopicPage } from '../pages/forum/topic'
+import { ForumCreatePage } from '../pages/forum/create'
+import { ErrorPage } from '../pages/error'
 
 export const router = createBrowserRouter([
   {

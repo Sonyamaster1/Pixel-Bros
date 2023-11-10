@@ -4,9 +4,6 @@ import { AxiosError } from 'axios'
 
 const authURL = 'https://ya-praktikum.tech/api/v2/auth/'
 
-// просто получаем информацию об авторизации с помощью данных о юзере
-let userData: unknown = {}
-
 class SignInTransport extends BaseTransport {
   constructor(baseURL: string) {
     super(baseURL)
@@ -25,11 +22,10 @@ class SignInTransport extends BaseTransport {
   getUserData() {
     return this.get('user')
       .then(user => {
-        console.log(user, 'user')
-        return (userData = user)
+        return user
       })
-      .catch(() => {
-        return (userData = '')
+      .catch(error => {
+        throw new Error(error.response.data.reason)
       })
   }
 }
