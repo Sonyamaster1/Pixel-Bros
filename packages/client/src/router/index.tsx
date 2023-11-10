@@ -1,16 +1,16 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom'
-import AuthRoute from './private-router'
-import { SignUpForm } from '../pages/sign-up-form/sign-up-form'
+import {
+  SignUpForm,
+  HomePage,
+  SignInForm,
+  WithAuthorizationProfile,
+  WithAuthorizationForumPage,
+  WithAuthorizationForumTopicPage,
+  WithAuthorizationForumCreatePage,
+  WithAuthorizationLeaderboard,
+} from '../pages'
 import { RootLayout } from '../layouts'
-import { HomePage } from '../pages/home'
-import { SignInForm } from '../pages/sign-in-form/sign-in.form'
-import { Profile } from '../pages/profile'
-import { PlayPage } from '../pages/play'
-import Leaderboard from '../pages/leaderboard'
-import { ForumPage } from '../pages/forum'
-import { ForumTopicPage } from '../pages/forum/topic'
-import { ForumCreatePage } from '../pages/forum/create'
-import { ErrorPage } from '../pages/error'
+import { WithAuthorizationPlayPage } from '../pages/play'
 
 export const router = createBrowserRouter([
   {
@@ -30,11 +30,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'profile',
-        element: (
-          <AuthRoute>
-            <Profile />
-          </AuthRoute>
-        ),
+        element: <WithAuthorizationProfile />,
       },
       {
         path: 'game',
@@ -42,47 +38,23 @@ export const router = createBrowserRouter([
       },
       {
         path: 'play',
-        element: <PlayPage />,
+        element: <WithAuthorizationPlayPage />,
       },
       {
         path: 'forum/create',
-        element: (
-          <AuthRoute>
-            <ForumCreatePage />
-          </AuthRoute>
-        ),
+        element: <WithAuthorizationForumCreatePage />,
       },
       {
         path: 'forum/:id',
-        element: (
-          <AuthRoute>
-            <ForumTopicPage />
-          </AuthRoute>
-        ),
+        element: <WithAuthorizationForumTopicPage />,
       },
       {
         path: 'forum',
-        element: (
-          <AuthRoute>
-            <ForumPage />
-          </AuthRoute>
-        ),
+        element: <WithAuthorizationForumPage />,
       },
       {
         path: 'leaderboard',
-        element: (
-          <AuthRoute>
-            <Leaderboard />
-          </AuthRoute>
-        ),
-      },
-      {
-        path: '500-server-error',
-        element: <ErrorPage code={500} />,
-      },
-      {
-        path: '*',
-        element: <ErrorPage code={404} />,
+        element: <WithAuthorizationLeaderboard />,
       },
     ],
   },

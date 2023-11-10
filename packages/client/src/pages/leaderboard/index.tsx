@@ -10,6 +10,7 @@ import { fakeResults } from './constants'
 import LeaderboardCell from './LeaderboardCell'
 import { EntityHeader } from '../../components'
 import { LeaderboardItem } from './type'
+import { checkAuthRenderHOC } from '../../utils/authorization-hoc'
 
 const Leaderboard = () => {
   const [items, setItems] = useState<LeaderboardItem[]>(fakeResults)
@@ -45,4 +46,4 @@ const Leaderboard = () => {
   )
 }
 
-export default Leaderboard
+export const WithAuthorizationLeaderboard = checkAuthRenderHOC(Leaderboard)
