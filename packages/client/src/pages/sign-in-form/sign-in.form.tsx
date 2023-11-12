@@ -8,7 +8,6 @@ import { AxiosError } from 'axios'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { fieldRequired, validationPatterns } from '../../utils/constants'
-import { useAuth } from '../../hooks/use-auth'
 
 export type TSignInFormValue = {
   login: string
@@ -21,7 +20,6 @@ const defaultFormValue: TSignInFormValue = {
 }
 
 export function SignInForm(): JSX.Element {
-  const { isAuth } = useAuth()
   const {
     control,
     handleSubmit,
@@ -39,10 +37,6 @@ export function SignInForm(): JSX.Element {
       .catch((error: AxiosError) => {
         throw new Error(error.toString())
       })
-  }
-
-  if (isAuth) {
-    return <Navigate to="/" />
   }
 
   return (

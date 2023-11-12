@@ -6,7 +6,10 @@ import { Form } from '../form/form.component'
 import { SingleCell } from '../cell-empty/cellEmpty.component'
 import { Avatar } from '../avatar'
 import { profileTransport } from '../../api/profile/profile.api'
-import { signInTransport } from '../../api/sign-in.transport'
+import { Controller, useForm } from 'react-hook-form'
+import { fieldRequired, validationPatterns } from '../../utils/constants'
+import { useAuth } from '../../hooks/use-auth'
+import { User } from '../../store/slices/type'
 
 export type TProfileValue = {
   first_name: string
@@ -27,11 +30,6 @@ const defaultFormValue: TProfileValue = {
   phone: '',
   password: '',
 }
-import { Controller, useForm } from 'react-hook-form'
-import { TSignUpFormValue } from '../../pages/sign-up-form/sign-up-form'
-import { fieldRequired, validationPatterns } from '../../utils/constants'
-import { useAuth } from '../../hooks/use-auth'
-import { User } from '../../store/slices/type'
 
 export function ProfileForm() {
   const [formValue, setFormValue] = useState<TProfileValue>(defaultFormValue)

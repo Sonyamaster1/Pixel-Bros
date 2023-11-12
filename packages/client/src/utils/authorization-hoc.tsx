@@ -1,41 +1,21 @@
-import React from 'react'
-import { Navigate } from 'react-router-dom'
-import { RootState } from '../store'
-import { connect } from 'react-redux'
-import { AnyAction, ThunkDispatch } from '@reduxjs/toolkit'
+import React, { useEffect, useState } from 'react'
 import { fetchUser } from '../store/slices/userSlices'
-
-const mapStateToProps = (state: RootState) => state.user
-
-const mapDispatchToProps = (
-  dispatch: ThunkDispatch<RootState, unknown, AnyAction>
-) => ({
-  dispatchYourAction: () => dispatch(fetchUser()),
-})
+import { useAuth } from '../hooks/use-auth'
+import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'
+import { Navigate } from 'react-router-dom'
+import { ErrorPage } from '../pages/error'
+import { useSelector } from 'react-redux'
+import { RootState } from '../store'
 
 // HOC, который рендерит обёрнутый компонент только при авторизации пользователя
 export function checkAuthRenderHOC<P = any>(
   WrappedComponent: React.ComponentType
 ): React.ComponentType<P> {
-  class WithAuthorizationComponent extends React.Component<P> {
-    constructor(props: P) {
-      super(props)
-    }
+  function WithAuthorizationComponent() {
+    const user = useSelector((state: RootState) => state.user)
 
-    componentDidMount() {
-      this.props.dispatchYourAction()
-    }
-
-    render() {
-      if (!this.props.isAuth) {
-        return <Navigate to="/login" replace />
-      }
-      return <WrappedComponent {...this.props} />
-    }
+    return user.isAuth ? <WrappedComponent /> : <Navigate to="/login" replace />
   }
 
-  return connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(WithAuthorizationComponent)
+  return WithAuthorizationComponent
 }
