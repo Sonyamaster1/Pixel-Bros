@@ -8,10 +8,10 @@ import {
 import {
   ButtonColors,
   FooterButton,
-} from '../../components/button/button.component'
+} from '../../components/button/pure-button/button.component'
 import { Controller, useForm } from 'react-hook-form'
 import { fieldRequired, validationPatterns } from '../../utils/constants'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useAuth } from '../../hooks/use-auth'
 
 export type TSignUpFormValue = {

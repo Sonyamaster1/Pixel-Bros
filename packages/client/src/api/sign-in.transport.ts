@@ -13,8 +13,8 @@ class SignInTransport extends BaseTransport {
     return this.post('signin', data)
   }
 
-  logout() {
-    this.post('logout').catch((error: AxiosError) => {
+  logout(): Promise<unknown> {
+    return this.post('logout').catch((error: AxiosError) => {
       throw new Error(error.toString())
     })
   }
