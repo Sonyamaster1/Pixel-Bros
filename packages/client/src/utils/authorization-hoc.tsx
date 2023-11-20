@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { fetchUser } from '../store/slices/userSlices'
-import { useAuth } from '../hooks/use-auth'
-import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks'
+import React from 'react'
 import { Navigate } from 'react-router-dom'
-import { ErrorPage } from '../pages/error'
 import { useSelector } from 'react-redux'
 import { RootState } from '../store'
 

@@ -5,9 +5,11 @@ import {
 } from '../../components/button/button.component'
 import { signInTransport } from '../../api/sign-in.transport'
 import { AxiosError } from 'axios'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { fieldRequired, validationPatterns } from '../../utils/constants'
+import { useAppDispatch } from '../../hooks/redux-hooks'
+import { fetchUser } from '../../store/slices/userSlices'
 
 export type TSignInFormValue = {
   login: string
@@ -20,6 +22,7 @@ const defaultFormValue: TSignInFormValue = {
 }
 
 export function SignInForm(): JSX.Element {
+  const dispatch = useAppDispatch()
   const {
     control,
     handleSubmit,
@@ -33,7 +36,10 @@ export function SignInForm(): JSX.Element {
   const handleClick: SubmitHandler<TSignInFormValue> = data => {
     signInTransport
       .signIn(data)
-      .then(() => navigate('/game'))
+      .then(() => {
+        dispatch(fetchUser())
+        navigate('/game')
+      })
       .catch((error: AxiosError) => {
         throw new Error(error.toString())
       })
