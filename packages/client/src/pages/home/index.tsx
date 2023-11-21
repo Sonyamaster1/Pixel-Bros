@@ -8,18 +8,22 @@ import { jokesTransport } from '../../api/jokes.transport'
 export const HomePage: FC = () => {
   const [joke, setJoke] = useState<string>('')
 
+  const getJoke = async () => {
+    try {
+      jokesTransport.getRandomJoke().then((res: any) => {
+        setJoke(res.value)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <main className={styles.homePage}>
       <Background />
       <div className={styles.content}>
         <span className={styles.description}>
-          <button
-            className={styles.jokeButton}
-            onClick={() => {
-              jokesTransport.getRandomJoke().then((res: any) => {
-                setJoke(res.value)
-              })
-            }}>
+          <button className={styles.jokeButton} onClick={getJoke}>
             Получить заряд на день
           </button>
           {joke}

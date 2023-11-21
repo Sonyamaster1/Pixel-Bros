@@ -2,9 +2,6 @@ import { BaseTransport } from './base.transport'
 
 const jokesUrl = 'https://api.chucknorris.io/jokes/random'
 
-// просто получаем информацию об авторизации с помощью данных о юзере
-let userData: unknown = {}
-
 class JokesTransport extends BaseTransport {
   constructor(baseURL: string) {
     super(baseURL)
@@ -12,12 +9,12 @@ class JokesTransport extends BaseTransport {
 
   getRandomJoke() {
     return this.get('')
-      .then(user => {
-        console.log(user, 'joke')
-        return (userData = user)
+      .then(joke => {
+        console.log(joke, 'joke')
+        return joke
       })
-      .catch(() => {
-        return (userData = '')
+      .catch(err => {
+        console.log(err)
       })
   }
 }
