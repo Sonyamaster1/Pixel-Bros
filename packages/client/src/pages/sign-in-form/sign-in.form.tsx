@@ -32,15 +32,15 @@ const defaultFormValue: TSignInFormValue = {
   password: '',
 }
 
-const REDIRECT_URI = 'http://localhost:3000'
-const OAUTH_URL = 'https://oauth.yandex.ru/authorize?response_type=code'
+const RedirectOAuthURI = import.meta.env.VITE_REDIRECT_OAUTH_URI
+const OAuthURL = import.meta.env.VITE_OAUTH_URL
 
 const handleYandexAuthClick = () =>
   yandexOAuthTransport
     .getServiceId()
     .then(
       (id: TOAuthId) =>
-        (window.location.href = `${OAUTH_URL}&client_id=${id.service_id}&redirect_uri=${REDIRECT_URI}`)
+        (window.location.href = `${OAuthURL}&client_id=${id.service_id}&redirect_uri=${RedirectOAuthURI}`)
     )
     .catch((error: AxiosError) => {
       throw new Error(error.toString())

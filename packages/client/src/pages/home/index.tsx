@@ -7,6 +7,8 @@ import { yandexOAuthTransport } from '../../api/yandex-OAuth.transport'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { fetchUser } from '../../store/slices/userSlices'
 
+const RedirectOAuthURI = import.meta.env.VITE_REDIRECT_OAUTH_URI
+
 export const HomePage: FC = () => {
   const dispatch = useAppDispatch()
   const user = useAppSelector(state => state.user)
@@ -17,7 +19,7 @@ export const HomePage: FC = () => {
     const code = urlParams.get('code')
     if (code && !user.isAuth)
       yandexOAuthTransport
-        .signIn({ code: code, redirect_uri: 'http://localhost:3000' })
+        .signIn({ code: code, redirect_uri: RedirectOAuthURI })
         .then(() => dispatch(fetchUser()))
   }, [])
 
