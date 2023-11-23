@@ -16,13 +16,14 @@ class JokesTransport extends BaseTransport {
     super(baseURL)
   }
 
-  getRandomJoke(): Promise<IJoke | unknown> {
-    return this.get('')
+  getRandomJoke(): Promise<IJoke> {
+    return this.get<IJoke>('')
       .then(joke => {
         return joke
       })
       .catch(err => {
         console.log(err)
+        throw err
       })
   }
 }
