@@ -3,7 +3,8 @@ import {
   ProfileForm,
   MainLayout,
   SingleCell,
-} from '../../components'
+} from 'client/src/components'
+import { checkAuthRenderHOC } from 'client/src/utils/authorization-hoc'
 
 export function Profile(): JSX.Element {
   return (
@@ -14,3 +15,5 @@ export function Profile(): JSX.Element {
     </MainLayout>
   )
 }
+
+export const WithAuthorizationProfile = checkAuthRenderHOC(Profile)

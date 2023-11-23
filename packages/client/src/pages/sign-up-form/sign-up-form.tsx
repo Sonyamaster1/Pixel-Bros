@@ -8,9 +8,11 @@ import {
 import {
   ButtonColors,
   FooterButton,
-} from '../../components/button/button.component'
+} from '../../components/button/pure-button/button.component'
 import { Controller, useForm } from 'react-hook-form'
 import { fieldRequired, validationPatterns } from '../../utils/constants'
+import { Navigate } from 'react-router-dom'
+import { useAuth } from '../../hooks/use-auth'
 
 export type TSignUpFormValue = {
   first_name: string
@@ -31,6 +33,7 @@ export const defaultFormValue: TSignUpFormValue = {
 }
 
 export function SignUpForm(): JSX.Element {
+  const { isAuth } = useAuth()
   const {
     control,
     handleSubmit,
@@ -39,11 +42,14 @@ export function SignUpForm(): JSX.Element {
     defaultValues: defaultFormValue,
     mode: 'onBlur',
   })
-
   const onSubmit = (data: TSignUpFormValue) => {
     console.log('onSubmit', data)
   }
-  console.log('errors', errors)
+
+  if (isAuth) {
+    return <Navigate to="/" />
+  }
+
   return (
     <MainLayout>
       <Form>

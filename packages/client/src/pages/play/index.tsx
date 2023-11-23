@@ -3,6 +3,7 @@ import { StartGame } from './startGame'
 import { EndGame } from './endGame'
 import GameEngaine from '../../components/game_engaine'
 import styles from './index.module.scss'
+import { checkAuthRenderHOC } from '../../utils/authorization-hoc'
 
 export const PlayPage: FC = () => {
   const [score, setScore] = useState(0)
@@ -26,3 +27,5 @@ export const PlayPage: FC = () => {
     </main>
   )
 }
+
+export const WithAuthorizationPlayPage = checkAuthRenderHOC(PlayPage)

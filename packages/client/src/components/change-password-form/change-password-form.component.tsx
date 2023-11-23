@@ -1,6 +1,9 @@
 import { Field } from '../form-field/form-field.component'
 import { EntityHeader } from '../entity-header/entity-header.component'
-import { ButtonColors, FooterButton } from '../button/button.component'
+import {
+  ButtonColors,
+  FooterButton,
+} from '../button/pure-button/button.component'
 import { Form } from '../form/form.component'
 import { SingleCell } from '../cell-empty/cellEmpty.component'
 import { profileTransport } from '../../api/profile/profile.api'

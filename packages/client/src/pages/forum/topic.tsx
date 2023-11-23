@@ -5,6 +5,7 @@ import { ForumTopicDetail } from './components/topic-detail'
 import { FAKE_TOPICS } from './constants'
 import { ForumComment } from './components/comment'
 import { ForumCommentCreate } from './components/comment/create'
+import { checkAuthRenderHOC } from 'client/src/utils/authorization-hoc'
 
 export const ForumTopicPage: FC = () => {
   const { id } = useParams()
@@ -25,3 +26,6 @@ export const ForumTopicPage: FC = () => {
     </MainLayout>
   )
 }
+
+export const WithAuthorizationForumTopicPage =
+  checkAuthRenderHOC(ForumTopicPage)

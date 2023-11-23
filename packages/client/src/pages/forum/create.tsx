@@ -1,12 +1,13 @@
 import { FC } from 'react'
 import { FooterButton, Form } from '../../components'
-import { ButtonColors } from '../../components/button/button.component'
+import { ButtonColors } from '../../components/button/pure-button/button.component'
 import { Controller, useForm } from 'react-hook-form'
 import { fieldRequired } from '../../utils/constants'
 import { Textarea } from '../../components/textarea'
 import { useNavigate } from 'react-router'
 import { MainLayout } from '../../components'
 import './styles/create.pcss'
+import { checkAuthRenderHOC } from 'client/src/utils/authorization-hoc'
 
 export type TForumTopicCreateFormValue = {
   name: string
@@ -81,3 +82,6 @@ export const ForumCreatePage: FC = () => {
     </MainLayout>
   )
 }
+
+export const WithAuthorizationForumCreatePage =
+  checkAuthRenderHOC(ForumCreatePage)
