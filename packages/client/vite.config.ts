@@ -12,6 +12,9 @@ export default defineConfig({
   define: {
     __SERVER_PORT__: process.env.SERVER_PORT,
   },
+  ssr: {
+    format: 'cjs',
+  },
   plugins: [
     react(),
     VitePWA({
