@@ -1,7 +1,7 @@
 ### Документация
 - [Настройка и запуск проекта](https://github.com/Sonyamaster1/Pixel-Bros/blob/PIX-23-document-with-mechanics-and-logic/Setting_up_and_launching_the_project.md) - инструкция по запуску проекта. 
 - [Механика и логика игры](https://github.com/Sonyamaster1/Pixel-Bros/blob/PIX-23-document-with-mechanics-and-logic/Description_of_the_mechanics_and_logic.md) - описание механик и логики игры.
-- [Утечки памяти](https://github.com/Sonyamaster1/Pixel-Bros/blob/PIX-41-memory-leak/memory_leak.md) - описание утечки памяти в проекте и их решения.
+- [Утечки памяти](https://github.com/Sonyamaster1/Pixel-Bros/blob/PIX-41-memory-leak/memory_leak.md) - описание утечек памяти в проекте и их решения.
 
 ### Авторы
 - [Александр Шипулин](https://github.com/Yrsafam)
