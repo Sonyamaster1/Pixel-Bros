@@ -3,14 +3,14 @@ import { FC, useState } from 'react'
 import { Background } from './background'
 
 import styles from './index.module.scss'
-import { jokesTransport } from '../../api/jokes.transport'
+import { IJoke, jokesTransport } from '../../api/jokes.transport'
 
 export const HomePage: FC = () => {
   const [joke, setJoke] = useState<string>('')
 
   const getJoke = async () => {
     try {
-      jokesTransport.getRandomJoke().then((res: any) => {
+      jokesTransport.getRandomJoke().then((res: IJoke) => {
         setJoke(res.value)
       })
     } catch (error) {
