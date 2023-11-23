@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { FooterButton, Form } from '../../../../components'
-import { ButtonColors } from '../../../../components/button/button.component'
+import { ButtonColors } from '../../../../components/button/pure-button/button.component'
 import { Controller, useForm } from 'react-hook-form'
 import { fieldRequired } from '../../../../utils/constants'
 import { Textarea } from '../../../../components/textarea'

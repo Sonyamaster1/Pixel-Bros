@@ -1,7 +1,7 @@
 import { FC } from 'react'
 import { useNavigate } from 'react-router'
 import { FooterButton } from '../../components'
-import { ButtonColors } from '../../components/button/button.component'
+import { ButtonColors } from '../../components/button/pure-button/button.component'
 import { IconBird, IconGameOver } from '../../assets/images'
 import styles from './endGame.module.scss'
 

@@ -1,10 +1,9 @@
 import styles from './index.module.scss'
 import { useEffect, useState } from 'react'
-import getAllLeaderboard from './fetchers'
 import {
   ButtonColors,
   FooterButton,
-} from '../../components/button/button.component'
+} from '../../components/button/pure-button/button.component'
 import { useNavigate } from 'react-router-dom'
 import { fakeResults } from './constants'
 import LeaderboardCell from './LeaderboardCell'
@@ -32,7 +31,8 @@ const Leaderboard = () => {
         <EntityHeader title="Leaderboard" />
         {error && <p className={styles.error}>{error}</p>}
         <div className={styles.content__items}>
-          {items && items.map(item => <LeaderboardCell item={item} />)}
+          {items &&
+            items.map(item => <LeaderboardCell key={item.id} item={item} />)}
         </div>
         <FooterButton
           className={styles.go_back_btn}

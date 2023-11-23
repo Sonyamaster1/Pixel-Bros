@@ -1,4 +1,4 @@
-export { FooterButton } from './button/button.component'
+export { FooterButton } from './button/pure-button/button.component'
 export { SingleCell } from './cell-empty/cellEmpty.component'
 export { ChangePasswordForm } from './change-password-form/change-password-form.component'
 export { EntityHeader } from './entity-header/entity-header.component'

@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { createBrowserRouter } from 'react-router-dom'
 import {
   SignUpForm,
   HomePage,
@@ -16,10 +16,10 @@ export const router = createBrowserRouter([
   {
     element: <RootLayout />,
     children: [
-      {
-        path: '/',
-        element: <Navigate to="game" replace />,
-      },
+      // {
+      //   path: '/',
+      //   element: <Navigate to="game" replace />,
+      // },
       {
         path: 'login',
         element: <SignInForm />,
@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
         element: <WithAuthorizationProfile />,
       },
       {
-        path: 'game',
+        path: '/',
         element: <HomePage />,
       },
       {

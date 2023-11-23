@@ -7,8 +7,11 @@ import { MenuItem } from './menuItem'
 import { AuthenticationButton } from './authenticationButton'
 
 import styles from './index.module.scss'
+import { useAuth } from '../../hooks/use-auth'
 
 export const Header: FC = () => {
+  const { isAuth } = useAuth()
+
   return (
     <header className={styles.header}>
       <div className={styles.leftContent}>
@@ -23,7 +26,7 @@ export const Header: FC = () => {
           </ul>
         </nav>
       </div>
-      <AuthenticationButton />
+      <AuthenticationButton isAuth={isAuth} />
     </header>
   )
 }
