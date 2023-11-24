@@ -12,7 +12,7 @@
 ### График при обновлении страницы.
 ![c1dfcff8-7bd3-450d-bf0e-523c15b9971d](https://github.com/Sonyamaster1/Pixel-Bros/assets/63585689/974cd3e1-30c1-4203-805e-eeec603d4f1a)
 
-### График при заходи в аккаунт пользователя
+### График при заходи пользователя в аккаунт
 ![dd61c6fc-7c37-4132-bf98-43bae5df78a9](https://github.com/Sonyamaster1/Pixel-Bros/assets/63585689/246253c3-40d1-41ff-aac5-504da532e5ef)
 
 ### График при переходи по страницам
