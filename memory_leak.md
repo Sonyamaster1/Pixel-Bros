@@ -9,10 +9,14 @@
 <br/>
 После получения данных или завершения игры, память возвращалась в обычное состояние.
 
-### График при обновления страницы, заход в аккаунт, переключения страниц.
-![unnamed](https://github.com/Sonyamaster1/Pixel-Bros/assets/63585689/0d1da57e-9e49-4abf-944c-b0e9da77af8d)
+### График при обновления страницы.
+![c1dfcff8-7bd3-450d-bf0e-523c15b9971d](https://github.com/Sonyamaster1/Pixel-Bros/assets/63585689/974cd3e1-30c1-4203-805e-eeec603d4f1a)
 
-Самый большой всплеск вызван обновлением страницы и заходом в аккаунт.
+### График при заходи в аккаунт пользователя
+![dd61c6fc-7c37-4132-bf98-43bae5df78a9](https://github.com/Sonyamaster1/Pixel-Bros/assets/63585689/246253c3-40d1-41ff-aac5-504da532e5ef)
 
-### График при запуски игры и её завершении.
-![unnamed (1)](https://github.com/Sonyamaster1/Pixel-Bros/assets/63585689/f7504be8-15ee-439a-b844-c3d61c9293fe)
+### График при переходи по страницам
+![d804b903-bd61-42e6-b71a-4ef02d0467f6](https://github.com/Sonyamaster1/Pixel-Bros/assets/63585689/bbbe2370-636c-40d4-9a5b-6fa54d8ee3e8)
+
+### График при запуски и завершении игры
+![96df6cda-c32a-4cfe-83eb-b1e23f25b48a](https://github.com/Sonyamaster1/Pixel-Bros/assets/63585689/f389f54c-6c13-4c19-9bec-457f1ade0f42)
