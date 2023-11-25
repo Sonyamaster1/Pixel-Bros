@@ -4,9 +4,10 @@ import App from './App'
 import './styles/index.scss'
 import { StaticRouter } from 'react-router-dom/server'
 import { Provider } from 'react-redux'
-import { store } from './store'
+import createStore, { initialStore } from './store'
 
-export function render(url: string): string {
+export function render(url: string, state = initialStore): string {
+  const store = createStore(state)
   return renderToString(
     <Provider store={store}>
       <StaticRouter location={url}>

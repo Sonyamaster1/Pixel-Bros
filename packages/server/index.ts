@@ -8,6 +8,7 @@ import * as process from 'process'
 import * as fs from 'fs/promises'
 import * as path from 'path'
 import type { ViteDevServer } from 'vite'
+import { initialStore } from './constants'
 
 async function startServer() {
   const isDev = () => process.env.NODE_ENV === 'development'
@@ -55,7 +56,11 @@ async function startServer() {
     try {
       const url = req.originalUrl
       let template: string
-      let render: (url: string, ssrManifest?: string) => Promise<string>
+      let render: (
+        url: string,
+        store: unknown,
+        ssrManifest?: string
+      ) => Promise<string>
 
       if (isProduction()) {
         template = await fs.readFile(path.join(distPath, 'index.html'), 'utf-8')
@@ -77,7 +82,12 @@ async function startServer() {
 
       const rendered = await render(url, ssrManifest)
 
-      const html = template.replace('<!--ssr-outlet-->', rendered)
+      const ssrData = `<script>window.__PRELOADED_STATE__=${JSON.stringify(
+        initialStore
+      )}</script>`
+      const html = template
+        .replace('<!--ssr-outlet-->', rendered)
+        .replace('<!--ssr-data-->', ssrData)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e: unknown) {
