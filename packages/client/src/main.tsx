@@ -5,11 +5,14 @@ import './styles/index.scss'
 import { Provider } from 'react-redux'
 import { store } from './store'
 import { registerServiceWorker } from './service-worker/register-sw'
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.hydrateRoot(
   document.getElementById('root') as HTMLElement,
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 )
 
