@@ -10,7 +10,7 @@ export function App() {
   //     console.log(data)
   //   }
 
-  return <RouterProvider router={router} />
+  return <h1>OUR APP</h1>
 }
 
 export default App
