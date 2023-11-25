@@ -80,7 +80,7 @@ async function startServer() {
         ).render
       }
 
-      const rendered = await render(url, ssrManifest)
+      const rendered = await render(url, initialStore, ssrManifest)
 
       const ssrData = `<script>window.__PRELOADED_STATE__=${JSON.stringify(
         initialStore
