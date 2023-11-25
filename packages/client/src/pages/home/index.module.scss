@@ -22,10 +22,19 @@
   background-color: white;
   color: #000;
   font-family: 'Press Start 2P';
-  font-size: 18px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
   letter-spacing: 1.8px;
   text-transform: uppercase;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.jokeButton {
+  padding: 10px;
+  background-color: transparent;
+  border-radius: 10px;
 }
