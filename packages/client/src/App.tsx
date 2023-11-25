@@ -15,10 +15,10 @@ export function App() {
 
   return (
     <Routes>
-      {router.map(route => (
-        <Route path="/" element={route.element}>
-          {route.children.map(child => (
-            <Route path={child.path} element={child.element} />
+      {router.map((route, index) => (
+        <Route key={index} path="/" element={route.element}>
+          {route.children.map((child, index) => (
+            <Route key={index} path={child.path} element={child.element} />
           ))}
         </Route>
       ))}
