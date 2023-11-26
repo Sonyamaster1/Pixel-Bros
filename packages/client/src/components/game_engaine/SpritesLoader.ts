@@ -12,7 +12,7 @@ const Sprites = {
 
 function SpritesLoader(src: string): HTMLImageElement | undefined {
   // Проверка на наличие глобальных обьектов для серверного рендеринга
-  if (typeof window === 'undefined' || typeof document === 'undefined') return
+  if (import.meta.env.SSR) return
   const img = new Image()
   img.src = src
   return img
