@@ -4,6 +4,7 @@ import { EndGame } from './endGame'
 import GameEngaine from '../../components/game_engaine'
 import styles from './index.module.scss'
 import { checkAuthRenderHOC } from '../../utils/authorization-hoc'
+import { leaderboardTransport } from '../../api/leaderboard'
 
 export const PlayPage: FC = () => {
   const [score, setScore] = useState(0)
@@ -13,6 +14,7 @@ export const PlayPage: FC = () => {
   const handleGameOver = (value: number) => {
     setScore(value)
     setShow('end')
+    leaderboardTransport.saveScore(value)
   }
 
   return (
