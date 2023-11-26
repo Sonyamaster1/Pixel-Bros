@@ -5,25 +5,25 @@ import {
   FooterButton,
 } from '../../components/button/pure-button/button.component'
 import { useNavigate } from 'react-router-dom'
-import { fakeResults } from './constants'
 import LeaderboardCell from './LeaderboardCell'
 import { EntityHeader } from '../../components'
 import { LeaderboardItem } from './type'
 import { checkAuthRenderHOC } from '../../utils/authorization-hoc'
+import { leaderboardTransport } from '../../api/leaderboard'
 
 const Leaderboard = () => {
-  const [items, setItems] = useState<LeaderboardItem[]>(fakeResults)
-  const [error, setError] = useState<string>('')
   const navigate = useNavigate()
+  const goBackHandler = () => navigate(-1)
+
+  const [items, setItems] = useState<LeaderboardItem[]>([])
+  const [error, setError] = useState<string>('')
 
   useEffect(() => {
-    // Следует раскомментировать после добавления создания ручки и указания рабочего УРЛ в getAllLeaderboard
-    // getAllLeaderboard()
-    //   .then(data => setItems(data))
-    //   .catch(err => setError(err.message))
+    leaderboardTransport
+      .getLeaderboard()
+      .then(data => setItems(data))
+      .catch(() => setError('Ошибка получения таблицы лидеров!'))
   }, [])
-
-  const goBackHandler = () => navigate(-1)
 
   return (
     <div className={styles.leaderboard}>
@@ -32,7 +32,12 @@ const Leaderboard = () => {
         {error && <p className={styles.error}>{error}</p>}
         <div className={styles.content__items}>
           {items &&
-            items.map(item => <LeaderboardCell key={item.id} item={item} />)}
+            items.map(item => (
+              <LeaderboardCell
+                key={`${item.data.username}-${item.data.score}`}
+                item={item}
+              />
+            ))}
         </div>
         <FooterButton
           className={styles.go_back_btn}
