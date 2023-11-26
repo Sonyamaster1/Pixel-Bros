@@ -10,8 +10,9 @@ import {
 } from '../pages'
 import { RootLayout } from '../layouts'
 import { WithAuthorizationPlayPage } from '../pages/play'
+import { RouterType } from './type'
 
-export const router = [
+export const router: RouterType[] = [
   {
     element: <RootLayout />,
     children: [
