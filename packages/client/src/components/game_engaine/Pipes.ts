@@ -41,18 +41,20 @@ class Pipe extends PureComponent {
 
   draw = () => {
     this.ctx?.drawImage(
+      // @ts-ignore
       Sprites.pipeDownImg,
       this.x,
-      this.y - Sprites.pipeDownImg.height + this.PipeHeight,
+      this.y - Sprites.pipeDownImg!.height + this.PipeHeight,
       this.PipeWidth,
-      Sprites.pipeDownImg.height
+      Sprites.pipeDownImg!.height
     )
     this.ctx?.drawImage(
+      // @ts-ignore
       Sprites.pipeUpImg,
       this.x,
       this.y + this.PipeGap + this.PipeHeight,
       this.PipeWidth,
-      Sprites.pipeUpImg.height
+      Sprites.pipeUpImg!.height
     )
   }
 }

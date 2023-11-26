@@ -23,19 +23,22 @@ export function checkAuthRenderHOC<P = any>(
     }
 
     componentDidMount() {
+      // @ts-ignore
       this.props.dispatchYourAction()
     }
 
     render() {
+      // @ts-ignore
       if (!this.props.isAuth) {
         return <Navigate to="/login" replace />
       }
       return <WrappedComponent {...this.props} />
     }
   }
-
+  // @ts-ignore
   return connect(
     mapStateToProps,
     mapDispatchToProps
+    // @ts-ignore
   )(WithAuthorizationComponent)
 }

@@ -1,4 +1,3 @@
-import { createBrowserRouter } from 'react-router-dom'
 import {
   SignUpForm,
   HomePage,
@@ -11,8 +10,9 @@ import {
 } from '../pages'
 import { RootLayout } from '../layouts'
 import { WithAuthorizationPlayPage } from '../pages/play'
+import { RouterType } from './type'
 
-export const router = createBrowserRouter([
+export const router: RouterType[] = [
   {
     element: <RootLayout />,
     children: [
@@ -58,4 +58,4 @@ export const router = createBrowserRouter([
       },
     ],
   },
-])
+]

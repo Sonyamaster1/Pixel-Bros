@@ -1,6 +1,6 @@
 import dotenv from 'dotenv'
 import cors from 'cors'
-dotenv.config()
+dotenv.config({ path: '../../.env.sample' })
 
 import express from 'express'
 import { createClientAndConnect } from './db'
@@ -8,6 +8,7 @@ import * as process from 'process'
 import * as fs from 'fs/promises'
 import * as path from 'path'
 import type { ViteDevServer } from 'vite'
+import { initialStore } from './constants'
 
 async function startServer() {
   const isDev = () => process.env.NODE_ENV === 'development'
@@ -28,7 +29,7 @@ async function startServer() {
   app.use(cors())
   const port = Number(process.env.SERVER_PORT) || 3001
 
-  createClientAndConnect()
+  await createClientAndConnect()
 
   if (isDev()) {
     const { createServer: createServerVite } = await import('vite')
@@ -47,11 +48,19 @@ async function startServer() {
 
   app.use(express.static(path.join(distPath), { index: false }))
 
+  app.get('/api', (_, res) => {
+    res.json('👋 Howdy from the server :)')
+  })
+
   app.use('*', async (req, res) => {
     try {
       const url = req.originalUrl
       let template: string
-      let render: (url: string, ssrManifest?: string) => Promise<string>
+      let render: (
+        url: string,
+        store: unknown,
+        ssrManifest?: string
+      ) => Promise<string>
 
       if (isProduction()) {
         template = await fs.readFile(path.join(distPath, 'index.html'), 'utf-8')
@@ -71,9 +80,14 @@ async function startServer() {
         ).render
       }
 
-      const rendered = await render(url, ssrManifest)
+      const rendered = await render(url, initialStore, ssrManifest)
 
-      const html = template.replace('<!--ssr-outlet-->', rendered)
+      const ssrData = `<script>window.__PRELOADED_STATE__=${JSON.stringify(
+        initialStore
+      )}</script>`
+      const html = template
+        .replace('<!--ssr-outlet-->', rendered)
+        .replace('<!--ssr-data-->', ssrData)
 
       res.status(200).set({ 'Content-Type': 'text/html' }).end(html)
     } catch (e: unknown) {
@@ -84,10 +98,6 @@ async function startServer() {
         res.status(500).end(e.stack)
       }
     }
-  })
-
-  app.get('/', (_, res) => {
-    res.json('👋 Howdy from the server :)')
   })
 
   app.listen(port, () => {

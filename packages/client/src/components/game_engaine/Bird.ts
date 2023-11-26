@@ -43,6 +43,7 @@ class Bird extends PureComponent {
   draw() {
     this.ctx?.translate(this.x, this.y)
     this.ctx?.rotate(0.1 * this.Gravity)
+    // @ts-ignore
     this.ctx?.drawImage(Sprites.birdImg, 0, 0, this.BirdWidth, this.BirdHeight)
     this.ctx?.rotate(-0.1 * this.Gravity)
     this.ctx?.translate(-this.x, -this.y)
