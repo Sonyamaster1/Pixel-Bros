@@ -11,12 +11,17 @@ import {
   Unique,
 } from 'sequelize-typescript'
 
+interface ISiteThemeModel {
+  themeId?: number
+  theme: string
+}
+
 @Table({
   tableName: 'SiteTheme',
   timestamps: false,
   paranoid: true,
 })
-class SiteThemeModel extends Model<SiteThemeModel> {
+class SiteThemeModel extends Model<SiteThemeModel, ISiteThemeModel> {
   @AutoIncrement
   @Column(DataType.INTEGER)
   declare themeId: number

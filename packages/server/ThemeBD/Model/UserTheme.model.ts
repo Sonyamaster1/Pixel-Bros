@@ -11,12 +11,16 @@ import {
 } from 'sequelize-typescript'
 import SiteThemeModel from './SiteTheme.model'
 
+interface IUserThemeModel {
+  user_id: number
+  theme: string
+}
 @Table({
   tableName: 'UserTheme',
   timestamps: false,
   paranoid: true,
 })
-class UserThemeModel extends Model<UserThemeModel> {
+class UserThemeModel extends Model<UserThemeModel, IUserThemeModel> {
   @PrimaryKey
   @AutoIncrement
   @Column(DataType.INTEGER)
@@ -27,7 +31,6 @@ class UserThemeModel extends Model<UserThemeModel> {
     as: 'Theme',
     onDelete: 'CASCADE',
   })
-  // @ForeignKey(() => SiteThemeModel)
   @AllowNull(false)
   @Column(DataType.STRING)
   declare theme: string

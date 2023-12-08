@@ -24,35 +24,10 @@ async function connectDB() {
   try {
     await sequelize.authenticate()
     await sequelize.sync()
-
     console.log('Подключение завершено')
   } catch (error) {
-    console.log(error)
+    console.error(error)
   }
 }
 
-connectDB()
-
-// export const createClientAndConnect = async (): Promise<Client | null> => {
-//   try {
-//     const client = new Client({
-//       user: POSTGRES_USER,
-//       host: 'localhost',
-//       database: POSTGRES_DB,
-//       password: POSTGRES_PASSWORD,
-//       port: Number(POSTGRES_PORT),
-//     })
-
-//     await client.connect()
-
-//     const res = await client.query('SELECT NOW()')
-//     console.log('  ➜ 🎸 Connected to the database at:', res?.rows?.[0].now)
-//     await client.end()
-
-//     return client
-//   } catch (e) {
-//     console.error(e)
-//   }
-
-//   return null
-// }
+export default connectDB
