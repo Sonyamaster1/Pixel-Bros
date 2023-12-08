@@ -16,11 +16,7 @@ async function startServer() {
   const isDev = () => process.env.NODE_ENV === 'development'
   const isProduction = () => !isDev()
   let vite: ViteDevServer | undefined
-  const clientPath = isProduction()
-    ? // насколько я понимаю в production режиме файл находится в server/dist
-      // соответственно нужно выйти на 2 уровня
-      path.join(__dirname, '../../client')
-    : path.join(__dirname, '../client')
+  const clientPath = path.join(__dirname, '../client')
   const distPath = path.join(clientPath, 'dist')
 
   const ssrManifest = isProduction()
