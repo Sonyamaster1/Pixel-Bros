@@ -9,7 +9,7 @@ class UserThemeAPI {
 
   setUserTheme = (id: number, theme: string) => {
     return UserThemeModel.update(
-      { theme: `%${theme}%` },
+      { theme: `${theme}` },
       { where: { user_id: id } }
     )
   }
