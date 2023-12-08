@@ -8,15 +8,6 @@ dotenv.config({ path: '../../.env.sample' })
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT } =
   process.env
 
-// const sequelizeOptions: SequelizeOptions = {
-//   host: 'localhost',
-//   dialect: 'postgres',
-//   username: 'postgres',
-//   password: '1111',
-//   port: 5432,
-//   database: 'Theme',
-// }
-
 const sequelizeOptions: SequelizeOptions = {
   host: 'localhost',
   dialect: 'postgres',
