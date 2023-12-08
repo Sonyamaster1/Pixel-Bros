@@ -1,20 +1,29 @@
 import { Sequelize, SequelizeOptions } from 'sequelize-typescript'
 import SiteThemeModel from './ThemeBD/Model/SiteTheme.model'
 import UserThemeModel from './ThemeBD/Model/UserTheme.model'
-// import dotenv from 'dotenv'
-// import * as process from 'process'
-// dotenv.config({ path: '../../.env.sample' })
+import dotenv from 'dotenv'
+import * as process from 'process'
+dotenv.config({ path: '../../.env.sample' })
 
-// const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT } =
-//   process.env
+const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT } =
+  process.env
+
+// const sequelizeOptions: SequelizeOptions = {
+//   host: 'localhost',
+//   dialect: 'postgres',
+//   username: 'postgres',
+//   password: '1111',
+//   port: 5432,
+//   database: 'Theme',
+// }
 
 const sequelizeOptions: SequelizeOptions = {
   host: 'localhost',
   dialect: 'postgres',
-  username: 'postgres',
-  password: '1111',
-  port: 5432,
-  database: 'Theme',
+  username: POSTGRES_USER,
+  password: POSTGRES_PASSWORD,
+  port: POSTGRES_PORT as unknown as number,
+  database: POSTGRES_DB,
 }
 
 const sequelize = new Sequelize(sequelizeOptions)

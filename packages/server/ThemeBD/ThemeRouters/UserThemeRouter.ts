@@ -18,12 +18,10 @@ UserThemeRouter.get('/:id', async (req, res) => {
       if (typeof userTheme !== 'undefined') {
         return res.status(200).send(userTheme)
       } else {
-        return res
-          .status(500)
-          .send({
-            status: 'error',
-            detail: 'Пользователь с таким id не найден',
-          })
+        return res.status(500).send({
+          status: 'error',
+          detail: 'Пользователь с таким id не найден',
+        })
       }
     } else {
       return res
@@ -36,7 +34,6 @@ UserThemeRouter.get('/:id', async (req, res) => {
 })
 
 UserThemeRouter.post('/add', async (req, res) => {
-  console.log(req.body.id)
   try {
     const id = req.body.id
     if (typeof id === 'number') {
