@@ -15,6 +15,8 @@ services:
         environment:
           - CLIENT_PORT=${CLIENT_PORT}
           - SERVER_PORT=${SERVER_PORT}
+        networks:
+          - pixel_bros
     server:
         container_name: prakticum-server
         image: prackicum-server
@@ -28,9 +30,12 @@ services:
             - "${SERVER_PORT}:${SERVER_PORT}"
         environment:
           SERVER_PORT: ${SERVER_PORT}
-
+        depends_on:
+          - client
+        networks:
+          - pixel_bros
     postgres:
-      image: postgres:14     
+      image: postgres:14
       ports:
         - "${POSTGRES_PORT}:${POSTGRES_PORT}"
       environment:
@@ -40,3 +45,6 @@ services:
       volumes:
         - ./tmp/pgdata:/var/lib/postgresql/data
 
+networks:
+  pixel_bros:
+    driver: bridge
