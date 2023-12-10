@@ -12,6 +12,10 @@ import { initialStore } from './constants'
 
 import router from './router'
 
+;(async function startDB() {
+  await createClientAndConnect()
+})()
+
 async function startServer() {
   const isDev = () => process.env.NODE_ENV === 'development'
   const isProduction = () => !isDev()
@@ -26,8 +30,6 @@ async function startServer() {
   const app = express()
   app.use(cors())
   const port = Number(process.env.SERVER_PORT) || 3001
-
-  await createClientAndConnect()
 
   if (isDev()) {
     const { createServer: createServerVite } = await import('vite')

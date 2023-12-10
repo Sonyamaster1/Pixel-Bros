@@ -3,17 +3,22 @@ import SiteThemeModel from './ThemeBD/Model/SiteTheme.model'
 import UserThemeModel from './ThemeBD/Model/UserTheme.model'
 import dotenv from 'dotenv'
 import * as process from 'process'
-dotenv.config({ path: '../../.env.sample' })
+dotenv.config({ path: '../../.env.sample', debug: true })
 
-const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT } =
-  process.env
+const {
+  POSTGRES_USER,
+  POSTGRES_PASSWORD,
+  POSTGRES_DB,
+  POSTGRES_HOST,
+  POSTGRES_PORT,
+} = process.env
 
 const sequelizeOptions: SequelizeOptions = {
-  host: '127.0.0.1',
+  host: POSTGRES_HOST,
   dialect: 'postgres',
   username: POSTGRES_USER,
   password: POSTGRES_PASSWORD,
-  port: POSTGRES_PORT as unknown as number,
+  port: parseInt(POSTGRES_PORT as unknown as string),
   database: POSTGRES_DB,
 }
 
