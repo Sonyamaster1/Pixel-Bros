@@ -2,7 +2,7 @@ import { PureComponent } from 'react'
 import Sprites from './SpritesLoader'
 
 interface WorldProps {
-  img: HTMLImageElement
+  img?: HTMLImageElement
   x: number
   y: number
   ScreenWidth: number
@@ -45,6 +45,7 @@ class World extends PureComponent {
 
   draw() {
     this.ctx?.drawImage(
+      // @ts-ignore
       Sprites.backgroundImg,
       this.x,
       this.y,

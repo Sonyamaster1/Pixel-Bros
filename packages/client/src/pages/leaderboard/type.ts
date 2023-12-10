@@ -1,5 +1,6 @@
 export type LeaderboardItem = {
-  id: number
-  name: string
-  result: number
+  data: {
+    score: number
+    username: string
+  }
 }

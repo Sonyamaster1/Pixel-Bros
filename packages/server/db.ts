@@ -1,4 +1,7 @@
 import { Client } from 'pg'
+import dotenv from 'dotenv'
+import * as process from 'process'
+dotenv.config({ path: '../../.env.sample' })
 
 const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT } =
   process.env
@@ -17,7 +20,7 @@ export const createClientAndConnect = async (): Promise<Client | null> => {
 
     const res = await client.query('SELECT NOW()')
     console.log('  ➜ 🎸 Connected to the database at:', res?.rows?.[0].now)
-    client.end()
+    await client.end()
 
     return client
   } catch (e) {

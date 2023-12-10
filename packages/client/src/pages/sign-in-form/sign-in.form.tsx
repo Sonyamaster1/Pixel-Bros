@@ -1,19 +1,30 @@
-import { Field, MainLayout, Form, EntityHeader } from '../../components'
+import {
+  Field,
+  MainLayout,
+  Form,
+  EntityHeader,
+  SingleCell,
+} from '../../components'
 import {
   ButtonColors,
   FooterButton,
-} from '../../components/button/button.component'
+} from '../../components/button/pure-button/button.component'
 import { signInTransport } from '../../api/sign-in.transport'
 import { AxiosError } from 'axios'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import { Controller, SubmitHandler, useForm } from 'react-hook-form'
 import { fieldRequired, validationPatterns } from '../../utils/constants'
-import { useAppDispatch } from '../../hooks/redux-hooks'
-import { fetchUser } from '../../store/slices/userSlices'
+import { useAuth } from '../../hooks/use-auth'
+import { YandexOAuthButton } from '../../components/button/yandex-oath-button/yandex-oauth-button.component'
+import { yandexOAuthTransport } from '../../api/yandex-OAuth.transport'
 
 export type TSignInFormValue = {
   login: string
   password: string
+}
+
+export type TOAuthId = {
+  service_id: string
 }
 
 const defaultFormValue: TSignInFormValue = {
@@ -21,8 +32,23 @@ const defaultFormValue: TSignInFormValue = {
   password: '',
 }
 
+const RedirectOAuthURI = import.meta.env.VITE_REDIRECT_OAUTH_URI
+const OAuthURL = import.meta.env.VITE_OAUTH_URL
+
+const handleYandexAuthClick = () =>
+  yandexOAuthTransport
+    .getServiceId()
+    .then(
+      (id: TOAuthId) =>
+        (window.location.href = `${OAuthURL}&client_id=${id.service_id}&redirect_uri=${RedirectOAuthURI}`)
+    )
+    .catch((error: AxiosError) => {
+      throw new Error(error.toString())
+    })
+
 export function SignInForm(): JSX.Element {
-  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const { isAuth } = useAuth()
   const {
     control,
     handleSubmit,
@@ -31,18 +57,18 @@ export function SignInForm(): JSX.Element {
     defaultValues: defaultFormValue,
     mode: 'onBlur',
   })
-  const navigate = useNavigate()
 
   const handleClick: SubmitHandler<TSignInFormValue> = data => {
     signInTransport
       .signIn(data)
-      .then(() => {
-        dispatch(fetchUser())
-        navigate('/game')
-      })
+      .then(() => navigate('/'))
       .catch((error: AxiosError) => {
         throw new Error(error.toString())
       })
+  }
+
+  if (isAuth) {
+    return <Navigate to="/" />
   }
 
   return (
@@ -99,7 +125,9 @@ export function SignInForm(): JSX.Element {
           title="Sign In"
           color={ButtonColors.BLUE}
         />
+        <SingleCell height={20} />
       </Form>
+      <YandexOAuthButton onClick={handleYandexAuthClick} />
     </MainLayout>
   )
 }

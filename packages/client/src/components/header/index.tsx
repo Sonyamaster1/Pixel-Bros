@@ -7,11 +7,14 @@ import { MenuItem } from './menuItem'
 import { AuthenticationButton } from './authenticationButton'
 
 import styles from './index.module.scss'
+import { useAuth } from '../../hooks/use-auth'
 import { LogoutButton } from './logout-button.component'
 import { removeUser } from '../../store/slices/userSlices'
 import { signInTransport } from '../../api/sign-in.transport'
 
 export const Header: FC = () => {
+  const { isAuth } = useAuth()
+
   function handleOnClick() {
     signInTransport.logout().then(() => {
       removeUser()
@@ -33,7 +36,7 @@ export const Header: FC = () => {
           </ul>
         </nav>
       </div>
-      <AuthenticationButton />
+      <AuthenticationButton isAuth={isAuth} />
     </header>
   )
 }

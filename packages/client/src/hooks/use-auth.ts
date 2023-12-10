@@ -4,7 +4,7 @@ export function useAuth() {
   const user = useAppSelector(state => state.user)
 
   return {
-    isAuth: !!user.login,
     ...user,
+    isAuth: !!user.user.login,
   }
 }

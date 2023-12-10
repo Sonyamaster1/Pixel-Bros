@@ -6,11 +6,15 @@ type LeaderboardCellProps = {
   item: LeaderboardItem
 }
 
-const LeaderboardCell: FC<LeaderboardCellProps> = ({ item }) => (
-  <div key={item.id} className={styles.card}>
-    <p className={styles.card__name}>{item.name}</p>
-    <p className={styles.card__result}>{item.result}</p>
-  </div>
-)
+const LeaderboardCell: FC<LeaderboardCellProps> = ({ item }) => {
+  const { score, username } = item.data
+
+  return (
+    <div className={styles.card}>
+      <p className={styles.card__name}>{username}</p>
+      <p className={styles.card__result}>{score}</p>
+    </div>
+  )
+}
 
 export default LeaderboardCell
