@@ -35,7 +35,7 @@ UserThemeRouter.get('/:id', async (req, res) => {
 
 UserThemeRouter.post('/add', async (req, res) => {
   try {
-    const id = req.body.id
+    const id = +req.body.id
     if (typeof id === 'number') {
       await UserThemeAPI.createUserTheme(id)
       return res.status(200).send({ status: 'ok' })
