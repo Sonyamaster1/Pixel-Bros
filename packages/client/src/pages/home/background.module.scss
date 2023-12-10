@@ -54,23 +54,26 @@
 
 .bird {
   top: 0;
+}
 
-  &:nth-of-type(1) {
-    left: 11%;
-    top: 36%;
-    transform: rotateZ(-45deg);
-  }
+.bird__first {
+  left: 82%;
+  top: 49%;
+  transform: rotateZ(45deg);
+  animation: FirstBirdFlyAnimation 15s ease-in infinite
+}
 
-  &:nth-of-type(2) {
-    left: 49%;
-    top: 75%;
-  }
+.bird__second {
+  left: 49%;
+  top: 75%;
+  animation: MiddleBirdFlyAnimation 20s ease-in-out infinite;
+}
 
-  &:nth-of-type(3) {
-    left: 82%;
-    top: 49%;
-    transform: rotateZ(45deg);
-  }
+.bird__third {
+  left: 11%;
+  top: 36%;
+  transform: rotateZ(-45deg);
+  animation: FirstBirdFlyAnimation 10s ease-out infinite;
 }
 
 

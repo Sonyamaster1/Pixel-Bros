@@ -36,19 +36,19 @@ export const Background: FC = () => {
         <img
           src={IconBird}
           style={animation.FIRST_BIRD}
-          className={styles.bird}
+          className={`${styles.bird} ${styles.bird__first}`}
           alt="bird"
         />
         <img
           src={IconBird}
           style={animation.SECOND_BIRD}
-          className={styles.bird}
+          className={`${styles.bird} ${styles.bird__second}`}
           alt="bird"
         />
         <img
           src={IconBird}
           style={animation.THIRD_BIRD}
-          className={styles.bird}
+          className={`${styles.bird} ${styles.bird__third}`}
           alt="bird"
         />
       </div>
