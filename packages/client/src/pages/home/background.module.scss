@@ -72,3 +72,38 @@
     transform: rotateZ(45deg);
   }
 }
+
+
+@keyframes FirstBirdFlyAnimation {
+  0% {
+    top: 31%;
+    transform: rotate(-45deg);
+  }
+
+  50% {
+    top: 61%;
+    transform: rotate(45deg);
+  }
+
+  100% {
+    top: 31%;
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes MiddleBirdFlyAnimation {
+  0% {
+    top: 85%;
+    transform: rotate(-45deg);
+  }
+
+  50% {
+    top: 51%;
+    transform: rotate(45deg);
+  }
+
+  100% {
+    top: 85%;
+    transform: rotate(-45deg);
+  }
+}

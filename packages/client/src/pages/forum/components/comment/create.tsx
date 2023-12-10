@@ -58,7 +58,7 @@ export const ForumCommentCreate: FC = () => {
         <FooterButton
           buttonType="submit"
           title="Send"
-          color={ButtonColors.GREEN}
+          color={ButtonColors.SUCCESS}
           onClick={handleSubmit(handleCreate)}
         />
       </Form>

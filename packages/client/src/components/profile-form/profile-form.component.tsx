@@ -193,7 +193,7 @@ export function ProfileForm() {
             buttonType="submit"
             onClick={handleSubmit(onSubmit)}
             title="Save"
-            color={ButtonColors.GREEN}
+            color={ButtonColors.SUCCESS}
           />
         </Form>
       )}

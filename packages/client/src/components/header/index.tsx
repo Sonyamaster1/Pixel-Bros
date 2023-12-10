@@ -8,6 +8,7 @@ import { AuthenticationButton } from './authenticationButton'
 
 import styles from './index.module.scss'
 import { useAuth } from '../../hooks/use-auth'
+import { ThemeSwitcher } from '../theme-switcher/theme-switcher.component'
 
 export const Header: FC = () => {
   const { isAuth } = useAuth()
@@ -25,6 +26,7 @@ export const Header: FC = () => {
             <MenuItem label="play" href="/play" />
           </ul>
         </nav>
+        <ThemeSwitcher />
       </div>
       <AuthenticationButton isAuth={isAuth} />
     </header>

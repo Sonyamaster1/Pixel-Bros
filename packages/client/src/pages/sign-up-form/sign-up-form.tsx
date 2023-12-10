@@ -191,7 +191,7 @@ export function SignUpForm(): JSX.Element {
           buttonType="submit"
           onClick={handleSubmit(onSubmit)}
           title="Sign Up"
-          color={ButtonColors.GREEN}
+          color={ButtonColors.SUCCESS}
         />
       </Form>
     </MainLayout>
