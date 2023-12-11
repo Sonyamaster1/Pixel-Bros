@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { User, UserSlice } from './type'
+import { Theme, User, UserSlice } from './type'
 import { signInTransport } from '../../api/sign-in.transport'
 
 export const initialState: UserSlice = {
@@ -16,6 +16,7 @@ export const initialState: UserSlice = {
     phone: null,
     second_name: null,
   },
+  theme: Theme.PURPLE,
 }
 
 export const fetchUser = createAsyncThunk('user/fetchUser', async () => {
@@ -32,6 +33,9 @@ const userSlice = createSlice({
   reducers: {
     setUser(state, action) {
       return { ...state, ...action.payload }
+    },
+    setTheme(state, action) {
+      state.theme = action.payload
     },
     removeUser(state) {
       return { ...state, ...initialState }
@@ -58,6 +62,6 @@ const userSlice = createSlice({
   },
 })
 
-export const { setUser, removeUser } = userSlice.actions
+export const { setUser, removeUser, setTheme } = userSlice.actions
 
 export default userSlice.reducer

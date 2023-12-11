@@ -4,6 +4,8 @@ export type TForumAuthor = {
 }
 
 export type TForumComment = {
+  id: number
+  topicId: number
   comment: string
   author: TForumAuthor
 }
@@ -13,3 +15,5 @@ export type TForumTopic = {
   title: string
   author: TForumAuthor
 }
+
+export type TForumTopicDetail = TForumTopic & { comments: TForumComment[] }
