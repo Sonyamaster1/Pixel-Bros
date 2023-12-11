@@ -5,12 +5,14 @@ import { IJoke, jokesTransport } from '../../api/jokes.transport'
 import { yandexOAuthTransport } from '../../api/yandex-OAuth.transport'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { fetchUser } from '../../store/slices/userSlices'
+import { useTheme } from '../../hooks/use-theme'
 const RedirectOAuthURI = import.meta.env.VITE_REDIRECT_OAUTH_URI
 
 export const HomePage: FC = () => {
   const dispatch = useAppDispatch()
   const user = useAppSelector(state => state.user)
   const [joke, setJoke] = useState<string>('')
+  const theme = useTheme()
 
   const getJoke = async () => {
     try {
@@ -33,7 +35,7 @@ export const HomePage: FC = () => {
   }, [])
 
   return (
-    <main className={styles.homePage}>
+    <main className={styles.homePage} style={theme.LAYOUT}>
       <Background />
       <div className={styles.content}>
         <span className={styles.description}>

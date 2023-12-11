@@ -133,13 +133,13 @@ export function ChangePasswordForm() {
           buttonType="submit"
           onClick={handleSubmit(onSubmit)}
           title="Change"
-          color={ButtonColors.GREEN}
+          color={ButtonColors.SUCCESS}
         />
         <FooterButton
           buttonType="button"
           onClick={goToMainPage}
           title="Go to Leader"
-          color={ButtonColors.GREEN}
+          color={ButtonColors.SUCCESS}
         />
       </div>
     </Form>

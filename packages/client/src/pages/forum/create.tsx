@@ -1,4 +1,4 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { FooterButton, Form } from '../../components'
 import { ButtonColors } from '../../components/button/pure-button/button.component'
 import { Controller, useForm } from 'react-hook-form'
@@ -8,6 +8,8 @@ import { useNavigate } from 'react-router'
 import { MainLayout } from '../../components'
 import './styles/create.pcss'
 import { checkAuthRenderHOC } from 'client/src/utils/authorization-hoc'
+import { forumTransport } from '../../api/forum'
+import { useAuth } from '../../hooks/use-auth'
 
 export type TForumTopicCreateFormValue = {
   name: string
@@ -19,23 +21,38 @@ const defaultFormValue: TForumTopicCreateFormValue = {
 
 export const ForumCreatePage: FC = () => {
   const navigate = useNavigate()
+  const { user } = useAuth()
+  const [pending, setPending] = useState(false)
   const {
     control,
     handleSubmit,
     formState: { errors },
+    setError,
+    reset,
   } = useForm({
     defaultValues: defaultFormValue,
     mode: 'onBlur',
   })
 
-  const handleCreate = (data: TForumTopicCreateFormValue) => {
-    console.log(data.name) // TODO: Отправляем запрос на создание
-    navigate('/forum') // Перенаправляем юзера на листинг топиков
+  const handleCreate = async (data: TForumTopicCreateFormValue) => {
+    setPending(true)
+
+    await forumTransport
+      .createTopic(data.name, {
+        name: user.login ?? 'Elon Mask',
+        avatarUrl: user.avatar ?? '',
+      })
+      .then(({ id }) => {
+        reset(defaultFormValue) // Сбрасываем форму
+        navigate(`/forum/${id}`) // Перенаправляем юзера на созданный топик
+      })
+      .catch(() => {
+        setError('name', { message: 'Ошибка создания топика!' })
+      })
+      .finally(() => setPending(false))
   }
 
-  const handleCancel = () => {
-    navigate('/forum')
-  }
+  const handleCancel = () => navigate('/forum')
 
   return (
     <MainLayout>
@@ -58,6 +75,7 @@ export const ForumCreatePage: FC = () => {
               onBlur={onBlur}
               onChange={onChange}
               placeholder="Topic name"
+              disabled={pending}
               error={errors?.name?.message}
             />
           )}
@@ -68,13 +86,13 @@ export const ForumCreatePage: FC = () => {
           <FooterButton
             buttonType="button"
             title="Cancel"
-            color={ButtonColors.RED}
+            color={ButtonColors.ALERT}
             onClick={handleCancel}
           />
           <FooterButton
             buttonType="submit"
             title="Create"
-            color={ButtonColors.GREEN}
+            color={ButtonColors.SUCCESS}
             onClick={handleSubmit(handleCreate)}
           />
         </div>

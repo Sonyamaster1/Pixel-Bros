@@ -22,6 +22,7 @@ const sequelizeOptions: SequelizeOptions = {
   database: POSTGRES_DB,
 }
 
+
 const sequelize = new Sequelize(sequelizeOptions)
 sequelize.addModels([SiteThemeModel, UserThemeModel])
 

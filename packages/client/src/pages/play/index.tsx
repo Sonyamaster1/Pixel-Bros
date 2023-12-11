@@ -5,10 +5,12 @@ import GameEngaine from '../../components/game_engaine'
 import styles from './index.module.scss'
 import { checkAuthRenderHOC } from '../../utils/authorization-hoc'
 import { leaderboardTransport } from '../../api/leaderboard'
+import { useTheme } from '../../hooks/use-theme'
 
 export const PlayPage: FC = () => {
   const [score, setScore] = useState(0)
   const [show, setShow] = useState<'start' | 'end' | 'game'>('start')
+  const theme = useTheme()
 
   const handleStart = () => setShow('game')
   const handleGameOver = (value: number) => {
@@ -18,7 +20,7 @@ export const PlayPage: FC = () => {
   }
 
   return (
-    <main className={styles.playPage}>
+    <main className={styles.playPage} style={theme.LAYOUT}>
       {show === 'start' ? (
         <StartGame handleStart={handleStart} />
       ) : show === 'game' ? (

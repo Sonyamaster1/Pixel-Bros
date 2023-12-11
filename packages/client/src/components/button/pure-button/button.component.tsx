@@ -1,4 +1,5 @@
 import './footer-button.style.pcss'
+import { useTheme } from '../../../hooks/use-theme'
 
 type TFooterButtonProps = {
   title: string
@@ -9,9 +10,9 @@ type TFooterButtonProps = {
 }
 
 export enum ButtonColors {
-  GREEN = '#00C54F',
-  BLUE = '#0066C5',
-  RED = '#C72828',
+  SUCCESS = 'SUCCESS',
+  NEUTRAL = 'NEUTRAL',
+  ALERT = 'ALERT',
 }
 
 export function FooterButton({
@@ -21,15 +22,13 @@ export function FooterButton({
   buttonType,
   className = '',
 }: TFooterButtonProps): JSX.Element {
-  const dynamicStyles = {
-    backgroundColor: color,
-  }
+  const theme = useTheme(color)
 
   return (
     <button
       type={buttonType}
       onClick={onClick}
-      style={dynamicStyles}
+      style={theme.BUTTON}
       className={`footer-button ${className}`}>
       {' '}
       {title}

@@ -1,10 +1,13 @@
-import { FC } from 'react'
+import { FC, useState } from 'react'
 import { FooterButton, Form } from '../../../../components'
 import { ButtonColors } from '../../../../components/button/pure-button/button.component'
 import { Controller, useForm } from 'react-hook-form'
 import { fieldRequired } from '../../../../utils/constants'
 import { Textarea } from '../../../../components/textarea'
 import './comment-create.pcss'
+import { forumTransport } from '../../../../api/forum'
+import { useAuth } from '../../../../hooks/use-auth'
+import { TForumComment } from '../../types'
 
 export type TForumCommentCreateFormValue = {
   comment: string
@@ -14,18 +17,39 @@ const defaultFormValue: TForumCommentCreateFormValue = {
   comment: '',
 }
 
-export const ForumCommentCreate: FC = () => {
+export const ForumCommentCreate: FC<{
+  topicId: number
+  updateComments: (comments: TForumComment[]) => void
+}> = ({ topicId, updateComments }) => {
+  const { user } = useAuth()
+  const [pending, setPending] = useState(false)
   const {
     control,
     handleSubmit,
     formState: { errors },
+    setError,
+    reset,
   } = useForm({
     defaultValues: defaultFormValue,
     mode: 'onBlur',
   })
 
-  const handleCreate = (data: TForumCommentCreateFormValue) => {
-    console.log(data.comment) // TODO: Отправляем запрос на создание
+  const handleCreate = async (data: TForumCommentCreateFormValue) => {
+    setPending(true)
+
+    await forumTransport
+      .createComment(topicId, data.comment, {
+        name: user.login ?? 'Elon Mask',
+        avatarUrl: user.avatar ?? '',
+      })
+      .then(comments => {
+        updateComments(comments)
+        reset(defaultFormValue) // Сбрасываем форму
+      })
+      .catch(() => {
+        setError('comment', { message: 'Ошибка добавления комментария!' })
+      })
+      .finally(() => setPending(false))
   }
 
   return (
@@ -49,6 +73,7 @@ export const ForumCommentCreate: FC = () => {
               onBlur={onBlur}
               onChange={onChange}
               placeholder="Your comment"
+              disabled={pending}
               error={errors?.comment?.message}
             />
           )}
@@ -58,7 +83,7 @@ export const ForumCommentCreate: FC = () => {
         <FooterButton
           buttonType="submit"
           title="Send"
-          color={ButtonColors.GREEN}
+          color={ButtonColors.SUCCESS}
           onClick={handleSubmit(handleCreate)}
         />
       </Form>

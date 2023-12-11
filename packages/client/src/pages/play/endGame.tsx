@@ -34,13 +34,13 @@ export const EndGame: FC<Props> = ({ score, handleRepeat }) => {
       <div className={styles.buttonsWrapper}>
         <FooterButton
           title="Repeat"
-          color={ButtonColors.GREEN}
+          color={ButtonColors.SUCCESS}
           onClick={handleRepeat}
           buttonType="button"
         />
         <FooterButton
           title="Go home"
-          color={ButtonColors.GREEN}
+          color={ButtonColors.SUCCESS}
           onClick={goToHome}
           buttonType="button"
         />

@@ -25,6 +25,5 @@ COPY --from=builder /app/packages/client/dist/ /app/client/dist
 COPY --from=builder /app/packages/server/package.json /app/package.json
 RUN yarn install --production=true --ignore-engines
 
-
 EXPOSE $SERVER_PORT
 CMD [ "node", "/app/server/index.js" ]
