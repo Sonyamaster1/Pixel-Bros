@@ -68,13 +68,13 @@ export const ForumCreatePage: FC = () => {
           <FooterButton
             buttonType="button"
             title="Cancel"
-            color={ButtonColors.RED}
+            color={ButtonColors.ALERT}
             onClick={handleCancel}
           />
           <FooterButton
             buttonType="submit"
             title="Create"
-            color={ButtonColors.GREEN}
+            color={ButtonColors.SUCCESS}
             onClick={handleSubmit(handleCreate)}
           />
         </div>

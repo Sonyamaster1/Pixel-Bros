@@ -1,3 +1,8 @@
+export enum Theme {
+  PURPLE = 'PURPLE',
+  GREEN = 'GREEN',
+}
+
 export type User = {
   avatar: string | null
   display_name: string | null
@@ -14,4 +19,5 @@ export type UserSlice = {
   user: User
   error: string | undefined
   isAuth: boolean
+  theme: Theme
 }

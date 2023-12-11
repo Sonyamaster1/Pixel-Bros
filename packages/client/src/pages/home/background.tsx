@@ -11,8 +11,11 @@ import {
 } from '../../assets/images'
 
 import styles from './background.module.scss'
+import { useTheme } from '../../hooks/use-theme'
 
 export const Background: FC = () => {
+  const animation = useTheme()
+
   return (
     <div className={styles.background}>
       <img src={IconPipeLg} className={styles.pipe} alt="pipe-lg" />
@@ -30,9 +33,24 @@ export const Background: FC = () => {
         alt="pipe-reverse"
       />
       <div className={styles.birds}>
-        <img src={IconBird} className={styles.bird} alt="bird" />
-        <img src={IconBird} className={styles.bird} alt="bird" />
-        <img src={IconBird} className={styles.bird} alt="bird" />
+        <img
+          src={IconBird}
+          style={animation.FIRST_BIRD}
+          className={`${styles.bird} ${styles.bird__first}`}
+          alt="bird"
+        />
+        <img
+          src={IconBird}
+          style={animation.SECOND_BIRD}
+          className={`${styles.bird} ${styles.bird__second}`}
+          alt="bird"
+        />
+        <img
+          src={IconBird}
+          style={animation.THIRD_BIRD}
+          className={`${styles.bird} ${styles.bird__third}`}
+          alt="bird"
+        />
       </div>
     </div>
   )

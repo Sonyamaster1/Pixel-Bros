@@ -54,21 +54,59 @@
 
 .bird {
   top: 0;
+}
 
-  &:nth-of-type(1) {
-    left: 11%;
-    top: 36%;
-    transform: rotateZ(-45deg);
+.bird__first {
+  left: 82%;
+  top: 49%;
+  transform: rotateZ(45deg);
+  animation: FirstBirdFlyAnimation 15s ease-in infinite
+}
+
+.bird__second {
+  left: 49%;
+  top: 75%;
+  animation: MiddleBirdFlyAnimation 20s ease-in-out infinite;
+}
+
+.bird__third {
+  left: 11%;
+  top: 36%;
+  transform: rotateZ(-45deg);
+  animation: FirstBirdFlyAnimation 10s ease-out infinite;
+}
+
+
+@keyframes FirstBirdFlyAnimation {
+  0% {
+    top: 31%;
+    transform: rotate(-45deg);
   }
 
-  &:nth-of-type(2) {
-    left: 49%;
-    top: 75%;
+  50% {
+    top: 61%;
+    transform: rotate(45deg);
   }
 
-  &:nth-of-type(3) {
-    left: 82%;
-    top: 49%;
-    transform: rotateZ(45deg);
+  100% {
+    top: 31%;
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes MiddleBirdFlyAnimation {
+  0% {
+    top: 85%;
+    transform: rotate(-45deg);
+  }
+
+  50% {
+    top: 51%;
+    transform: rotate(45deg);
+  }
+
+  100% {
+    top: 85%;
+    transform: rotate(-45deg);
   }
 }

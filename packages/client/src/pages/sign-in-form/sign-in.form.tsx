@@ -123,7 +123,7 @@ export function SignInForm(): JSX.Element {
           buttonType="submit"
           onClick={handleSubmit(handleClick)}
           title="Sign In"
-          color={ButtonColors.BLUE}
+          color={ButtonColors.NEUTRAL}
         />
         <SingleCell height={20} />
       </Form>

@@ -6,7 +6,7 @@ import {
 } from '../../components/button/pure-button/button.component'
 import { useNavigate } from 'react-router-dom'
 import LeaderboardCell from './LeaderboardCell'
-import { EntityHeader } from '../../components'
+import { EntityHeader, MainLayout } from '../../components'
 import { LeaderboardItem } from './type'
 import { checkAuthRenderHOC } from '../../utils/authorization-hoc'
 import { leaderboardTransport } from '../../api/leaderboard'
@@ -26,7 +26,7 @@ const Leaderboard = () => {
   }, [])
 
   return (
-    <div className={styles.leaderboard}>
+    <MainLayout>
       <div className={styles.content}>
         <EntityHeader title="Leaderboard" />
         {error && <p className={styles.error}>{error}</p>}
@@ -44,10 +44,10 @@ const Leaderboard = () => {
           buttonType="button"
           onClick={goBackHandler}
           title="Go Back"
-          color={ButtonColors.BLUE}
+          color={ButtonColors.NEUTRAL}
         />
       </div>
-    </div>
+    </MainLayout>
   )
 }
 
