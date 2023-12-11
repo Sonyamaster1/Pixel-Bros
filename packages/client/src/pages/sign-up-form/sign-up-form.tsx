@@ -8,7 +8,7 @@ import {
 import {
   ButtonColors,
   FooterButton,
-} from '../../components/button/button.component'
+} from '../../components/button/pure-button/button.component'
 import { Controller, useForm } from 'react-hook-form'
 import { fieldRequired, validationPatterns } from '../../utils/constants'
 
