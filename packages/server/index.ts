@@ -11,7 +11,6 @@ import type { ViteDevServer } from 'vite'
 import { initialStore } from './constants'
 
 import router from './router'
-
 ;(async function startDB() {
   await createClientAndConnect()
 })()
@@ -47,10 +46,6 @@ async function startServer() {
   }
 
   app.use(express.static(path.join(distPath), { index: false }))
-
-  // app.get('/api', (_, res) => {
-  //   res.json('👋 Howdy from the server :)')
-  // })
 
   app.use('/api/v1', router)
 

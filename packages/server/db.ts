@@ -3,7 +3,7 @@ import SiteThemeModel from './ThemeBD/Model/SiteTheme.model'
 import UserThemeModel from './ThemeBD/Model/UserTheme.model'
 import dotenv from 'dotenv'
 import * as process from 'process'
-dotenv.config({ path: '../../.env.sample', debug: true })
+dotenv.config({ path: '../../.env.sample' })
 
 const {
   POSTGRES_USER,
