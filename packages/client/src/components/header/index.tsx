@@ -38,9 +38,9 @@ export const Header: FC = () => {
             {isAuth ? <LogoutButton onClick={handleOnClick} /> : null}
           </ul>
         </nav>
-        <ThemeSwitcher />
+        {isAuth ? <ThemeSwitcher /> : null}
       </div>
-      {isAuth ? <AuthenticationButton isAuth={isAuth} /> : null}
+      <AuthenticationButton isAuth={isAuth} />
     </header>
   )
 }
