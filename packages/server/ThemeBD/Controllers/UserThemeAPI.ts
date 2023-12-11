@@ -1,5 +1,5 @@
 import UserThemeModel from '../Model/UserTheme.model'
-const GREEN = 'Green'
+const GREEN = 'GREEN'
 class UserThemeAPI {
   getUserTheme = (id: number) => {
     return UserThemeModel.findOne({ where: { user_id: id } }).then(
