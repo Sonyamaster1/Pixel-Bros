@@ -40,7 +40,7 @@ export const Header: FC = () => {
         </nav>
         <ThemeSwitcher />
       </div>
-      <AuthenticationButton isAuth={isAuth} />
+      {isAuth ? <AuthenticationButton isAuth={isAuth} /> : null}
     </header>
   )
 }
