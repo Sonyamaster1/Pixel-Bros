@@ -26,6 +26,7 @@ services:
             args:
               SERVER_PORT: ${SERVER_PORT}
         restart: always
+        
         ports:
             - "${SERVER_PORT}:${SERVER_PORT}"
         environment:
@@ -60,6 +61,7 @@ services:
         - ./tmp/pgdata:/var/lib/postgresql/data
       networks: 
         - pixel_bros
+
 
 networks:
   pixel_bros:

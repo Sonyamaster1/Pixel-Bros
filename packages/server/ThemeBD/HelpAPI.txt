@@ -1,0 +1,26 @@
+Получить информацию о теме пользователя
+    url: localhost:3001/api/v1/user/theme/{id}
+    method: GET
+    Удачный ответ: {"user_id": id пользователя: number, "theme": Тема пользователя: string}
+    Ошибка: {status: "error", detail: "Пользователь с таким id не найден"}
+
+Добавления пользователя в базу 
+    url: localhost:3001/api/v1/user/theme/add
+    method: POST
+    body: {id: {id}: number}
+    Удачный ответ: { status: 'ok' }
+    Ошибка: {status: "error", detail: Описание ошибки}
+
+Обновление темы пользователя 
+    url: localhost:3001/api/v1/user/theme/update
+    method: POST
+    body: {id: {id}: number, theme: Новая тема: string}
+    Удачный ответ: { status: 'ok' }
+    Ошибка: {status: "error", detail: Описание ошибки}
+
+Добавления новой темы
+    url: localhost:3001/api/v1/site/theme/create
+    method: POST
+    body: {theme: Новая тема: string}
+    Удачный ответ: { status: 'ok' }
+    Ошибка: {status: "error", detail: Описание ошибки}

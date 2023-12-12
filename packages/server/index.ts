@@ -3,12 +3,17 @@ import cors from 'cors'
 dotenv.config({ path: '../../.env.sample' })
 
 import express from 'express'
-import { createClientAndConnect } from './db'
+import createClientAndConnect from './db'
 import * as process from 'process'
 import * as fs from 'fs/promises'
 import * as path from 'path'
 import type { ViteDevServer } from 'vite'
 import { initialStore } from './constants'
+
+import router from './router'
+;(async function startDB() {
+  await createClientAndConnect()
+})()
 
 async function startServer() {
   const isDev = () => process.env.NODE_ENV === 'development'
@@ -24,8 +29,6 @@ async function startServer() {
   const app = express()
   app.use(cors())
   const port = Number(process.env.SERVER_PORT) || 3001
-
-  await createClientAndConnect()
 
   if (isDev()) {
     const { createServer: createServerVite } = await import('vite')
@@ -44,9 +47,7 @@ async function startServer() {
 
   app.use(express.static(path.join(distPath), { index: false }))
 
-  app.get('/api', (_, res) => {
-    res.json('👋 Howdy from the server :)')
-  })
+  app.use('/api/v1', router)
 
   app.use('*', async (req, res) => {
     try {
