@@ -1,14 +1,6 @@
 import { Router } from 'express'
 import SiteThemeAPI from '../Controllers/SiteThemeAPI'
-import bodyParser from 'body-parser'
 const SiteThemeRouter = Router()
-
-SiteThemeRouter.use(bodyParser.json({ type: 'application/json' }))
-SiteThemeRouter.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-)
 
 SiteThemeRouter.post('/create', async (req, res) => {
   try {

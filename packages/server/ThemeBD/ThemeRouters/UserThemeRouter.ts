@@ -1,14 +1,6 @@
 import { Router } from 'express'
 import UserThemeAPI from '../Controllers/UserThemeAPI'
-import bodyParser from 'body-parser'
 const UserThemeRouter = Router()
-
-UserThemeRouter.use(bodyParser.json({ type: 'application/json' }))
-UserThemeRouter.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-)
 
 UserThemeRouter.get('/:id', async (req, rej) => {
   try {
@@ -36,7 +28,6 @@ UserThemeRouter.get('/:id', async (req, rej) => {
 UserThemeRouter.post('/add', async (req, rej) => {
   try {
     const id = parseInt(req.body.id)
-
     if (id) {
       await UserThemeAPI.createUserTheme(id)
       return rej.status(200).send({ status: 'ok' })

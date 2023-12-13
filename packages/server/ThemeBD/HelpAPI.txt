@@ -3,6 +3,12 @@
     method: GET
     Удачный ответ: {"user_id": id пользователя: number, "theme": Тема пользователя: string}
     Ошибка: {status: "error", detail: "Пользователь с таким id не найден"}
+    Запрос: fetch(
+    "http://localhost:3001/api/v1/user/theme/{id}", 
+        {
+            method: 'POST',
+        }
+    ).then(res => console.log(res))
 
 Добавления пользователя в базу 
     url: localhost:3001/api/v1/user/theme/add
@@ -10,6 +16,17 @@
     body: {id: {id}: number}
     Удачный ответ: { status: 'ok' }
     Ошибка: {status: "error", detail: Описание ошибки}
+    Запрос: fetch(
+    "http://localhost:3001/api/v1/user/theme/add", 
+        {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id: 321})
+        }
+    ).then(res => console.log(res))
 
 Обновление темы пользователя 
     url: localhost:3001/api/v1/user/theme/update
@@ -17,6 +34,17 @@
     body: {id: {id}: number, theme: Новая тема: string}
     Удачный ответ: { status: 'ok' }
     Ошибка: {status: "error", detail: Описание ошибки}
+    Запрос: fetch(
+    "http://localhost:3001/api/v1/user/theme/update", 
+        {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({id: 321, theme: "Violet"})
+        }
+    ).then(res => console.log(res))
 
 Добавления новой темы
     url: localhost:3001/api/v1/site/theme/create
@@ -24,3 +52,14 @@
     body: {theme: Новая тема: string}
     Удачный ответ: { status: 'ok' }
     Ошибка: {status: "error", detail: Описание ошибки}
+    Запрос: fetch(
+    "http://localhost:3001/api/v1/site/theme/create", 
+        {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({theme: "GREEN"})
+        }
+    ).then(res => console.log(res))
