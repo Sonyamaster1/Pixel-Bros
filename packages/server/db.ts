@@ -3,6 +3,7 @@ import SiteThemeModel from './ThemeBD/Model/SiteTheme.model'
 import UserThemeModel from './ThemeBD/Model/UserTheme.model'
 import dotenv from 'dotenv'
 import * as process from 'process'
+import Emoji from './EmojiDB/Model/Emoji'
 dotenv.config({ path: '../../.env.sample' })
 
 const {
@@ -22,9 +23,8 @@ const sequelizeOptions: SequelizeOptions = {
   database: POSTGRES_DB,
 }
 
-
 const sequelize = new Sequelize(sequelizeOptions)
-sequelize.addModels([SiteThemeModel, UserThemeModel])
+sequelize.addModels([SiteThemeModel, UserThemeModel, Emoji])
 
 async function connectDB() {
   try {
