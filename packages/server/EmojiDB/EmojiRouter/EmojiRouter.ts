@@ -1,20 +1,12 @@
 import { Router } from 'express'
-import bodyParser from 'body-parser'
 import EmojiAPI from '../Controllers/EmojiAPI'
 const EmojiRouter = Router()
-
-EmojiRouter.use(bodyParser.json({ type: 'application/json' }))
-EmojiRouter.use(
-  bodyParser.urlencoded({
-    extended: false,
-  })
-)
 
 EmojiRouter.post('/create', async (request, response) => {
   try {
     const emojiName = request.body.emoji
     await EmojiAPI.setEmoji(emojiName)
-    return response.status(200).send({ status: 'ok' })
+    return response.status(201).send({ status: 'ok' })
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return response
