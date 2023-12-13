@@ -12,6 +12,7 @@ export const initialState = {
     phone: null,
     second_name: null,
   },
+  theme: 'PURPLE',
 }
 
 export const initialStore = {
