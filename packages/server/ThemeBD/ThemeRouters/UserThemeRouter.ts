@@ -28,8 +28,6 @@ UserThemeRouter.get('/:id', async (req, rej) => {
 UserThemeRouter.post('/add', async (req, rej) => {
   try {
     const id = parseInt(req.body.id)
-    console.log(id)
-    console.log(req.body)
     if (id) {
       await UserThemeAPI.createUserTheme(id)
       return rej.status(200).send({ status: 'ok' })
