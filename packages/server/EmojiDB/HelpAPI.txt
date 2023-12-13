@@ -1,0 +1,18 @@
+Добавить эмодзи в базу
+    url: localhost:3001/api/v1/emoji/create
+    method: POST
+    body: {emoji: string}
+    Удачный ответ: { status: 'ok' }
+    Ошибка: {status: "error", detail: Описание ошибки}
+
+Получение одного эмодзи по названию
+    url: localhost:3001/api/v1/emoji/:emoji
+    method: GET
+    Удачный ответ: { id: "1", emoji: "sad"}
+    Ошибка: {status: "error", detail: Описание ошибки}
+
+Получение списка
+    url: localhost:3001/api/v1/emoji/all
+    method: GET
+    Удачный ответ: [{id: "1", emoji: "sad"}]
+    Ошибка: {status: "error", detail: Описание ошибки}
