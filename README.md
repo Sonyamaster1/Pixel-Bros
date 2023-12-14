@@ -14,3 +14,6 @@
 
 ### Ссылка на видео презентацию
 - https://youtu.be/f8T3o0LVwrg
+
+### Ссылка на видео презентацию 7-8 спринт
+- https://youtu.be/WZoLfjEzNVs
