@@ -6,6 +6,7 @@ import { yandexOAuthTransport } from '../../api/yandex-OAuth.transport'
 import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks'
 import { fetchUser } from '../../store/slices/userSlices'
 import { useTheme } from '../../hooks/use-theme'
+import DOMPurify from 'dompurify'
 const RedirectOAuthURI = import.meta.env.VITE_REDIRECT_OAUTH_URI
 
 export const HomePage: FC = () => {
@@ -27,7 +28,7 @@ export const HomePage: FC = () => {
   useEffect(() => {
     const queryString = window.location.search
     const urlParams = new URLSearchParams(queryString)
-    const code = urlParams.get('code')
+    const code = DOMPurify.sanitize(urlParams.get('code') as string)
     if (code && !user.isAuth)
       yandexOAuthTransport
         .signIn({ code: code, redirect_uri: RedirectOAuthURI })
